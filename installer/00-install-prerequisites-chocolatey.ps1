@@ -26,5 +26,5 @@
     cd ../../hats
     Remove-Item -Recurse -Force -ErrorAction silentlycontinue "node_modules"
     & npm install
-    Start-Process cmd -verb runAs "/C cd $pwd && npm start & exit "
+  # Start-Process cmd -verb runAs "/C cd $pwd && npm start & exit "
     cd ../..
