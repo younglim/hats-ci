@@ -12,14 +12,15 @@
         Remove-Item -Recurse -Force -ErrorAction silentlycontinue "${Env:ProgramFiles(x86)}\hats"
 	  }
 	  else {
-	    Remove-Item -Recurse -Force  -ErrorAction silentlycontinue "${Env:ProgramFiles}\hats"
+	    Remove-Item -Recurse -Force -ErrorAction silentlycontinue "${Env:ProgramFiles}\hats"
 	}
 
-	Remove-Item -Recurse -Force  -ErrorAction silentlycontinue "${Env:temp}\testpage"
+	Remove-Item -Recurse -Force -ErrorAction silentlycontinue "${Env:temp}\testpage"
 
     refreshenv
     echo $env:path
 
     cd ../../hats
+    Remove-Item -Recurse -Force -ErrorAction silentlycontinue "node_modules"
     & npm install
     cd ../..
