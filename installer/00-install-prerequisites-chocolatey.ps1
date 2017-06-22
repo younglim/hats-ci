@@ -1,4 +1,7 @@
  	Set-ExecutionPolicy Bypass
+
+ 	& taskkill /F /IM electron.exe /T /FI "STATUS eq RUNNING"
+
     iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
     chocolatey install firefox -x86 --no-progress -y
     chocolatey install googlechrome nodejs-lts --no-progress -y
@@ -12,6 +15,11 @@
 	    Remove-Item -Recurse -Force  -ErrorAction silentlycontinue "${Env:ProgramFiles}\hats"
 	}
 
+	Remove-Item -Recurse -Force  -ErrorAction silentlycontinue "${Env:temp}\testpage"
+
     refreshenv
     echo $env:path
-    
+
+    cd ../../hats
+    & npm install
+    cd ../..
