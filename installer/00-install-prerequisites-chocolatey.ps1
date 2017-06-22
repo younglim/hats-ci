@@ -1,6 +1,9 @@
  	Set-ExecutionPolicy Bypass
 
  	& taskkill /F /IM electron.exe /T /FI "STATUS eq RUNNING"
+ 	& taskkill /F /IM firefox.exe /T /FI "STATUS eq RUNNING"
+ 	& taskkill /F /IM chrome.exe /T /FI "STATUS eq RUNNING"
+ 	& taskkill /F /IM java.exe /T /FI "STATUS eq RUNNING"
 
     iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
     chocolatey install firefox -x86 --no-progress -y
@@ -23,4 +26,5 @@
     cd ../../hats
     Remove-Item -Recurse -Force -ErrorAction silentlycontinue "node_modules"
     & npm install
+    Start-Process cmd -verb runAs "/C cd $pwd && npm start & exit "
     cd ../..
