@@ -5,6 +5,8 @@
  	& taskkill /F /IM chrome.exe /T /FI "STATUS eq RUNNING"
  	& taskkill /F /IM java.exe /T /FI "STATUS eq RUNNING"
 
+	Remove-ItemProperty -ErrorAction silentlycontinue -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" -Name HATS
+	
     iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
     chocolatey install firefox -x86 --no-progress -y
     chocolatey install googlechrome nodejs-lts --no-progress -y
