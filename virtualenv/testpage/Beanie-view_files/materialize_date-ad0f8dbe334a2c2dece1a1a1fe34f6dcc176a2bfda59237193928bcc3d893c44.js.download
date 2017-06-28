@@ -1,0 +1,1 @@
+$(".datepicker").pickadate({format:"dd mmm yyyy",selectMonths:!0,selectYears:15});

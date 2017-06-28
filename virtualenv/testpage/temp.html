@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="charset=UTF-8">
+    <title>HATS</title>
+    <script language="JavaScript" type="text/javascript" src="jquery-3.1.1.js"></script>
+    <script>
+    $(document).ready(function(){
+      function sleep (time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+      }
+		var loc = window.location.pathname;
+		var dir = loc.substring(0, loc.lastIndexOf('/'));
+		console.log("dir: " + dir);
+      sleep(2000).then(() => {
+        window.location.href = "file://" + dir + "/report.html";
+      })
+    });
+    </script>
+
+  </head>
+  <body>
+  <header id="challenge-header" class="site-header">
+  </header>
+
+
+</html>
