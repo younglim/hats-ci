@@ -6,15 +6,18 @@ echo "Path to hats at $path_to_hats"
 $current_path = (Get-Item -Path ".\" -Verbose).FullName
 echo "Stored current working directory at $current_path"
 
-echo "Set path to JDK for this session"
-$env:Path = "$env:Path;$path_to_hats\jre\bin";
+echo "Set path to JRE for this session"
+$env:Path = "$env:windir;$env:windir\system32;"
+$env:Path = "$env:Path;$path_to_hats\jre\bin;";
 
 echo "Set path to browser drivers for this session"
-$env:Path = "$env:Path;$path_to_hats\drivers";
+$env:Path = "$env:Path;$path_to_hats\drivers;";
 
 echo "Activate robot virtual environment"
 cd "$path_to_hats"
 robot\Scripts\activate
+
+cd "$current_path"
 
 echo "Running Robot on testpage"
 cd "$current_path"
