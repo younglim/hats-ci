@@ -1,7 +1,7 @@
 # Set path to hats
 $path_to_hats = "$env:APPDATA\hats"
 
-echo "Create JDK folder in $path_to_hats"
+echo "Create JRE folder in $path_to_hats"
 If(!(test-path $path_to_hats))
 {
 	New-Item -ItemType Directory -Force -Path $path_to_hats
@@ -33,7 +33,7 @@ echo "Installing 7-Zip"
 Start-Process msiexec.exe -ArgumentList "/a $path_to_hats\7z.msi /qn TargetDir=$path_to_hats\7-Zip PrependPath=0 Include_test=0 DefaultFeature=1" -NoNewWindow -Wait;
 
 echo "Unzipping JRE 8"
-Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"jre.exe"', '-o"jdk"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"jre.exe"', '-o"jre"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
 
 echo "Completed unzipping JRE 8"
 
