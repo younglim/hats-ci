@@ -33,9 +33,11 @@ echo "Unzipping Firefox driver"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"geckodriver.zip"', '-o"drivers"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
 
 echo "Removing  temporary files that are no longer needed"
-Get-ChildItem “$path_to_hats” -recurse -include *.msi -force | remove-item
-Get-ChildItem “$path_to_hats” -recurse -include *.zip -force | remove-item
-Get-ChildItem “$path_to_hats” -recurse -include *.exe -force | remove-item
+Get-ChildItem "$path_to_hats" -recurse -include *.msi -force | remove-item
+Get-ChildItem "$path_to_hats" -recurse -include *.zip -force | remove-item
+Get-ChildItem "$path_to_hats" -recurse -include *.exe -force | remove-item
+$fso = New-Object -ComObject scripting.filesystemobject
+$fso.DeleteFolder("$path_to_hats\7-Zip")
 
 echo "Copy shell scripts to $path_to_hats"
 Copy-Item "shell\*" "$path_to_hats"
