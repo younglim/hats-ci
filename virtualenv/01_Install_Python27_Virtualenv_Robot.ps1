@@ -9,7 +9,7 @@ If(!(test-path $path_to_hats))
 
 echo "Downloading Microsoft Visual C++ Compiler for Python 2.7"
 $client = new-object System.Net.WebClient;
-$client.DownloadFile("https://download.microsoft.com/download/7/9/6/796EF2E4-801B-4FC4-AB28-B59FBF6D907B/VCForPython27.msi","$path_to_hats\VCForPython27.msi");
+$client.DownloadFile("http://download.microsoft.com/download/7/9/6/796EF2E4-801B-4FC4-AB28-B59FBF6D907B/VCForPython27.msi","$path_to_hats\VCForPython27.msi");
 
 echo "Installing Microsoft Visual C++ Compiler for Python 2.7"
 Start-Process msiexec.exe -ArgumentList "/a $path_to_hats\VCForPython27.msi /qn" -NoNewWindow -Wait;
