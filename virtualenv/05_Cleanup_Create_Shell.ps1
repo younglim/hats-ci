@@ -8,11 +8,15 @@ If(!(test-path $path_to_hats))
 }
 
 echo "Removing  temporary files that are no longer needed"
-Get-ChildItem "$path_to_hats" -recurse -include *.msi -force | remove-item
-Get-ChildItem "$path_to_hats" -recurse -include *.zip -force | remove-item
-Get-ChildItem "$path_to_hats" -recurse -include *.exe -force | remove-item
 $fso = New-Object -ComObject scripting.filesystemobject
 $fso.DeleteFolder("$path_to_hats\7-Zip")
+$fso.DeleteFile("$path_to_hats\chromedriver.zip")
+$fso.DeleteFile("$path_to_hats\geckodriver.zip")
+$fso.DeleteFile("$path_to_hats\IEDriverServer.zip")
+$fso.DeleteFile("$path_to_hats\VCForPython27.msi")
+$fso.DeleteFile("$path_to_hats\python27.msi")
+$fso.DeleteFile("$path_to_hats\7z.msi")
+$fso.DeleteFile("$path_to_hats\jre.exe")
 
 echo "Copy shell scripts to $path_to_hats"
 Copy-Item "shell\*" "$path_to_hats"
