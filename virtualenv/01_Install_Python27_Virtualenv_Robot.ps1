@@ -42,4 +42,4 @@ $client.DownloadFile("https://raw.githubusercontent.com/GovTechSG/hats-installer
 
 pip install -r .\pip-install-list.txt
 pip install functools
-
+virtualenv --relocatable robot 
