@@ -24,9 +24,4 @@ robot\Scripts\activate
 
 cd "$current_path"
 
-echo "Running Robot on testpage"
-cd "$current_path"
-cd testpage
-.\test.cmd
-
-	
+echo ""
