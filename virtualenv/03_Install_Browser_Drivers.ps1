@@ -31,3 +31,6 @@ Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList '
 
 echo "Unzipping Firefox driver"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"geckodriver.zip"', '-o"drivers"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+
+echo "Removing  temporary files that are no longer needed"
+Remove-Item "$path_to_hats\*.*" | Where { ! $_.PSIsContainer }
