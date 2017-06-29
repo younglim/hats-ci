@@ -25,3 +25,13 @@ robot\Scripts\activate
 cd "$current_path"
 
 echo ""
+$allArgs = $PsBoundParameters.Values + $args
+
+if ($allArgs) 
+{ 
+	echo "Running: $allArgs"
+	iex $allArgs 
+} else 
+{
+
+}
