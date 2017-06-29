@@ -34,10 +34,12 @@ echo "Install VirtualEnv"
 pip install virtualenv
 
 echo "Create and Activate VirtualEnv robot"
-virtualenv --no-site-packages robot 
+virtualenv robot 
 & robot\Scripts\activate
 
 echo "Install pip modules"
 $client.DownloadFile("https://raw.githubusercontent.com/GovTechSG/hats-installer/master/src/lib/install-lists/pip-install-list.txt","$path_to_hats\pip-install-list.txt");
 
 pip install -r .\pip-install-list.txt
+pip install functools
+
