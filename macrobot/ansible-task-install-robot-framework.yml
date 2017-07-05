@@ -1,0 +1,103 @@
+---
+
+   - name: Get $ORACLE_HOME
+     shell: echo $ORACLE_HOME
+     register: oracle_home_output
+
+   - name: Get current username
+     shell: echo `whoami`
+     register: ansible_username
+
+   - debug:
+       msg: "Directory to $ORACLE_HOME {{ oracle_home_output.stdout.split(';')[0]}}\nCurrent username: {{ ansible_username.stdout.split(';')[0] }}"
+
+   - name: Remove $ORACLE_HOME directory
+     sudo: yes
+     file: path="{{ oracle_home_output.stdout.split(';')[0]}}" state=absent
+
+   - name: Remove ~/Downloads/instantclient_12_1 directory
+     sudo: yes
+     file: path="~/Downloads/instantclient_12_1" state=absent
+
+   - name: Create $ORACLE_HOME directories (1/2)
+     sudo: yes
+     shell: "mkdir -p {{ oracle_home_output.stdout.split(';')[0]}}"
+
+   - name: Create $ORACLE_HOME directories (2/2)
+     sudo: yes
+     file: path="{{ oracle_home_output.stdout.split(';')[0]}}" state=directory owner="{{ ansible_username.stdout.split(';')[0] }}"
+
+
+   - name: Unzip Instantclient 12c Basic and SDK to ~/Downloads
+     unarchive: 
+        src: "~/Library/Caches/Homebrew/{{item}}"
+        dest: "~/Downloads" 
+     with_items:
+        - "instantclient-sdk-macos.x64-12.1.0.2.0.zip"
+        - "instantclient-basic-macos.x64-12.1.0.2.0.zip"
+
+   - name: Unzip ottclasses.zip
+     unarchive: 
+        src: "~/Downloads/instantclient_12_1/sdk/ottclasses.zip"
+        dest: "~/Downloads/instantclient_12_1/sdk" 
+
+   - name: Move sdk to instantclient_12_1 
+     shell: "mv ~/Downloads/instantclient_12_1/sdk/* ~/Downloads/instantclient_12_1/"
+
+   - name: Move instantclient_12_1 to $ORACLE_HOME
+     shell: "mv ~/Downloads/instantclient_12_1/* {{ oracle_home_output.stdout.split(';')[0]}}"
+
+   - name: Install dependencies
+     pip:
+        name: "{{item}}"
+        state: present
+     with_items:
+      - python
+      - cx_Oracle
+
+   - name: Install robot framework
+     pip:
+        name: robotframework
+        state: present
+        version: 2.9.2
+
+   - name: Install robotframework-selenium2library (2/2)
+     pip:
+        name: robotframework-selenium2library
+        state: present
+
+   - name: Install robotframework-faker
+     pip:
+        name: robotframework-faker
+        state: present
+
+   - name: Install robotframework-databaselibrary
+     pip:
+        name: robotframework-databaselibrary
+        state: present
+     ignore_errors: yes
+
+   - name: Install robotframework-databaselibrary
+     shell: pip install robotframework-databaselibrary
+
+   - name: Download Chromedriver
+     get_url: url="https://chromedriver.storage.googleapis.com/2.29/chromedriver_mac64.zip" dest=~/Downloads force=yes
+   
+   - name: Unzip Chromedriver
+     unarchive: 
+        src: "~/Downloads/chromedriver_mac64.zip"
+        dest: "~/Downloads" 
+
+   - name: Copy Chromdriver executable to /usr/local/share and set executable
+     sudo: yes
+     copy:
+        src: ~/Downloads/chromedriver
+        dest: /usr/local/share/chromedriver
+        mode: 755
+
+   - name: Symlink Chromedriver to /usr/local/bin
+     file:
+        src: /usr/local/share/chromedriver
+        dest: /usr/local/bin/chromedriver
+        state: link
+        
