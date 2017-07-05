@@ -1,9 +1,8 @@
 @echo OFF
-pushd %~dp0
 
 if [%1]==[] goto usage
 
-@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -Command ".\hats_shell.ps1" %*
+@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File "%~dp0hats_shell.ps1" %*
 exit /B 1
 
 :usage
@@ -12,3 +11,5 @@ echo "================================================================"
 echo.
 
 @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoExit -ExecutionPolicy Bypass -Command ".\hats_shell.ps1"
+
+pause
