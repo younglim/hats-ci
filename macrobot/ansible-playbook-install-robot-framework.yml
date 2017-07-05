@@ -3,5 +3,5 @@
 - hosts: all
 
   tasks:  
-  - include: ansible-task-install-oracle-instantclient.yml
+  # - include: ansible-task-install-oracle-instantclient.yml
   - include: ansible-task-install-robot-framework.yml
