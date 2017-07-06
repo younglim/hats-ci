@@ -31,7 +31,7 @@ $allArgs = $PsBoundParameters.Values + $args + ""
 if ($allArgs) 
 { 
 	echo "Running: $allArgs"
-	& $allArgs
+	iex "& $allArgs"
 } else 
 {
 
