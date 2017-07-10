@@ -10,7 +10,7 @@ echo "Set path to JRE for this session"
 $env:Path = "$env:windir;$env:windir\system32;"
 $env:Path = "$env:Path;$path_to_hats;";
 
-cd "$current_path"
+cd "$current_path\testpage"
 
 echo "Running Robot on testpage"
 hats_shell .\test.cmd
