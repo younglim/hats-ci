@@ -28,7 +28,7 @@ Beanie test using Firefox
 *** Keywords ***
 Beanie test
   [Arguments]    ${browser}
-  Open Browser  file://${TEMPDIR}/testpage/Beanie.html  ${browser}
+  Open Browser  file://${CURDIR}/Beanie.html  ${browser}
   Wait Until Page Contains Element  //i[@id="link-edit-1-i"]
   Click Element  //i[@id="link-edit-1-i"]
   Wait Until Page Contains Element  //input[@name="device[name]"]

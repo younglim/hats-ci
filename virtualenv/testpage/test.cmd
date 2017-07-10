@@ -53,22 +53,21 @@ IF %ffpath%==NUL (
   set ff_exist=True
 )
 
-set PATH=%PATH%;C:\Python27\;C:\Python27\Scripts;C:\Program Files\Java\jre1.8.0_111\bin;C:\Program Files (x86)\hats
 call pybot --variable CHROME_EXISTS:%chrome_exist% --variable IE_EXISTS:%ie_exist% --variable FF_EXISTS:%ff_exist% --name hats test.robot
 
 IF NOT %chromepath%==NUL (
 echo chromepath not null
-  %chromepath% %TEMP%/testpage/report.html
+  %chromepath% "%~dp0report.html"
 ) ELSE (
   echo chromepath null
   IF NOT %iepath%==NUL (
     echo iepath not null
-    %iepath% %TEMP%/testpage/report.html
+    %iepath% "%~dp0report.html"
   ) ELSE (
     echo iepath null
     IF NOT %ffpath%==NUL (
       echo ffpath not null
-      %ffpath% %TEMP%/testpage/report.html
+      %ffpath% "%~dp0report.html"
     )
   )
 )
