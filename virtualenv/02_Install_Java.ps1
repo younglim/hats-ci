@@ -4,7 +4,7 @@ $path_to_hats = "$env:PROGRAMFILES\hats"
 echo "Create JRE folder in $path_to_hats"
 If(!(test-path $path_to_hats))
 {
-	New-Item -ItemType Directory -Force -Path $path_to_hats
+	New-Item -ItemType Directory -Force -Path "$path_to_hats"
 }
 
 echo "Preparing to download JRE 8"
@@ -30,7 +30,7 @@ echo "Downloading 7-Zip"
 $client.DownloadFile("http://www.7-zip.org/a/7z1700.msi","$path_to_hats\7z.msi");
 
 echo "Installing 7-Zip"
-Start-Process msiexec.exe -ArgumentList "/a $path_to_hats\7z.msi /qn TargetDir=$path_to_hats\7-Zip PrependPath=0 Include_test=0 DefaultFeature=1" -NoNewWindow -Wait;
+Start-Process msiexec.exe -ArgumentList "/a `"$path_to_hats\7z.msi`" /qn TargetDir=`"$path_to_hats\7-Zip`" PrependPath=0 Include_test=0 DefaultFeature=1" -NoNewWindow -Wait;
 
 echo "Unzipping JRE 8"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"jre.exe"', '-o"jre"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"

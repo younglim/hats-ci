@@ -4,7 +4,7 @@ $path_to_hats = "$env:PROGRAMFILES\hats"
 echo "Create drivers folder in $path_to_hats"
 If(!(test-path $path_to_hats))
 {
-	New-Item -ItemType Directory -Force -Path $path_to_hats
+	New-Item -ItemType Directory -Force -Path "$path_to_hats"
 }
 
 If(!(test-path "$path_to_hats\drivers"))
