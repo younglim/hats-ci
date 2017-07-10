@@ -4,7 +4,8 @@ $path_to_hats = "$env:PROGRAMFILES\hats"
 echo "Create robot folder in $path_to_hats"
 If(!(test-path $path_to_hats))
 {
-	New-Item -ItemType Directory -Force -Path $path_to_hats
+	Start-Process powershell -verb runAs 'New-Item -ItemType Directory -Force -Path "$env:PROGRAMFILES\hats"'
+	# New-Item -ItemType Directory -Force -Path $path_to_hats
 }
 
 echo "Downloading Microsoft Visual C++ Compiler for Python 2.7"
