@@ -15,13 +15,9 @@ $InheritanceFlag = [System.Security.AccessControl.InheritanceFlags]::ContainerIn
 $PropagationFlag = [System.Security.AccessControl.PropagationFlags]::None
 $objType = [System.Security.AccessControl.AccessControlType]::Allow 
 
-$Folders | %{
-	$Folder = $_
-    $acl = Get-Acl "$path_to_hats\$Folder"
-    $permission = $user,"Modify", $InheritanceFlag, $PropagationFlag, $objType
-    $accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule $permission
+$acl = Get-Acl "$path_to_hats"
+$permission = $user,"Modify", $InheritanceFlag, $PropagationFlag, $objType
+$accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule $permission
+$acl.SetAccessRule($accessRule)
+Set-Acl -Path "$path_to_hats" -AclObject $acl
 
-    $acl.SetAccessRule($accessRule)
-    Set-Acl -Path "$path_to_hats\$Folder" -AclObject $acl
-	
-} 
