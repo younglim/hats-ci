@@ -1,5 +1,5 @@
 # Set path to hats
-$path_to_hats = "$env:APPDATA\hats"
+$path_to_hats = "$env:PROGRAMFILES\hats"
 echo "Path to hats at $path_to_hats"
 
 # Set current path

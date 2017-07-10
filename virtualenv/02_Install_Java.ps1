@@ -1,5 +1,5 @@
 # Set path to hats
-$path_to_hats = "$env:APPDATA\hats"
+$path_to_hats = "$env:PROGRAMFILES\hats"
 
 echo "Create JRE folder in $path_to_hats"
 If(!(test-path $path_to_hats))
