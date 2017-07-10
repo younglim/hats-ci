@@ -6,8 +6,15 @@ echo "Stored current working directory at $current_path"
 # Set path to hats
 $path_to_hats  = split-path -parent $MyInvocation.MyCommand.Definition
 
-echo "Overwrite 'robot\Lib\orig-prefix.txt' with directory to Python"
-[System.IO.File]::WriteAllText("$path_to_hats\robot\Lib\orig-prefix.txt","$path_to_hats\Python27".ToLower(),[System.Text.Encoding]::ASCII)
+$path_to_origPrefix = "$path_to_hats\robot\Lib\orig-prefix.txt";
+$origPrefixContent = [IO.File]::ReadAllText($path_to_origPrefix)
+$pythonDir = "$path_to_hats\Python27".ToLower();
+
+If (!$pythonDir.equals($origPrefixContent)) {
+	echo "Overwrite 'robot\Lib\orig-prefix.txt' with directory to Python"
+	
+	[System.IO.File]::WriteAllText($path_to_origPrefix,$pythonDir,[System.Text.Encoding]::ASCII)
+}
 
 echo "Set path to Python27"
 $env:Path = "$env:Path;$path_to_hats\Python27;$path_to_hats\Python27\Scripts";
@@ -20,10 +27,10 @@ echo "Set path to browser drivers for this session"
 $env:Path = "$env:Path;$path_to_hats\drivers";
 
 echo "Activate robot virtual environment"
-cd $path_to_hats
+cd "$path_to_hats"
 robot\Scripts\activate
 
-cd $current_path
+cd "$current_path"
 
 echo ""
 $allArgs = $PsBoundParameters.Values + $args + ""
