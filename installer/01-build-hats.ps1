@@ -4,13 +4,4 @@
         & $pathToZipExe $arguments;
     }
 
- 	Set-ExecutionPolicy Bypass
-
-    Remove-Item -Recurse -Force -ErrorAction silentlycontinue "${Env:ProgramFiles}\hats"
-
-    cd ../virtualenv
-
-    .\00_Install_and_Run_Robot.bat
-
-    cd ../../
     create-7zip "${Env:ProgramFiles}\hats" "hats.zip"
