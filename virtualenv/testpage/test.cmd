@@ -53,7 +53,7 @@ IF %ffpath%==NUL (
   set ff_exist=True
 )
 
-call pybot --variable CHROME_EXISTS:%chrome_exist% --variable IE_EXISTS:%ie_exist% --variable FF_EXISTS:%ff_exist% --name hats test.robot
+call pybot --variable CHROME_EXISTS:%chrome_exist% --variable IE_EXISTS:%ie_exist% --variable FF_EXISTS:%ff_exist% --name hats test.robot --xunit output.xml
 
 rem IF NOT %chromepath%==NUL (
 rem echo chromepath not null
