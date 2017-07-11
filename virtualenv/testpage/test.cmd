@@ -55,19 +55,19 @@ IF %ffpath%==NUL (
 
 call pybot --variable CHROME_EXISTS:%chrome_exist% --variable IE_EXISTS:%ie_exist% --variable FF_EXISTS:%ff_exist% --name hats test.robot
 
-IF NOT %chromepath%==NUL (
-echo chromepath not null
-  %chromepath% "%~dp0report.html"
-) ELSE (
-  echo chromepath null
-  IF NOT %iepath%==NUL (
-    echo iepath not null
-    %iepath% "%~dp0report.html"
-  ) ELSE (
-    echo iepath null
-    IF NOT %ffpath%==NUL (
-      echo ffpath not null
-      %ffpath% "%~dp0report.html"
-    )
-  )
-)
+rem IF NOT %chromepath%==NUL (
+rem echo chromepath not null
+rem   %chromepath% "%~dp0report.html"
+rem ) ELSE (
+rem   echo chromepath null
+rem   IF NOT %iepath%==NUL (
+rem     echo iepath not null
+rem     %iepath% "%~dp0report.html"
+rem   ) ELSE (
+rem     echo iepath null
+rem     IF NOT %ffpath%==NUL (
+rem       echo ffpath not null
+rem       %ffpath% "%~dp0report.html"
+rem     )
+rem   )
+rem )
