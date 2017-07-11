@@ -18,4 +18,4 @@
     .\00_Install_and_Run_Robot.bat
 
     cd ../../
-    create-7zip "$env:ProgramFiles\hats" "hats.zip"
+    create-7zip "$($Env:ProgramFiles)\hats" "hats.zip"
