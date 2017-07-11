@@ -5,3 +5,7 @@
     }
 
     create-7zip "${Env:ProgramFiles}\hats" "hats.zip"
+
+    & taskkill /F /IM iexplore.exe /T /FI "STATUS eq RUNNING"
+    & taskkill /F /IM firefox.exe /T /FI "STATUS eq RUNNING"
+    & taskkill /F /IM chrome.exe /T /FI "STATUS eq RUNNING"
