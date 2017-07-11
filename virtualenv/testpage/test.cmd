@@ -53,5 +53,4 @@ IF %ffpath%==NUL (
   set ff_exist=True
 )
 
-call pybot --variable CHROME_EXISTS:%chrome_exist% --variable IE_EXISTS:%ie_exist% --variable FF_EXISTS:%ff_exist% --name hats test.robot
-
+call pybot -x report.xml --variable CHROME_EXISTS:%chrome_exist% --variable IE_EXISTS:%ie_exist% --variable FF_EXISTS:%ff_exist% --name hats test.robot
