@@ -17,6 +17,25 @@ $client.DownloadFile($iniContent["Misc"]["VCForPython27"],"$path_to_hats\VCForPy
 echo "Installing Microsoft Visual C++ Compiler for Python 2.7"
 Start-Process msiexec.exe -ArgumentList "/i `"$path_to_hats\VCForPython27.msi`" /qn" -NoNewWindow -Wait;
 
+
+echo "Preparing to download Node"
+if ([System.IntPtr]::Size -eq 4)
+{
+	echo "Your system is 32-bit - Downloading..."
+	$client.DownloadFile($iniContent["Node"]["Node-32"],"$path_to_hats\node.msi");
+}
+else
+{
+	echo "Your system is 64-bit - Downloading..."
+	$client.DownloadFile($iniContent["Node"]["Node-64"],"$path_to_hats\node.msi");
+}
+
+echo "Downloaded Node"
+
+echo "Install Node"
+Start-Process msiexec.exe -ArgumentList "/a `"$path_to_hats\node.msi`" /qn TargetDir=`"$path_to_hats\nodejs`" " -NoNewWindow -Wait;
+
+
 echo "Downloading Python 2.7"
 
 if ([System.IntPtr]::Size -eq 4) 
@@ -50,7 +69,7 @@ echo "Install VirtualEnv"
 pip install virtualenv
 
 echo "Create and Activate VirtualEnv robot"
-virtualenv robot 
+virtualenv robot
 & robot\Scripts\activate
 
 echo "Install pip modules"
@@ -58,4 +77,4 @@ $client.DownloadFile($iniContent["hats"]["RobotPipInstallList"],"$path_to_hats\p
 
 pip install -r .\pip-install-list.txt
 pip install functools
-virtualenv --relocatable robot 
+virtualenv --relocatable robot
