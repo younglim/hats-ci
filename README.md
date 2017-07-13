@@ -9,7 +9,7 @@ A virtual environment will be set up and configured in your local machine as wel
 3. Navigate to `virtualenv/shell` directory
 4. Run `hats_shell.cmd` and you are ready to run any pybot commands and start testing with your Robot scripts!
 
-###For Mac
+### For Mac
 1. Navigate to `macrobot`
 2. Run `install-robot.sh`
 3. Start testing!
