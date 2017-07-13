@@ -13,14 +13,14 @@ $iniContent = Get-IniContent "config.ini"
 echo "Preparing to download JRE 8"
 $client = new-object System.Net.WebClient;
 $cookie = "oraclelicense=accept-securebackup-cookie"
-$client.Headers.Add([System.Net.HttpRequestHeader]::Cookie, $cookie) 
+$client.Headers.Add([System.Net.HttpRequestHeader]::Cookie, $cookie)
 
-if ([System.IntPtr]::Size -eq 4) 
+if ([System.IntPtr]::Size -eq 4)
 {
-	echo "Your system is 32-bit - Downloading..." 
+	echo "Your system is 32-bit - Downloading..."
 	$client.DownloadFile($iniContent["Java"]["JRE-32"],"$path_to_hats\jre.exe");
-}	
-else 
+}
+else
 {
 	echo "Your system is 64-bit - Downloading..."
 	$client.DownloadFile($iniContent["Java"]["JRE-64"],"$path_to_hats\jre.exe");
@@ -41,4 +41,4 @@ Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList '
 echo "Completed unzipping JRE 8"
 
 echo "Set path to JRE for this session"
-$env:Path = "$env:Path:$path_to_hats\jre\bin";
+$env:Path = "$env:Path;$path_to_hats\jre\bin";
