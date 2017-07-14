@@ -4,9 +4,9 @@
         & $pathToZipExe $arguments;
     }
 
-    Remove-Item -Recurse -Force -ErrorAction silentlycontinue 'hats.zip'
+    Remove-Item -Recurse -Force -ErrorAction silentlycontinue 'hats_shell.zip'
 
-    create-7zip "C:\Program Files\hats" "hats.zip"
+    create-7zip "C:\Program Files\hats\*" "hats.zip"
 
     & taskkill /F /IM iexplore.exe /T /FI "STATUS eq RUNNING"
     & taskkill /F /IM firefox.exe /T /FI "STATUS eq RUNNING"
