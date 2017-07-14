@@ -6,7 +6,7 @@
 
     Remove-Item -Recurse -Force -ErrorAction silentlycontinue 'hats_shell.zip'
 
-    create-7zip "C:\Program Files\hats\*" "hats.zip"
+    create-7zip "C:\Program Files\hats\*" "hats_shell.zip"
 
     & taskkill /F /IM iexplore.exe /T /FI "STATUS eq RUNNING"
     & taskkill /F /IM firefox.exe /T /FI "STATUS eq RUNNING"
