@@ -13,5 +13,5 @@ goto check_Permissions
     ) else (
         echo Failure: Attempting to run as administrator.
         echo %CD%
-		    @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -command "Start-Process '%CD%\update.cmd' -Verb runas"
+		    @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" –NoProfile –ExecutionPolicy Bypass -Command "Start-Process '%CD%\update.cmd' -Verb runas"
     )
