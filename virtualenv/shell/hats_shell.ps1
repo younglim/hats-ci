@@ -12,7 +12,7 @@ $pythonDir = "$path_to_hats\Python27".ToLower();
 
 If (!$pythonDir.equals($origPrefixContent)) {
 	echo "Overwrite 'robot\Lib\orig-prefix.txt' with directory to Python"
-	
+
 	[System.IO.File]::WriteAllText($path_to_origPrefix,$pythonDir,[System.Text.Encoding]::ASCII)
 }
 
@@ -26,20 +26,25 @@ $env:Path = "$env:Path;$path_to_hats\jre\bin";
 echo "Set path to browser drivers for this session"
 $env:Path = "$env:Path;$path_to_hats\drivers";
 
+echo "Set path to utils for this session"
+$env:Path = "$env:Path;$path_to_hats\utils";
+
 echo "Activate robot virtual environment"
 cd "$path_to_hats"
 robot\Scripts\activate
 
 cd "$current_path"
 
+. $path_to_hats\utils\check_last_update.ps1
+
 echo ""
 $allArgs = $PsBoundParameters.Values + $args + ""
 
-if ($allArgs) 
-{ 
+if ($allArgs)
+{
 	echo "Running: $allArgs"
 	iex "& $allArgs"
-} else 
+} else
 {
 
 }
