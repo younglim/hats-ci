@@ -9,7 +9,7 @@ echo "URL: $url"
 $old_list="$path_to_utils\pip-install-list.txt"
 $new_list="$path_to_utils\pip-install-list-new.txt"
 
-if ((Get-FileHash $old_list).hash  -ne (Get-FileHash $new_list).hash) {
+if ((Get-FileHash $old_list).hash -ne (Get-FileHash $new_list).hash) {
   echo "New updates found, updating pip packages"
   Remove-Item "$path_to_utils\pip-install-list.txt"
   Rename-Item "$path_to_utils\pip-install-list-new.txt" "pip-install-list.txt"
@@ -18,3 +18,5 @@ if ((Get-FileHash $old_list).hash  -ne (Get-FileHash $new_list).hash) {
   echo "No new updates found"
   Remove-Item "$path_to_utils\pip-install-list-new.txt"
 }
+
+pause
