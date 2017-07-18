@@ -1,13 +1,17 @@
 @echo OFF
 pushd %~dp0
 
-goto run_Application
+goto check_Permissions
 
-:run_Application
-echo ""
-echo "hats Installer Updater"
-echo "======================"
-echo.
-echo
-@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -Command ".\update.ps1"
-pause
+:check_Permissions
+    echo Administrative permissions required. Detecting permissions...
+
+    net session >nul 2>&1
+    if %errorLevel% == 0 (
+        echo Success: Administrative permissions confirmed.
+        @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -Command ".\update_pip.ps1"
+    ) else (
+        echo Failure: Attempting to run as administrator.
+        echo %CD%
+		    @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -command "Start-Process '%CD%\update.cmd' -Verb runas"
+    )

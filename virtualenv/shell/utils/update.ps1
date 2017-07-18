@@ -1,5 +1,6 @@
 $path_to_utils  = split-path -parent $MyInvocation.MyCommand.Definition
 
+Get-Date > "$path_to_utils\last-check.txt"
 echo "Downloading latest version of pip modules"
 $url = Get-Content "$path_to_utils\pip-install-list.url"
 echo "URL: $url"
