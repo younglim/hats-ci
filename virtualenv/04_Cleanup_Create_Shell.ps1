@@ -18,7 +18,7 @@ $fso.DeleteFile("$path_to_hats\7z.msi")
 $fso.DeleteFile("$path_to_hats\jre.exe")
 $fso.DeleteFile("$path_to_hats\get-pip.py")
 $fso.DeleteFile("$path_to_hats\pip-install-list.txt")
-$fso.DeleteFile("$path_to_hats\node.msi")
+$fso.DeleteFile("$path_to_hats\node.zip")
 
 echo "Copy shell scripts to $path_to_hats"
 Copy-Item "shell\*" "$path_to_hats"
