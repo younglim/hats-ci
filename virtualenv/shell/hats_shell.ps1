@@ -29,6 +29,12 @@ $env:Path = "$env:Path;$path_to_hats\drivers";
 echo "Set path to utils for this session"
 $env:Path = "$env:Path;$path_to_hats\utils";
 
+echo "Set path to node for this session"
+$env:Path = "$env:Path;$path_to_hats\nodejs";
+
+echo "Set path to node_modules for this session"
+$env:Path = "$env:Path;$path_to_hats\node_modules\.bin";
+
 echo "Activate robot virtual environment"
 cd "$path_to_hats"
 robot\Scripts\activate
