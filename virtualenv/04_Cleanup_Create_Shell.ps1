@@ -23,11 +23,11 @@ echo "Copy shell scripts to $path_to_hats"
 Copy-Item "shell\*" "$path_to_hats" -recurse
 
 echo "Set environment variables"
-[Environment]::SetEnvironmentVariable( "HATS", $path_to_hats, [System.EnvironmentVariableTarget]::Machine )
+[Environment]::SetEnvironmentVariable("HATS", $path_to_hats, [System.EnvironmentVariableTarget]::Machine)
 
-$path = [System.Environment]::GetEnvironmentVariable('PATH', 'Machine');
+$path = [System.Environment]::GetEnvironmentVariable('PATH', [System.EnvironmentVariableTarget]::Machine);
 $path = ($path.Split(';') | Where-Object { $_ -ne "%HATS%" }) -join ';'
-$path = $path + ";%HATS%" ;
+$path = "%HATS%;" + $path ;
 [Environment]::SetEnvironmentVariable( "Path", $path, [System.EnvironmentVariableTarget]::Machine )
 
 echo "Prepare installation list for future updates"
