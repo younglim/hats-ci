@@ -19,6 +19,9 @@ goto check_Permissions
     pause >nul
 
 :run_Application
-@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -Command ".\uninstall.ps1"
+@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -Command ".\uninstall ps.ps1"
+echo "Deleting installed files..."
+cd c:\
+(goto) 2>nul & rmdir "c:\program files\hats" /q /s 
 
 pause
