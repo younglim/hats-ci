@@ -7,7 +7,7 @@ Stop-Process -processname chromedriver, geckodriver, IEDriverServer -ErrorAction
 
 echo "Removing system path entry"
 $path = [System.Environment]::GetEnvironmentVariable('PATH', 'Machine');
-$path = ($path.Split(';') | Where-Object { $_ -ne "$path_to_hats" }) -join ';'
+$path = ($path.Split(';') | Where-Object { $_ -ne "%HATS%" }) -join ';'
 [System.Environment]::SetEnvironmentVariable('PATH', $path, 'Machine');
 
 echo "Removing all hats files"
