@@ -1,6 +1,6 @@
 echo "Uninstalling hats"
 
-$path_to_hats = "$env:PROGRAMFILES\hats"
+$path_to_hats = "$env:HATS"
 
 echo "Terminating any running instances of web drivers"
 Stop-Process -processname chromedriver, geckodriver, IEDriverServer -ErrorAction silentlycontinue
