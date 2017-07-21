@@ -27,6 +27,7 @@ echo "Set environment variables"
 
 $key = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey('SYSTEM\CurrentControlSet\Control\Session Manager\Environment', $true)
 $path = $key.GetValue('Path',$null,'DoNotExpandEnvironmentNames')
+$path = ($path.Split(';') | Where-Object { $_ -ne "%HATS%" }) -join ';'
 $path = "%HATS%;" + $path;
 $path
 $key.SetValue('Path', $path, 'ExpandString')
