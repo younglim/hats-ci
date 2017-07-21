@@ -19,3 +19,4 @@ echo "Removing all hats files"
 
 cd "$path_to_hats"
 Get-ChildItem *.* -recurse | Where { ! $_.PSIsContainer } | remove-item
+Remove-Item -Recurse -Force -ErrorAction silentlycontinue $path_to_hats
