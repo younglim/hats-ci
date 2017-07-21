@@ -1,6 +1,6 @@
 echo "Installing hats"
 
-$path_to_hats = (Get-Item -Path ".\" -Verbose).Parent.Parent.FullName
+$path_to_hats = (Get-Item -Path ".\" -Verbose).Parent.FullName
 
 echo "Add system path entry for HATS"
 $key = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey('SYSTEM\CurrentControlSet\Control\Session Manager\Environment', $true)
