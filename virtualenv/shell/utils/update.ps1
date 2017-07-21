@@ -1,4 +1,4 @@
-$path_to_utils  = split-path -parent $MyInvocation.MyCommand.Definition
+$path_to_utils  = (Get-Item -Path ".\" -Verbose).FullName
 
 Get-Date > "$path_to_utils\last-check.txt"
 echo "Downloading latest version of pip modules"
@@ -18,5 +18,3 @@ if ((Get-FileHash $old_list).hash -ne (Get-FileHash $new_list).hash) {
   echo "No new updates found"
   Remove-Item "$path_to_utils\pip-install-list-new.txt"
 }
-
-pause
