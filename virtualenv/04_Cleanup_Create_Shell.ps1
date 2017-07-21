@@ -25,10 +25,12 @@ Copy-Item "shell\*" "$path_to_hats" -recurse
 echo "Set environment variables"
 [Environment]::SetEnvironmentVariable("HATS", $path_to_hats, [System.EnvironmentVariableTarget]::Machine)
 
-$path = [System.Environment]::GetEnvironmentVariable('PATH', [System.EnvironmentVariableTarget]::Machine);
-$path = ($path.Split(';') | Where-Object { $_ -ne "%HATS%" }) -join ';'
-$path = "%HATS%;" + $path ;
-[Environment]::SetEnvironmentVariable( "Path", $path, [System.EnvironmentVariableTarget]::Machine )
+$key = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey('SYSTEM\CurrentControlSet\Control\Session Manager\Environment', $true)
+$path = $key.GetValue('Path',$null,'DoNotExpandEnvironmentNames')
+$path = "%HATS%;" + $path;
+$path
+$key.SetValue('Path', $path, 'ExpandString')
+$key.Dispose()
 
 echo "Prepare installation list for future updates"
 echo $path_to_hats

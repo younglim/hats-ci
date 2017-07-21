@@ -6,9 +6,13 @@ echo "Terminating any running instances of web drivers"
 Stop-Process -processname chromedriver, geckodriver, IEDriverServer -ErrorAction silentlycontinue
 
 echo "Removing system path entry"
-$path = [Environment]::GetEnvironmentVariable('PATH', 'Machine');
-$path = ($path.Split(';') | Where-Object { $_ -ne "$env:HATS" }) -join ';'
-[Environment]::SetEnvironmentVariable("PATH", $path, 'Machine');
+$key = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey('SYSTEM\CurrentControlSet\Control\Session Manager\Environment', $true)
+$path = $key.GetValue('Path',$null,'DoNotExpandEnvironmentNames')
+$path
+$path = ($path.Split(';') | Where-Object { $_ -ne "%HATS%" }) -join ';'
+$key.SetValue('Path', $path, 'ExpandString')
+$key.Dispose()
+
 [Environment]::SetEnvironmentVariable("HATS",$null, [System.EnvironmentVariableTarget]::Machine)
 
 echo "Removing all hats files"
