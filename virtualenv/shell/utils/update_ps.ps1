@@ -1,4 +1,4 @@
-$path_to_utils  = (Get-Item -Path ".\" -Verbose).FullName
+$path_to_utils  = split-path -parent $MyInvocation.MyCommand.Definition
 
 Get-Date > "$path_to_utils\last-check.txt"
 echo "Downloading latest version of pip modules"
