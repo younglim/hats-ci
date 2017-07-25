@@ -41,4 +41,5 @@ Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList '
 echo "Completed unzipping JRE 8"
 
 echo "Set path to JRE for this session"
-$env:Path = "$env:Path;$path_to_hats\jre\bin";
+$env:Path = "$env:Path;$path_to_hats\jre\bin;$path_to_hats\jre\lib"
+echo $env:Path

@@ -17,6 +17,9 @@ $client.DownloadFile($iniContent["Misc"]["VCForPython27"],"$path_to_hats\VCForPy
 echo "Installing Microsoft Visual C++ Compiler for Python 2.7"
 Start-Process msiexec.exe -ArgumentList "/i `"$path_to_hats\VCForPython27.msi`" /qn" -NoNewWindow -Wait;
 
+$env:Path = "$path_to_hats\Python27;$path_to_hats\Python27\Scripts";
+echo $env:Path
+
 echo "Downloading Python 2.7"
 
 if ([System.IntPtr]::Size -eq 4)
