@@ -27,8 +27,19 @@ $env:Path = "$env:Path;$env:JAVA_HOME\bin";
 echo "Set path to browser drivers for this session"
 $env:Path = "$env:Path;$path_to_hats\drivers";
 
+<<<<<<< HEAD
 echo "Set path to utils for this session"
 $env:Path = "$env:Path;$path_to_hats\utils";
+=======
+echo "Set path to androidSDK tools for this session"
+$env:Path = "$env:Path;$path_to_hats\androidSDK\tools;$path_to_hats\androidSDK\tools\bin";
+>>>>>>> 21c065629e2349ff8c98efe14fab96ea9e8be688
+
+echo "Set path to node for this session"
+$env:Path = "$env:Path;$path_to_hats\nodejs";
+
+echo "Set path to node_modules for this session"
+$env:Path = "$env:Path;$path_to_hats\node_modules\.bin";
 
 echo "Set path to androidSDK tools for this session"
 $env:Path = "$env:Path;$path_to_hats\androidSDK\tools;$path_to_hats\androidSDK\tools\bin";
