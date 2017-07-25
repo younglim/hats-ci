@@ -36,14 +36,11 @@ $env:Path = "$env:Path;$path_to_hats\nodejs";
 echo "Set path to node_modules for this session"
 $env:Path = "$env:Path;$path_to_hats\node_modules\.bin";
 
+echo "Set path to npm-global for this session"
+$env:Path = "$env:Path;$path_to_hats\npm-global;$path_to_hats\npm-global\bin";
+
 echo "Set path to androidSDK tools for this session"
-$env:Path = "$env:Path;$path_to_hats\androidSDK\tools;$path_to_hats\androidSDK\tools\bin";
-
-echo "Set path to node for this session"
-$env:Path = "$env:Path;$path_to_hats\nodejs";
-
-echo "Set path to node_modules for this session"
-$env:Path = "$env:Path;$path_to_hats\node_modules\.bin";
+$env:Path = "$env:Path;$path_to_hats\androidSDK;$path_to_hats\androidSDK\bin;$path_to_hats\androidSDK\platform-tools";
 
 echo "Activate robot virtual environment"
 cd "$path_to_hats"

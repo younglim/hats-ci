@@ -75,6 +75,8 @@ android list
 echo "Testing avdmanager command"
 avdmanager
 
+#to-do: Install platform-tools form sdkmanager
+
 echo "Preparing to download Node"
 if ([System.IntPtr]::Size -eq 4)
 {
@@ -106,13 +108,18 @@ Set-Location $path_to_hats
 
 echo "Initializing npm"
 Get-Location
+mkdir npm-global
+npm config set prefix $path_to_hats\npm-global
+$env:Path = "$env:Path;$path_to_hats\npm-global;$path_to_hats\npm-global\bin";
 #npm init -y
 
 echo "Download package.json"
 $client.DownloadFile($iniContent["hats"]["NpmPackageJson"],"$path_to_hats\package.json");
 
+#to-do: test if it works without package.json
 echo "Installing Appium and Windows Build Tools through npm"
-npm install
+npm install -g -production windows-build-tools
+npm install -g appium
 npm config set msvs_version 2015
 $env:Path = "$env:Path;${env:ProgramFiles(x86)}\MSBUILD";
 
