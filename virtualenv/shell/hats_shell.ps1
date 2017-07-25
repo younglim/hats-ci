@@ -19,15 +19,21 @@ If (!$pythonDir.equals($origPrefixContent)) {
 echo "Set path to Python27"
 $env:Path = "$env:Path;$path_to_hats\Python27;$path_to_hats\Python27\Scripts";
 
-echo "Set path to JRE for this session"
+echo "Set path to JDK for this session"
 $env:Path = "$env:windir;$env:windir\system32"
-$env:Path = "$env:Path;$path_to_hats\jre\bin";
+$env:JAVA_HOME = "$path_to_hats\jdk"
+$env:Path = "$env:Path;$env:JAVA_HOME\bin";
 
 echo "Set path to browser drivers for this session"
 $env:Path = "$env:Path;$path_to_hats\drivers";
 
+<<<<<<< HEAD
 echo "Set path to utils for this session"
 $env:Path = "$env:Path;$path_to_hats\utils";
+=======
+echo "Set path to androidSDK tools for this session"
+$env:Path = "$env:Path;$path_to_hats\androidSDK\tools;$path_to_hats\androidSDK\tools\bin";
+>>>>>>> 21c065629e2349ff8c98efe14fab96ea9e8be688
 
 echo "Set path to node for this session"
 $env:Path = "$env:Path;$path_to_hats\nodejs";
