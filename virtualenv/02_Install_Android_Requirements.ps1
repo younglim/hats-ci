@@ -74,8 +74,12 @@ echo "Testing android list command"
 android list
 echo "Testing avdmanager command"
 avdmanager
-
-#to-do: Install platform-tools form sdkmanager
+echo "Download platform-tools using sdkmanager"
+sdkmanager "platform-tools" --sdk_root="$path_to_hats\androidSDK"
+$env:Path = "$env:Path;$path_to_hats\androidSDK\platform-tools";
+echo "Add platform-tools to path"
+echo 'Testing adb command'
+adb
 
 echo "Preparing to download Node"
 if ([System.IntPtr]::Size -eq 4)
@@ -116,7 +120,6 @@ $env:Path = "$env:Path;$path_to_hats\npm-global;$path_to_hats\npm-global\bin";
 echo "Download package.json"
 $client.DownloadFile($iniContent["hats"]["NpmPackageJson"],"$path_to_hats\package.json");
 
-#to-do: test if it works without package.json
 echo "Installing Appium and Windows Build Tools through npm"
 npm install -g -production windows-build-tools
 npm install -g appium
