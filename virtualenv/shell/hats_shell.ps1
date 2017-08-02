@@ -16,11 +16,12 @@ If (!$pythonDir.equals($origPrefixContent)) {
 	[System.IO.File]::WriteAllText($path_to_origPrefix,$pythonDir,[System.Text.Encoding]::ASCII)
 }
 
+$env:Path = "$env:windir;$env:windir\system32;$env:windir\system32\WindowsPowerShell\v1.0"
+
 echo "Set path to Python27"
 $env:Path = "$env:Path;$path_to_hats\Python27;$path_to_hats\Python27\Scripts";
 
 echo "Set path to JDK for this session"
-$env:Path = "$env:windir;$env:windir\system32"
 $env:JAVA_HOME = "$path_to_hats\jdk"
 $env:Path = "$env:Path;$env:JAVA_HOME\bin";
 
