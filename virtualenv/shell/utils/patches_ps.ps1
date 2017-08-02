@@ -1,4 +1,4 @@
-$path_to_hats = "$env:PROGRAMFILES\hats"
+$path_to_hats = "C:\Program Files\hats"
 
 echo "Set environment variables"
 [Environment]::SetEnvironmentVariable("HATS", $path_to_hats, [System.EnvironmentVariableTarget]::Machine)
