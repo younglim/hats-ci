@@ -9,13 +9,14 @@ goto check_Permissions
     net session >nul 2>&1
     if %errorLevel% == 0 (
         echo Success: Administrative permissions confirmed.
+        powershell -NoProfile -ExecutionPolicy Bypass -Command ".\patches_ps.ps1"
         IF EXIST "%PROGRAMFILES(X86)%" (GOTO 64BIT) ELSE (GOTO 32BIT)
 
     ) else (
         echo Failure: Attempting to run as administrator.
         powershell -NoProfile -ExecutionPolicy Bypass -Command "Start-Process '%CD%\patches.cmd' -Verb runas"
         exit
-        
+
     )
 
 :64BIT
