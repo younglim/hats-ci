@@ -1,6 +1,11 @@
 pushd %~dp0
 REM @echo off
 
+rmdir %TEMP%\testpage /s /q
+mkdir %TEMP%\testpage
+xcopy "%CD%" "%TEMP%\testpage" /E
+cd %TEMP%\testpage
+
 set CHROME_WIN_X86="C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
 set CHROME_WIN="C:\Program Files\Google\Chrome\Application\Chrome.exe"
 set IE_WIN_X86="C:\Program Files\Internet Explorer\iexplore.exe"
@@ -54,3 +59,25 @@ IF %ffpath%==NUL (
 )
 
 call pybot -x report.xml --variable CHROME_EXISTS:%chrome_exist% --variable IE_EXISTS:%ie_exist% --variable FF_EXISTS:%ff_exist% --name hats test.robot
+
+if [%1]==[] goto :blank
+
+IF NOT %chromepath%==NUL (
+echo chromepath not null
+  %chromepath% %TEMP%/testpage/report.html
+) ELSE (
+  echo chromepath null
+  IF NOT %iepath%==NUL (
+    echo iepath not null
+    %iepath% %TEMP%/testpage/report.html
+  ) ELSE (
+    echo iepath null
+    IF NOT %ffpath%==NUL (
+      echo ffpath not null
+      %ffpath% %TEMP%/testpage/report.html
+    )
+  )
+
+)
+
+:blank

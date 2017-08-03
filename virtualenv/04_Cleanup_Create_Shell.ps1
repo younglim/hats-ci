@@ -17,6 +17,7 @@ $fso.DeleteFile("$path_to_hats\VCForPython27.msi")
 $fso.DeleteFile("$path_to_hats\python27.msi")
 $fso.DeleteFile("$path_to_hats\7z.msi")
 $fso.DeleteFile("$path_to_hats\jdk.exe")
+$fso.DeleteFile("$path_to_hats\jre.exe")
 $fso.DeleteFolder("$path_to_hats\jdk-first-extraction")
 $fso.DeleteFolder("$path_to_hats\jdk-second-extraction")
 $fso.DeleteFile("$path_to_hats\androidSDK.zip")
@@ -25,6 +26,10 @@ $fso.DeleteFile("$path_to_hats\node.zip")
 
 echo "Copy shell scripts to $path_to_hats"
 Copy-Item "shell\*" "$path_to_hats" -recurse
+
+echo "Copy testpage to $path_to_hats"
+
+Copy-Item "testpage" "$path_to_hats" -recurse
 
 echo "Set environment variables"
 [Environment]::SetEnvironmentVariable("HATS", $path_to_hats, [System.EnvironmentVariableTarget]::Machine)

@@ -29,4 +29,7 @@ Source: "C:\Program Files\hats\*"; DestDir: "{app}"; Flags: ignoreversion recurs
 
 [Run]
 Filename: "{app}\utils\patches.cmd"; WorkingDir: "{app}";
+Filename: "{app}\hats_shell.cmd"; Parameters: ".\testpage\test.cmd -show" ;WorkingDir: "{app}";
 
+[UninstallRun]
+Filename: "{app}\utils\uninstall.cmd"
