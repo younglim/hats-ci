@@ -16,5 +16,5 @@ $key.Dispose()
 [Environment]::SetEnvironmentVariable("HATS",$null, [System.EnvironmentVariableTarget]::Machine)
 
 echo "Removing all hats files"
-Get-ChildItem -Path $path_to_hats -Recurse| Foreach-object {Remove-item -Recurse -Force -ErrorAction silentlycontinue -path $_.FullName }
+Get-ChildItem -Path $path_to_hats -Recurse silentlycontinue | Foreach-object {Remove-item -Recurse -Force -ErrorAction silentlycontinue -path $_.FullName }
 Remove-Item -Recurse -Force -ErrorAction silentlycontinue $path_to_hats
