@@ -10,24 +10,13 @@ goto check_Permissions
     if %errorLevel% == 0 (
         echo Success: Administrative permissions confirmed.
         powershell -NoProfile -ExecutionPolicy Bypass -Command ".\patches_ps.ps1"
-        IF EXIST "%PROGRAMFILES(X86)%" (GOTO 64BIT) ELSE (GOTO 32BIT)
-
+        
     ) else (
         echo Failure: Attempting to run as administrator.
         powershell -NoProfile -ExecutionPolicy Bypass -Command "Start-Process '%CD%\patches.cmd' -Verb runas"
         GOTO END
 
     )
-
-:64BIT
-echo Patch Internet Explorer FEATURE_BFCACHE
-REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BFCACHE" /v iexplore.exe /t REG_DWORD /d 0 /f
-GOTO END
-
-:32BIT
-echo Patch Internet Explorer FEATURE_BFCACHE
-REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BFCACHE" /v iexplore.exe /t REG_DWORD /d 0 /f
-GOTO END
 
 :END
 exit
