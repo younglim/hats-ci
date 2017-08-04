@@ -4,7 +4,6 @@ $path_to_hats = "$env:PROGRAMFILES\hats"
 . .\Get-IniContent.ps1
 $iniContent = Get-IniContent "config.ini"
 $client = new-object System.Net.WebClient;
-$nodeFolderName = "node-v6.11.1-win-x86"
 
 echo "Downloading 7-Zip"
 $client.DownloadFile($iniContent["7-Zip"]["7-Zip"],"$path_to_hats\7z.msi");
@@ -18,23 +17,30 @@ if ([System.IntPtr]::Size -eq 4)
 	echo "Your system is 32-bit - Downloading..."
 	$client.DownloadFile($iniContent["Java"]["JDK-32"],"$path_to_hats\jdk.exe");
 	echo "Downloaded JDK"
-	echo "Unzipping JDK"
-	Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"jdk.exe"', '-o"jdk"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+
+	echo "Unzipping JDK - first step"
+	Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"jdk.exe"', '-o"jdk-first-extraction"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+
+	echo "Unzipping JDK - final step"
+	Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"jdk-first-extraction\tools.zip"', '-o"jdk"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+
 }
 else
 {
 	echo "Your system is 64-bit - Downloading..."
-	do {
-		sleep 3;
-		$client.DownloadFile($iniContent["Java"]["JDK-64"],"$path_to_hats\jdk.exe");
-	} while(!$?);
+	$client.DownloadFile($iniContent["Java"]["JDK-64"],"$path_to_hats\jdk.exe");
+
 	echo "Downloaded JDK"
+
 	echo "Unzipping JDK - first step"
 	Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"jdk.exe"', '-o"jdk-first-extraction"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+
 	echo "Unzipping JDK - second step"
 	Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"jdk-first-extraction\.rsrc\1033\JAVA_CAB10\111"', '-o"jdk-second-extraction"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+	
 	echo "Unzipping JDK - final step"
-	Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"jdk-second-extraction\tools.zip"', '-o"jdk"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"jdk-second-extraction\tools.zip"', '-o"jdk"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+
 }
 
 echo "Set path to JDK for this session"
@@ -75,7 +81,8 @@ android list
 echo "Testing avdmanager command"
 avdmanager
 echo "Download platform-tools using sdkmanager"
-sdkmanager "platform-tools" --sdk_root="$path_to_hats\androidSDK"
+echo "y" | sdkmanager --licenses "platform-tools"
+echo "y" | sdkmanager "platform-tools" --sdk_root="androidSDK"
 $env:Path = "$env:Path;$path_to_hats\androidSDK\platform-tools";
 echo "Add platform-tools to path"
 echo 'Testing adb command'
@@ -86,21 +93,18 @@ if ([System.IntPtr]::Size -eq 4)
 {
 	echo "Your system is 32-bit - Downloading..."
 	$client.DownloadFile($iniContent["Node"]["Node-32"],"$path_to_hats\node.zip");
-	$nodeFolderName = "node-v6.11.1-win-x86"
 }
 else
 {
 	echo "Your system is 64-bit - Downloading..."
 	$client.DownloadFile($iniContent["Node"]["Node-64"],"$path_to_hats\node.zip");
-	$nodeFolderName = "node-v6.11.1-win-x64"
 }
 
 echo "Downloaded Node"
 
 echo "Unzipping Node"
 # Start-Process msiexec.exe -ArgumentList "/a `"$path_to_hats\node.msi`" /qn TargetDir=`"$path_to_hats\nodejs`" " -NoNewWindow -Wait;
-Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"node.zip"', 'node-v6.11.1-win-x64', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
-Rename-Item "$path_to_hats\$nodeFolderName" nodejs
+Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"node.zip"', '-o"nodejs"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
 
 echo "Set path to nodejs and node_modules for this session"
 $env:Path = "$env:Path;$path_to_hats\nodejs";
@@ -112,10 +116,15 @@ Set-Location $path_to_hats
 
 echo "Initializing npm"
 Get-Location
-mkdir npm-global
+
+If(!(test-path "$path_to_hats\npm-global"))
+{
+	New-Item -ItemType Directory -Force -Path "$path_to_hats\npm-global"
+}
+
 npm config set prefix $path_to_hats\npm-global
 $env:Path = "$env:Path;$path_to_hats\npm-global;$path_to_hats\npm-global\bin";
-#npm init -y
+npm init -y
 
 echo "Download package.json"
 $client.DownloadFile($iniContent["hats"]["NpmPackageJson"],"$path_to_hats\package.json");

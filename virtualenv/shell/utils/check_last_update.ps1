@@ -1,6 +1,7 @@
-$path_to_hats  = split-path -parent $MyInvocation.MyCommand.Definition
+$scriptpath = $MyInvocation.MyCommand.Path
+$path_to_utils = Split-Path $scriptpath
 
-$last_update_string = Get-Content "$path_to_hats\last-check.txt"
+$last_update_string = Get-Content "$path_to_utils\last-check.txt"
 $last_update_split = $last_update_string -split '\n'
 $last_update_date = Get-Date $last_update_string[1]
 

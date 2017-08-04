@@ -1,4 +1,5 @@
-$path_to_utils  = split-path -parent $MyInvocation.MyCommand.Definition
+$scriptpath = $MyInvocation.MyCommand.Path
+$path_to_utils = Split-Path $scriptpath
 
 Get-Date > "$path_to_utils\last-check.txt"
 echo "Downloading latest version of pip modules"
