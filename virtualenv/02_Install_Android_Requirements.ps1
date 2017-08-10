@@ -49,7 +49,7 @@ echo $env:JAVA_HOME
 $env:Path = "$env:Path;$env:JAVA_HOME\bin"
 
 echo "Unpack jre/lib .pack files to .jar"
-$files = Get-ChildItem -Path "C:\Program Files\hats\jdk\jre\lib" -Recurse -Include *.pack;
+$files = Get-ChildItem -Path "$path_to_hats\jdk\jre\lib" -Recurse -Include *.pack;
 echo $files
 $libFilePath = "$path_to_hats\jdk\jre\lib";
 echo "libFilePath is $libFilePath"
@@ -81,8 +81,11 @@ android list
 echo "Testing avdmanager command"
 avdmanager
 echo "Download platform-tools using sdkmanager"
+$scriptpath = $MyInvocation.MyCommand.Path
+cd "$path_to_hats"
 echo "y" | sdkmanager --licenses "platform-tools"
 echo "y" | sdkmanager "platform-tools" --sdk_root="androidSDK"
+cd "$scriptpath"
 $env:Path = "$env:Path;$path_to_hats\androidSDK\platform-tools";
 echo "Add platform-tools to path"
 echo 'Testing adb command'
