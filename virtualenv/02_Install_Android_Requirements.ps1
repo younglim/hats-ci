@@ -81,8 +81,7 @@ android list
 echo "Testing avdmanager command"
 avdmanager
 echo "Download platform-tools using sdkmanager"
-$scriptpath = $MyInvocation.MyCommand.Path
-cd "$path_to_hats"
+$scriptpath = Split-Path $MyInvocation.MyCommand.Path
 echo "y" | sdkmanager --licenses "platform-tools"
 echo "y" | sdkmanager "platform-tools" --sdk_root="androidSDK"
 cd "$scriptpath"
