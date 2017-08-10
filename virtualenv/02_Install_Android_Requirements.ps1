@@ -82,7 +82,8 @@ echo "Testing avdmanager command"
 avdmanager
 echo "Download platform-tools using sdkmanager"
 $scriptpath = Split-Path $MyInvocation.MyCommand.Path
-echo "y" | sdkmanager --licenses "platform-tools"
+cd "$path_to_hats"
+pwd
 echo "y" | sdkmanager "platform-tools" --sdk_root="androidSDK"
 cd "$scriptpath"
 $env:Path = "$env:Path;$path_to_hats\androidSDK\platform-tools";
