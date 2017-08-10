@@ -58,8 +58,8 @@ virtualenv robot
 
 echo "Install pip modules"
 $url = $iniContent["hats"]["RobotPipInstallList"]
-$url > "$path_to_hats\pip-install-list.url"
-$client.DownloadFile($url,"$path_to_hats\pip-install-list.txt");
+$url > "$path_to_hats\utils\pip-install-list.url"
+$client.DownloadFile($url,"$path_to_hats\utils\pip-install-list.txt");
 
 pip install -r .\pip-install-list.txt
 pip install functools
