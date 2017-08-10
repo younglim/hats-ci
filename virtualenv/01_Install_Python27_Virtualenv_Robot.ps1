@@ -57,6 +57,7 @@ virtualenv robot
 & robot\Scripts\activate
 
 echo "Install pip modules"
+mkdir "$path_to_hats\utils"
 $url = $iniContent["hats"]["RobotPipInstallList"]
 $url > "$path_to_hats\utils\pip-install-list.url"
 $client.DownloadFile($url,"$path_to_hats\utils\pip-install-list.txt");

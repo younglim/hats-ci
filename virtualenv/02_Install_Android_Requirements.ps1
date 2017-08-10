@@ -135,6 +135,7 @@ $client.DownloadFile($iniContent["hats"]["NpmPackageJson"],"$path_to_hats\packag
 echo "Installing Appium and Windows Build Tools through npm"
 npm --vcc-build-tools-parameters='[""/CustomInstallPath"", ""$path_to_hats\MSBUILD""]' install -g -production windows-build-tools 
 npm install -g appium
+pip install appium-python-client
 npm config set msvs_version 2015
 $env:Path = "$env:Path;$path_to_hats\MSBUILD";
 
