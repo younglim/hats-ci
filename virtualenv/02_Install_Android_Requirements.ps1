@@ -133,10 +133,10 @@ echo "Download package.json"
 $client.DownloadFile($iniContent["hats"]["NpmPackageJson"],"$path_to_hats\package.json");
 
 echo "Installing Appium and Windows Build Tools through npm"
-npm install -g -production windows-build-tools
+npm --vcc-build-tools-parameters='[""/CustomInstallPath"", ""$path_to_hats\MSBUILD""]' install -g -production windows-build-tools 
 npm install -g appium
 npm config set msvs_version 2015
-$env:Path = "$env:Path;${env:ProgramFiles(x86)}\MSBUILD";
+$env:Path = "$env:Path;$path_to_hats\MSBUILD";
 
 echo "Pop and check location"
 Pop-Location
