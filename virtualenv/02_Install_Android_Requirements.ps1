@@ -137,7 +137,7 @@ $client.DownloadFile($iniContent["hats"]["NpmPackageJson"],"$path_to_hats\packag
 
 echo "Install Windows Build Tools"
 $client.DownloadFile($iniContent["Microsoft"]["Windows-Build-Tools"],"$path_to_hats\utils\BuildTools_Full.exe");
-Start-Process BuildTools_Full.exe -ArgumentList "/Full /Silent" -NoNewWindow -Wait -WorkingDirectory "$path_to_hats\utils";
+Start-Process "$path_to_hats\utils\BuildTools_Full.exe" -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
 
 echo "Installing Appium through npm"
 # npm --vcc-build-tools-parameters='[""/CustomInstallPath"", ""$path_to_hats\MSBUILD""]' install -g -production windows-build-tools 
