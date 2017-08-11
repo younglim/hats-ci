@@ -135,17 +135,18 @@ npm init -y
 echo "Download package.json"
 $client.DownloadFile($iniContent["hats"]["NpmPackageJson"],"$path_to_hats\package.json");
 
-echo "Installing Appium and Windows Build Tools through npm"
-$client.DownloadFile($iniContent["Microsoft"]["Windows-Build-Tools"],"$path_to_hats\BuildTools_Full.exe");
-cd "$path_to_hats"
+echo "Install Windows Build Tools"
+$client.DownloadFile($iniContent["Microsoft"]["Windows-Build-Tools"],"$path_to_hats\utils\BuildTools_Full.exe");
+cd "$path_to_hats\utils"
 Start-Process BuildTools_Full.exe -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
-cd "$scriptpath"
+cd "$path_to_hats"
 
+echo "Installing Appium through npm"
 # npm --vcc-build-tools-parameters='[""/CustomInstallPath"", ""$path_to_hats\MSBUILD""]' install -g -production windows-build-tools 
 npm install -g appium
 pip install appium-python-client
 npm config set msvs_version 2015
-$env:Path = "$env:Path;$path_to_hats\MSBUILD";
+$env:Path = "$env:Path;C:\Program Files\MSBuild\14.0\Bin;";
 
 echo "Pop and check location"
 Pop-Location

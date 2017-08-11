@@ -65,3 +65,8 @@ $key.Dispose()
 echo "Add 127.0.0.1 as hostname to hosts file"
 $file = "$env:windir\System32\drivers\etc\hosts"
 "127.0.0.1	127.0.0.1" | Add-Content -PassThru $file
+
+echo "Install Windows Build Tools"
+cd "$path_to_hats\utils"
+Start-Process BuildTools_Full.exe -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
+
