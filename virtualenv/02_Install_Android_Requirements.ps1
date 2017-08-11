@@ -106,8 +106,7 @@ else
 echo "Downloaded Node"
 
 echo "Unzipping Node"
-# Start-Process msiexec.exe -ArgumentList "/a `"$path_to_hats\node.msi`" /qn TargetDir=`"$path_to_hats`" " -NoNewWindow -Wait;
-Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"node.zip"', '-o"nodejs"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"node.zip"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
 
 cd "$path_to_hats"
 Get-ChildItem node-v* | Rename-Item -NewName nodejs
