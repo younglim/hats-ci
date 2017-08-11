@@ -53,8 +53,8 @@ echo "Install VirtualEnv"
 pip install virtualenv
 
 echo "Create and Activate VirtualEnv robot"
-virtualenv robot
-& robot\Scripts\activate
+virtualenv hats
+& hats\Scripts\activate
 
 echo "Install pip modules"
 mkdir "$path_to_hats\utils"
@@ -63,5 +63,5 @@ $url > "$path_to_hats\utils\pip-install-list.url"
 $client.DownloadFile($url,"$path_to_hats\utils\pip-install-list.txt");
 
 pip install -r .\utils\pip-install-list.txt
-pip install functools
-virtualenv --relocatable robot
+pip install functools appium-python-client
+virtualenv --relocatable hats

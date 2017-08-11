@@ -43,9 +43,9 @@ $env:Path = "$env:Path;$path_to_hats\npm-global;$path_to_hats\npm-global\bin";
 echo "Set path to androidSDK tools for this session"
 $env:Path = "$env:Path;$path_to_hats\androidSDK;$path_to_hats\androidSDK\bin;$path_to_hats\androidSDK\platform-tools";
 
-echo "Activate robot virtual environment"
+echo "Activate hats virtual environment"
 cd "$path_to_hats"
-robot\Scripts\activate
+hats\Scripts\activate
 
 cd "$current_path"
 

@@ -144,7 +144,6 @@ echo "Installing Appium through npm"
 
 $env:Path = "$env:Path;C:\Program Files\MSBuild\14.0\Bin;$path_to_hats\Python27;$path_to_hats\Python27\Scripts";
 npm install -g appium
-pip install appium-python-client
 npm config set msvs_version 2015
 
 echo "Pop and check location"
