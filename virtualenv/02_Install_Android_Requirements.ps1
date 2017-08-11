@@ -1,5 +1,6 @@
 # Set path to hats
 $path_to_hats = "$env:PROGRAMFILES\hats"
+$scriptpath = Split-Path $MyInvocation.MyCommand.Path
 
 . .\Get-IniContent.ps1
 $iniContent = Get-IniContent "config.ini"
@@ -81,7 +82,6 @@ android list
 echo "Testing avdmanager command"
 avdmanager
 echo "Download platform-tools using sdkmanager"
-$scriptpath = Split-Path $MyInvocation.MyCommand.Path
 cd "$path_to_hats"
 pwd
 echo "y" | sdkmanager "platform-tools" --sdk_root="androidSDK"
@@ -106,8 +106,12 @@ else
 echo "Downloaded Node"
 
 echo "Unzipping Node"
-# Start-Process msiexec.exe -ArgumentList "/a `"$path_to_hats\node.msi`" /qn TargetDir=`"$path_to_hats\nodejs`" " -NoNewWindow -Wait;
+# Start-Process msiexec.exe -ArgumentList "/a `"$path_to_hats\node.msi`" /qn TargetDir=`"$path_to_hats`" " -NoNewWindow -Wait;
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"node.zip"', '-o"nodejs"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+
+cd "$path_to_hats"
+Get-ChildItem node-v* | Rename-Item -NewName nodejs
+cd "$scriptpath"
 
 echo "Set path to nodejs and node_modules for this session"
 $env:Path = "$env:Path;$path_to_hats\nodejs";
