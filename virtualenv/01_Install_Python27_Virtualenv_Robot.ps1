@@ -62,6 +62,6 @@ $url = $iniContent["hats"]["RobotPipInstallList"]
 $url > "$path_to_hats\utils\pip-install-list.url"
 $client.DownloadFile($url,"$path_to_hats\utils\pip-install-list.txt");
 
-pip install -r .\pip-install-list.txt
+pip install -r .\utils\pip-install-list.txt
 pip install functools
 virtualenv --relocatable robot
