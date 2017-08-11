@@ -6,12 +6,12 @@ echo "Stored current working directory at $current_path"
 # Set path to hats
 $path_to_hats  = split-path -parent $MyInvocation.MyCommand.Definition
 
-$path_to_origPrefix = "$path_to_hats\robot\Lib\orig-prefix.txt";
+$path_to_origPrefix = "$path_to_hats\hats\Lib\orig-prefix.txt";
 $origPrefixContent = [IO.File]::ReadAllText($path_to_origPrefix)
 $pythonDir = "$path_to_hats\Python27".ToLower();
 
 If (!$pythonDir.equals($origPrefixContent)) {
-	echo "Overwrite 'robot\Lib\orig-prefix.txt' with directory to Python"
+	echo "Overwrite 'hats\Lib\orig-prefix.txt' with directory to Python"
 
 	[System.IO.File]::WriteAllText($path_to_origPrefix,$pythonDir,[System.Text.Encoding]::ASCII)
 }
