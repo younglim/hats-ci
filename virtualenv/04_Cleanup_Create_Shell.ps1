@@ -30,3 +30,6 @@ Copy-Item "shell\*" "$path_to_hats" -recurse
 
 echo "Copy testpage to $path_to_hats"
 Copy-Item "testpage" "$path_to_hats" -recurse
+
+echo "Set Last Check for Update today"
+Get-Date > "$path_to_hats\utils\last-check.txt"
