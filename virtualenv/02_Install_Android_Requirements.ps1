@@ -136,7 +136,12 @@ echo "Download package.json"
 $client.DownloadFile($iniContent["hats"]["NpmPackageJson"],"$path_to_hats\package.json");
 
 echo "Installing Appium and Windows Build Tools through npm"
-npm --vcc-build-tools-parameters='[""/CustomInstallPath"", ""$path_to_hats\MSBUILD""]' install -g -production windows-build-tools 
+$client.DownloadFile($iniContent["Microsoft"]["Windows-Build-Tools"],"$path_to_hats\BuildTools_Full.exe");
+cd "$path_to_hats"
+Start-Process BuildTools_Full.exe -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
+cd "$scriptpath"
+
+# npm --vcc-build-tools-parameters='[""/CustomInstallPath"", ""$path_to_hats\MSBUILD""]' install -g -production windows-build-tools 
 npm install -g appium
 pip install appium-python-client
 npm config set msvs_version 2015
