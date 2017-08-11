@@ -51,17 +51,17 @@ $env:Path = "$env:Path;$env:JAVA_HOME\bin"
 
 echo "Unpack jre/lib .pack files to .jar"
 $files = Get-ChildItem -Path "$path_to_hats\jdk\jre\lib" -Recurse -Include *.pack;
-echo $files
 $libFilePath = "$path_to_hats\jdk\jre\lib";
-echo "libFilePath is $libFilePath"
+
 foreach($file in $files) {
 	$fileJarName = $null;
 	$fileOrgName = "$($libFilePath)\$($file.name)";
-	echo "fileOrgName is $fileOrgName"
 	$fileJarName = "$($libFilePath)\$($file.BaseName).jar"
-	echo "fileJarName is $fileJarName"
 	. "$path_to_hats\jdk\bin\unpack200.exe" "$fileOrgName" "$fileJarName"
 }
+
+. "$path_to_hats\jdk\bin\unpack200.exe" "$($libFilePath)\ext\localedata.pack" "$($libFilePath)\ext\localedata.jar"
+
 dir "$path_to_hats\jdk\jre\lib"
 echo "Completed unpacking .pack files to jar"
 
