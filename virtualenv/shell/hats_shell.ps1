@@ -41,7 +41,11 @@ echo "Set path to npm-global for this session"
 $env:Path = "$env:Path;$path_to_hats\npm-global;$path_to_hats\npm-global\bin";
 
 echo "Set path to androidSDK tools for this session"
-$env:Path = "$env:Path;$path_to_hats\androidSDK;$path_to_hats\androidSDK\bin;$path_to_hats\androidSDK\platform-tools";
+$env:Path = "$path_to_hats\androidSDK\emulator;$env:Path;$path_to_hats\androidSDK\tools;$path_to_hats\androidSDK\tools\bin\;$path_to_hats\androidSDK\platform-tools";
+
+$env:ANDROID_HOME = "$path_to_hats\androidSDK"
+$env:ANDROID_SDK_HOME = "$path_to_hats\androidSDK"
+$env:ANDROID_SDK_ROOT = "$path_to_hats\androidSDK"
 
 echo "Activate hats virtual environment"
 cd "$path_to_hats"

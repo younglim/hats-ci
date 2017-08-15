@@ -71,11 +71,12 @@ $client.DownloadFile($iniContent["AndroidSDK"]["AndroidSDK"],"$path_to_hats\andr
 echo "Downloaded Android SDK"
 
 echo "Unzipping Android SDK"
-Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"androidSDK.zip"', 'tools', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
-Rename-Item "$path_to_hats\tools" androidSDK
+Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"androidSDK.zip"', '-o"androidSDK"','-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
 
-echo "Set path to androidSDK tools for this session"
-$env:Path = "$env:Path;$path_to_hats\androidSDK;$path_to_hats\androidSDK\bin";
+echo "Set PATH, ANDROID_SDK_ROOT, ANDROID_SDK_HOME for androidSDK"
+$env:Path = "$env:Path;$path_to_hats\androidSDK\tools;$path_to_hats\androidSDK\tools\bin\;$path_to_hats\androidSDK\platform-tools";
+$env:ANDROID_SDK_ROOT ="$path_to_hats\androidSDK";
+$env:ANDROID_SDK_HOME ="$path_to_hats\androidSDK";
 
 echo "Testing android list command"
 android list
@@ -91,6 +92,24 @@ echo "Add platform-tools to path"
 echo 'Testing adb command'
 adb
 
+echo "Create repositories.cfg"
+mkdir "$path_to_hats\androidSDK\.android"
+echo $null >> "$path_to_hats\androidSDK\.android\repositories.cfg"
+
+echo "Install android emulator"
+sdkmanager "emulator"
+echo "Create an android system image"
+sdkmanager "system-images;android-23;google_apis;x86"
+
+echo "Create testAVD"
+echo no | avdmanager create avd --force --name testAVD --package "system-images;android-23;google_apis;x86" --abi google_apis/x86
+
+echo "Create platforms directory in androidSDK"
+mkdir "$path_to_hats\androidSDK\platforms"
+
+# echo "Run emulator testavd"
+# emulator -avd testAVD
+ 
 echo "Preparing to download Node"
 if ([System.IntPtr]::Size -eq 4)
 {
