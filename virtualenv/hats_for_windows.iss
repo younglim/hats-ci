@@ -7,7 +7,7 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{AB17F62F-BE30-45C1-8E66-E232BF6939AB}
 AppName=hats for Windows
-AppVersion=0.5
+AppVersion=0.6
 AppVerName=hats for Windows
 AppPublisher=
 AppPublisherURL=
@@ -29,7 +29,7 @@ Source: "C:\Program Files\hats\*"; DestDir: "{app}"; Flags: ignoreversion recurs
 
 [Run]
 Filename: "{app}\utils\patches.cmd"; WorkingDir: "{app}";
-Filename: "{app}\hats_shell.cmd"; Parameters: ".\testpage\test.cmd -show" ;WorkingDir: "{app}";
+Filename: "{app}\hats_shell.cmd"; Parameters: ".\testpage\test.cmd -show"; WorkingDir: "{app}";
 
 [UninstallRun]
-Filename: "{app}\utils\uninstall.cmd"; WorkingDir: "{app}";
+Filename: "uninstall.cmd"; WorkingDir: "{app}\utils";

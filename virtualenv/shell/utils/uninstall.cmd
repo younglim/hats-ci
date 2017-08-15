@@ -1,8 +1,22 @@
 @echo OFF
 pushd %~dp0
 
-start powershell -Command "Start-Process powershell \"-ExecutionPolicy Bypass -NoProfile -Command `\"cd \`\"%cd%\`\"; & \`\".\uninstall_ps.ps1\`\" `\" \" -Verb RunAs"
+goto check_Permissions
 
-echo "Uninstall completed."
+:check_Permissions
+    echo Administrative permissions required. Detecting permissions...
 
+    net session >nul 2>&1
+    if %errorLevel% == 0 (
+        echo Success: Administrative permissions confirmed.
+        powershell -NoProfile -ExecutionPolicy Bypass -Command ".\uninstall_ps.ps1"
+        
+    ) else (
+        echo Failure: Attempting to run as administrator.
+        powershell -NoProfile -ExecutionPolicy Bypass -Command "Start-Process '%CD%\uninstall.cmd' -Verb runas"
+        GOTO END
+
+    )
+
+:END
 exit
