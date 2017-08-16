@@ -70,4 +70,4 @@ echo "Install Windows Build Tools"
 Start-Process "$path_to_hats\utils\BuildTools_Full.exe" -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
 
 echo "Install Hardware Accelerated Execution Manager"
-Start-Process "$path_to_hats\androidSDK\haxm\silent_install.bat" -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
+Start-Process "$path_to_hats\androidSDK\haxm\silent_install.bat" -NoNewWindow -Wait -WorkingDirectory "$path_to_hats\androidSDK\haxm";
