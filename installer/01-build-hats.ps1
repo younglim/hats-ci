@@ -7,7 +7,7 @@
     # Remove-Item -Recurse -Force -ErrorAction silentlycontinue 'hats_shell.zip'
     # create-7zip "C:\Program Files\hats\*" "hats_shell.zip"
 
-    . "C:\Program Files\Inno Setup 5\iscc.exe" /O"..\..\" "..\virtualenv\hats_for_windows.iss"
+    Start-Process "C:\Program Files\Inno Setup 5\iscc.exe" -ArgumentList '/O"..\..\" "..\virtualenv\hats_for_windows.iss"' -NoNewWindow -Wait;
 
     & taskkill /F /IM iexplore.exe /T /FI "STATUS eq RUNNING"
     & taskkill /F /IM firefox.exe /T /FI "STATUS eq RUNNING"
