@@ -64,17 +64,17 @@ if [%1]==[] goto :blank
 
 IF NOT %chromepath%==NUL (
 echo chromepath not null
-  %chromepath% %TEMP%/testpage/report.html
+  start %chromepath% %TEMP%/testpage/report.html
 ) ELSE (
   echo chromepath null
   IF NOT %iepath%==NUL (
     echo iepath not null
-    %iepath% %TEMP%/testpage/report.html
+    start %iepath% %TEMP%/testpage/report.html
   ) ELSE (
     echo iepath null
     IF NOT %ffpath%==NUL (
       echo ffpath not null
-      %ffpath% %TEMP%/testpage/report.html
+      start %ffpath% %TEMP%/testpage/report.html
     )
   )
 
