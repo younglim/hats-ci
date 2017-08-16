@@ -4,9 +4,10 @@
         & $pathToZipExe $arguments;
     }
 
-    Remove-Item -Recurse -Force -ErrorAction silentlycontinue 'hats_shell.zip'
+    # Remove-Item -Recurse -Force -ErrorAction silentlycontinue 'hats_shell.zip'
+    # create-7zip "C:\Program Files\hats\*" "hats_shell.zip"
 
-    create-7zip "C:\Program Files\hats\*" "hats_shell.zip"
+    . "C:\Program Files\Inno Setup 5\iscc.exe" /O"..\..\" "..\virtualenv\hats_for_windows.iss"
 
     & taskkill /F /IM iexplore.exe /T /FI "STATUS eq RUNNING"
     & taskkill /F /IM firefox.exe /T /FI "STATUS eq RUNNING"
