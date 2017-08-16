@@ -16,7 +16,7 @@ AppUpdatesURL=
 DefaultDirName=C:\Program Files\hats
 DefaultGroupName=hats for Windows
 DisableProgramGroupPage=yes
-OutputBaseFilename=setup
+OutputBaseFilename=hats_for_Windows
 Compression=lzma
 SolidCompression=yes
 
