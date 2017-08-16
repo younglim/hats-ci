@@ -24,6 +24,7 @@ $fso.DeleteFolder("$path_to_hats\jdk-second-extraction")
 $fso.DeleteFile("$path_to_hats\androidSDK.zip")
 $fso.DeleteFile("$path_to_hats\get-pip.py")
 $fso.DeleteFile("$path_to_hats\node.zip")
+$fso.DeleteFile("$path_to_hats\haxm.zip")
 
 echo "Copy shell scripts to $path_to_hats"
 Copy-Item "shell\*" "$path_to_hats" -recurse
