@@ -40,7 +40,7 @@ else
 	Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"jdk-first-extraction\.rsrc\1033\JAVA_CAB10\111"', '-o"jdk-second-extraction"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
 	
 	echo "Unzipping JDK - final step"
-Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"jdk-second-extraction\tools.zip"', '-o"jdk"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+	Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"jdk-second-extraction\tools.zip"', '-o"jdk"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
 
 }
 
@@ -80,15 +80,15 @@ $env:ANDROID_SDK_HOME ="$path_to_hats\androidSDK";
 
 echo "Testing android list command"
 android list
+
 echo "Testing avdmanager command"
 avdmanager
+
 echo "Download platform-tools using sdkmanager"
 cd "$path_to_hats"
-pwd
 echo "y" | sdkmanager "platform-tools" --sdk_root="androidSDK"
 cd "$scriptpath"
-$env:Path = "$env:Path;$path_to_hats\androidSDK\platform-tools";
-echo "Add platform-tools to path"
+
 echo 'Testing adb command'
 adb
 
@@ -110,6 +110,10 @@ mkdir "$path_to_hats\androidSDK\platforms"
 # echo "Run emulator testavd"
 # emulator -avd testAVD
  
+echo "Download Intel HAXM"
+$client.DownloadFile($iniContent["Intel"]["HAXM"],"$path_to_hats\haxm.zip");
+Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"haxm.zip"','-o"androidSDK\haxm"','-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+
 echo "Preparing to download Node"
 if ([System.IntPtr]::Size -eq 4)
 {

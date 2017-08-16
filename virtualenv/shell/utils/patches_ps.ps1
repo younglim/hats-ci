@@ -68,3 +68,6 @@ $file = "$env:windir\System32\drivers\etc\hosts"
 
 echo "Install Windows Build Tools"
 Start-Process "$path_to_hats\utils\BuildTools_Full.exe" -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
+
+echo "Install Hardware Accelerated Execution Manager"
+Start-Process "$path_to_hats\androidSDK\haxm\silent_install.bat" -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
