@@ -107,6 +107,9 @@ echo no | avdmanager create avd --force --name testAVD --package "system-images;
 echo "Create platforms directory in androidSDK"
 mkdir "$path_to_hats\androidSDK\platforms"
 
+echo "Install sdkmanager build-tools"
+sdkmanager "build-tools;26.0.1"
+
 # echo "Run emulator testavd"
 # emulator -avd testAVD
  
