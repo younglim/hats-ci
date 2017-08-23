@@ -15,6 +15,7 @@ enum34==1.1.6
 execnet==1.4.1
 faker==0.7.17
 funcsigs==1.0.2
+functools
 get
 idna==2.5
 image==1.5.5

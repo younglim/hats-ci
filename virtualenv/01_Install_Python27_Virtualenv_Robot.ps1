@@ -63,5 +63,4 @@ $url > "$path_to_hats\utils\pip-install-list.url"
 $client.DownloadFile($url,"$path_to_hats\utils\pip-install-list.txt");
 
 pip install -r .\utils\pip-install-list.txt
-pip install functools appium-python-client
 virtualenv --relocatable hats
