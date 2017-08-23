@@ -62,12 +62,25 @@ $path
 $key.SetValue('Path', $path, 'ExpandString')
 $key.Dispose()
 
-echo "Add 127.0.0.1 as hostname to hosts file"
-$file = "$env:windir\System32\drivers\etc\hosts"
-"127.0.0.1	127.0.0.1" | Add-Content -PassThru $file
+# echo "Add 127.0.0.1 as hostname to hosts file"
+# $file = "$env:windir\System32\drivers\etc\hosts"
+# "127.0.0.1	127.0.0.1" | Add-Content -PassThru $file
 
 echo "Install Windows Build Tools"
 Start-Process "$path_to_hats\utils\BuildTools_Full.exe" -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
 
 echo "Install Hardware Accelerated Execution Manager"
 Start-Process "$path_to_hats\androidSDK\haxm\silent_install.bat" -NoNewWindow -Wait -WorkingDirectory "$path_to_hats\androidSDK\haxm";
+
+echo "Setting permisions for Users"
+
+$Folders = Get-childItem $path_to_hats -attributes D
+$InheritanceFlag = [System.Security.AccessControl.InheritanceFlags]::ContainerInherit -bor [System.Security.AccessControl.InheritanceFlags]::ObjectInherit
+$PropagationFlag = [System.Security.AccessControl.PropagationFlags]::None
+$objType = [System.Security.AccessControl.AccessControlType]::Allow
+
+$acl = Get-Acl "$path_to_hats"
+$permissionCurrentUser = "Users","Modify", $InheritanceFlag, $PropagationFlag, $objType
+$accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule $permission
+$acl.SetAccessRule($accessRule)
+Set-Acl -Path "$path_to_hats" -AclObject $acl

@@ -1,5 +1,5 @@
 # Set path to hats
-$path_to_hats = "$env:PROGRAMFILES\hats"
+$path_to_hats = "C:\Program Files\hats"
 
 $path_to_hats_esc = [regex]::Escape($path_to_hats)
 $regex_path = "$path_to_hats_esc$|$path_to_hats_esc;"
