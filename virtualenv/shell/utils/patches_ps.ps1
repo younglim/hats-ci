@@ -81,6 +81,6 @@ $objType = [System.Security.AccessControl.AccessControlType]::Allow
 
 $acl = Get-Acl "$path_to_hats"
 $permissionCurrentUser = "Users","Modify", $InheritanceFlag, $PropagationFlag, $objType
-$accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule $permission
+$accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule $permissionCurrentUser
 $acl.SetAccessRule($accessRule)
 Set-Acl -Path "$path_to_hats" -AclObject $acl
