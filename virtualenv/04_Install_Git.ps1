@@ -22,4 +22,4 @@ $cookie = "oraclelicense=accept-securebackup-cookie"
 $client.DownloadFile($iniContent["Git"]["Git"],"$path_to_hats\PortableGit.exe");
 
 echo "Unzipping Git"
-Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"PortableGit.exe"', '-o"Git"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"PortableGit.exe"', '-o"Git"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
