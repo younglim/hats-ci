@@ -7,9 +7,9 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{AB17F62F-BE30-45C1-8E66-E232BF6939AB}
 AppName=hats for Windows
-AppVersion=0.7
+AppVersion=0.9
 AppVerName=hats for Windows
-AppPublisher=
+AppPublisher=GovTech
 AppPublisherURL=
 AppSupportURL=
 AppUpdatesURL=

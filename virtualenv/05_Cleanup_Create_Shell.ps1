@@ -25,6 +25,7 @@ $fso.DeleteFile("$path_to_hats\androidSDK.zip")
 $fso.DeleteFile("$path_to_hats\get-pip.py")
 $fso.DeleteFile("$path_to_hats\node.zip")
 $fso.DeleteFile("$path_to_hats\haxm.zip")
+$fso.DeleteFile("$path_to_hats\PortableGit.exe");
 
 echo "Copy shell scripts to $path_to_hats"
 Copy-Item "shell\*" "$path_to_hats" -recurse
