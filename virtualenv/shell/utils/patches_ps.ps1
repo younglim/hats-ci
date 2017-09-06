@@ -5,20 +5,21 @@ $isIe11PatchRequired = $ieVersion -And $ieVersion -match "11.";
 
 if ((gwmi win32_operatingsystem | select osarchitecture).osarchitecture -eq "64-bit")
 {
+	echo "Your system is 64-bit..."
+	if ($isIe11PatchRequired) {
+		echo "Applying IE11 FEATURE_BFCACHE patch..."
+		REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BFCACHE" /v iexplore.exe /t REG_DWORD /d 0 /f
+    }
+}	
+else 
+{
 	echo "Your system is 32-bit..." 
 	
 	if ($isIe11PatchRequired) {
 		echo "Applying IE11 FEATURE_BFCACHE patch..."
 		REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BFCACHE" /v iexplore.exe /t REG_DWORD /d 0 /f
     }
-}	
-else 
-{
-	echo "Your system is 64-bit..."
-	if ($isIe11PatchRequired) {
-		echo "Applying IE11 FEATURE_BFCACHE patch..."
-		REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BFCACHE" /v iexplore.exe /t REG_DWORD /d 0 /f
-    }
+
 }
 
 echo "Disabling IE enhanced protected mode..."
