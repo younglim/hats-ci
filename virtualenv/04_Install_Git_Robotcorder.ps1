@@ -7,9 +7,14 @@ If(!(test-path $path_to_hats))
 	New-Item -ItemType Directory -Force -Path "$path_to_hats"
 }
 
-If(!(test-path "$path_to_hats\drivers"))
+If(!(test-path "$path_to_hats\Git"))
 {
 	New-Item -ItemType Directory -Force -Path "$path_to_hats\Git"
+}
+
+If(!(test-path "$path_to_hats\Robotcorder"))
+{
+	New-Item -ItemType Directory -Force -Path "$path_to_hats\Robotcorder"
 }
 
 . .\Get-IniContent.ps1
@@ -30,4 +35,4 @@ $cookie = "oraclelicense=accept-securebackup-cookie"
 $client.DownloadFile($iniContent["hats"]["Robotcorder"],"$path_to_hats\drivers\Robotcorder.crx");
 
 echo "Unzipping Robotcorder"
-Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"drivers\Robotcorder.crx"', '-o"Git"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats\Robotcorder"
+Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"drivers\Robotcorder.crx"', '-o"Robotcorder"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
