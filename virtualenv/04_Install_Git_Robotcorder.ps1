@@ -32,7 +32,11 @@ Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList '
 echo "Download Robotcorder"
 $client = new-object System.Net.WebClient;
 $cookie = "oraclelicense=accept-securebackup-cookie"
-$client.DownloadFile($iniContent["hats"]["Robotcorder"],"$path_to_hats\drivers\Robotcorder.crx");
+$client.DownloadFile($iniContent["hats"]["Robotcorder"],"$path_to_hats\Robotcorder.crx");
 
 echo "Unzipping Robotcorder"
-Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"drivers\Robotcorder.crx"', '-o"Robotcorder"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"Robotcorder.crx"', '-o"Robotcorder"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+
+echo "Rename Robotcorder\_metadata folder to metadata"
+Rename-Item "$path_to_hats\Robotcorder\_metadata" "metadata"
+
