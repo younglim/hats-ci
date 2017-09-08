@@ -28,6 +28,7 @@ $client.DownloadFile($iniContent["Git"]["Git"],"$path_to_hats\PortableGit.exe");
 
 echo "Unzipping Git"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"PortableGit.exe"', '-o"Git"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+<<<<<<< HEAD:virtualenv/04_Install_Git_Robotcorder.ps1
 
 echo "Download Robotcorder"
 $client = new-object System.Net.WebClient;
@@ -36,3 +37,5 @@ $client.DownloadFile($iniContent["hats"]["Robotcorder"],"$path_to_hats\drivers\R
 
 echo "Unzipping Robotcorder"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"drivers\Robotcorder.crx"', '-o"Robotcorder"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+=======
+>>>>>>> parent of f1cf2c3... Robotcorder integration:virtualenv/04_Install_Git.ps1
