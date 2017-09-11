@@ -1,7 +1,6 @@
 # hats-ci
 
-# hats installer
-The *hats* installer installs packages needed to run browsers automated functional test on Windows.
+The *hats-ci* installer installs packages needed to run browsers automated functional test on Windows.
 Simplifies the steps to setup test environment in Windows. 
 
 It consists of a series of PowerShell scripts which downloads and installs relevant dependencies and packages.
@@ -64,7 +63,7 @@ You can either use
 1. Open a command prompt. Run `hats_shell`.
 2. Run the sample test script
 ```
-cd "C:\Program Files\hats\testpage"
+cd "C:\Program Files\hats"
 pybot testpage\test.robot
 ```
 
