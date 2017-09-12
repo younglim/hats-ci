@@ -101,8 +101,8 @@ sdkmanager "emulator"
 echo "Create an android system image"
 sdkmanager "system-images;android-23;google_apis;x86"
 
-echo "Create testAVD"
-echo no | avdmanager create avd --force --name testAVD --package "system-images;android-23;google_apis;x86" --abi google_apis/x86
+echo "Create testAVD with Chrome"
+echo no | avdmanager create avd -n testAVD -k 'system-images;android-25;google_apis;x86' -g 'google_apis'
 
 echo "Create platforms directory in androidSDK"
 mkdir "$path_to_hats\androidSDK\platforms"
