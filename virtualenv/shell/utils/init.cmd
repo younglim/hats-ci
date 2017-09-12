@@ -9,7 +9,7 @@ goto check_Permissions
     net session >nul 2>&1
     if %errorLevel% == 0 (
         echo Success: Administrative permissions confirmed.
-        powershell -NoProfile -ExecutionPolicy Bypass -Command ".\patches_ps.ps1"
+        powershell -NoProfile -ExecutionPolicy Bypass -Command ".\init_ps.ps1"
         
     ) else (
         echo Failure: Attempting to run as administrator.

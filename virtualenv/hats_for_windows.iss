@@ -29,7 +29,7 @@ Source: "C:\Program Files\hats\*"; DestDir: "{app}";
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Run]
-Filename: "{app}\utils\patches.cmd"; WorkingDir: "{app}";
+Filename: "{app}\utils\init.cmd"; WorkingDir: "{app}";
 Filename: "{app}\hats_shell.cmd"; Parameters: ".\testpage\test.cmd -show"; WorkingDir: "{app}";
 
 [UninstallRun]
