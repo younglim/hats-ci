@@ -7,7 +7,7 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{AB17F62F-BE30-45C1-8E66-E232BF6939AB}
 AppName=hats for Windows
-AppVersion=0.9
+AppVersion=1.1
 AppVerName=hats for Windows
 AppPublisher=GovTech
 AppPublisherURL=
@@ -24,7 +24,8 @@ SolidCompression=yes
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-Source: "C:\Program Files\hats\*"; DestDir: "{app}"; Excludes: "androidSDK\.android\avd"; Flags: ignoreversion recursesubdirs createallsubdirs;
+Source: "C:\Program Files\hats\*"; DestDir: "{app}";
+;Source: "C:\Program Files\hats\*"; DestDir: "{app}"; Excludes: "androidSDK\.android\avd"; Flags: ignoreversion recursesubdirs createallsubdirs;
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Run]
