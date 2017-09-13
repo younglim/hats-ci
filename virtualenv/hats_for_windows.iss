@@ -24,7 +24,7 @@ SolidCompression=yes
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-+Source: "C:\Program Files\hats\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;
+Source: "C:\Program Files\hats\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;
 ;Source: "C:\Program Files\hats\*"; DestDir: "{app}"; Excludes: "androidSDK\.android\avd"; Flags: ignoreversion recursesubdirs createallsubdirs;
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
