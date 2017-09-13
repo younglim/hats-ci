@@ -46,6 +46,7 @@ pytz==2017.2
 query-string==0.0.11
 request
 requests==2.18.1
+robotframework-csvlibrary==0.0.2
 robotframework-databaselibrary==0.8.1
 robotframework-faker==4.0.0
 robotframework-requests==0.4.7
