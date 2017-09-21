@@ -26,7 +26,15 @@ $env:JAVA_HOME = "$path_to_hats\jdk"
 $env:Path = "$env:Path;$env:JAVA_HOME\bin";
 
 echo "Set path to browser drivers for this session"
-$env:Path = "$env:Path;$path_to_hats\drivers";
+
+if ([System.IntPtr]::Size -eq 4)
+{
+	$env:Path = "$env:Path;$path_to_hats\drivers\win32";
+}
+else
+{
+	$env:Path = "$env:Path;$path_to_hats\drivers\win64";
+}
 
 echo "Set path to utils for this session"
 $env:Path = "$env:Path;$path_to_hats\utils";
