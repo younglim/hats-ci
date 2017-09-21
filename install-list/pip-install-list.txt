@@ -53,7 +53,7 @@ robotframework-requests==0.4.7
 robotframework-selenium2library==1.8.0
 robotframework==3.0.2
 sauceclient==0.2.1
-selenium==3.4.0
+selenium==3.5.0
 setupfiles==0.0.14
 setuptools-scm==1.15.0
 six==1.10.0
