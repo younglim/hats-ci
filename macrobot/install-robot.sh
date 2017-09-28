@@ -19,4 +19,4 @@ if [ ! -f /usr/local/bin/ansible-playbook ]; then
 fi
 
 echo "Running Playbooks"
-ansible-playbook -i "localhost," -c local "ansible-playbook-install-robot-framework.yml" --ask-sudo-pass
+ansible-playbook -i "localhost," -c local "ansible-playbook-install-robot-framework.yml" --ask-become-pass
