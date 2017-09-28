@@ -2,7 +2,7 @@
 
    - name: Get current username
      shell: echo `whoami`
-     register: ansible_username
+     register: ansible_username     
 
    - name: Install dependencies
      pip:
@@ -11,43 +11,43 @@
      with_items:
       - python
 
-   - name: Install robot framework
-     pip:
-        name: robotframework
-        state: present
-        version: 2.9.2
+   - name: Install virtualenv
+     become: yes
+     become_method: sudo
+     pip: 
+       name: virtualenv
 
-   - name: Install robotframework-selenium2library (2/2)
-     pip:
-        name: robotframework-selenium2library
-        state: present
+   - name: Check if virtualenv ~/hats folder exists
+     become: yes
+     become_method: sudo
+     file:
+         path: ~/hats
+         state: absent
 
-   - name: Install robotframework-faker
-     pip:
-        name: robotframework-faker
-        state: present
+   - name: Create Virtual Env
+     shell: bash -lc "virtualenv ~/hats && source ~/hats/bin/activate"
 
-   - name: Install robotframework-databaselibrary
-     pip:
-        name: robotframework-databaselibrary
-        state: present
-     ignore_errors: yes
+   - name: Install functools for avoiding pip bug
+     shell: bash -lc "source ~/hats/bin/activate && easy_install functools"
 
-   - name: Install robotframework-databaselibrary
-     shell: pip install robotframework-databaselibrary
+   - name: Install requirements for Python pip
+     pip: 
+        requirements: "https://raw.githubusercontent.com/younglim/hats-ci/master/install-list/pip-install-list.txt"
+        virtualenv: ~/hats
 
    - name: Download Chromedriver
-     get_url: url="https://chromedriver.storage.googleapis.com/2.29/chromedriver_mac64.zip" dest=~/Downloads force=yes
+     get_url: url="https://chromedriver.storage.googleapis.com/2.32/chromedriver_mac64.zip" dest=/tmp force=yes
    
    - name: Unzip Chromedriver
      unarchive: 
-        src: "~/Downloads/chromedriver_mac64.zip"
-        dest: "~/Downloads" 
+        src: "/tmp/chromedriver_mac64.zip"
+        dest: "/tmp" 
 
-   - name: Copy Chromdriver executable to /usr/local/share and set executable
-     sudo: yes
+   - name: Copy Chromedriver executable to /usr/local/share and set executable
+     become: yes
+     become_method: sudo
      copy:
-        src: ~/Downloads/chromedriver
+        src: /tmp/chromedriver
         dest: /usr/local/share/chromedriver
         mode: 755
 
@@ -56,4 +56,94 @@
         src: /usr/local/share/chromedriver
         dest: /usr/local/bin/chromedriver
         state: link
+
+   - name: Tap dupes for homebrew to install gnu tar
+     homebrew_tap:
+        name: homebrew/dupes
+   
+   - name: Install gnu tar for unzipping gecko tarball
+     homebrew:
+        name: gnu-tar
+        state: present 
+
+   - name: Download Firefox Gecko Driver
+     get_url: url="https://github.com/mozilla/geckodriver/releases/download/v0.16.1/geckodriver-v0.16.1-macos.tar.gz" dest=/tmp force=yes
+   
+   - name: Unzip GeckoDriver
+     unarchive: 
+        src: "/tmp/geckodriver-v0.16.1-macos.tar.gz"
+        dest: "/tmp" 
+
+   - name: Copy GeckoDriver executable to /usr/local/share and set executable
+     become: yes
+     become_method: sudo
+     copy:
+        src: /tmp/geckodriver
+        dest: /usr/local/share/geckodriver
+        mode: 755
+
+   - name: Symlink GeckoDriver to /usr/local/bin
+     file:
+        src: /usr/local/share/geckodriver
+        dest: /usr/local/bin/geckodriver
+        state: link 
+
+   - name: Install Google Chrome and Firefox with Brew Cask
+     homebrew_cask: 
+        name: "{{ item }}"
+        state: present
+     with_items:
+       - google-chrome
+       - "caskroom/versions/firefox-esr"
+       - chrome-devtools
+     ignore_errors: true
+
+   - name: Remove chrome downloads
+     become: yes
+     become_method: sudo
+     file:
+       path: "{{item}}"
+       state: absent
+     with_fileglob:
+       - /tmp/chromedriver*
+
+   - name: Remove gecko downloads
+     become: yes
+     become_method: sudo
+     file:
+       path: "{{item}}"
+       state: absent
+     with_fileglob:
+       - /tmp/geckodriver*
+
+   - name: List firefox default profile folder (Firefox Config) 
+     command: ls -v "~/Library/Application Support/Firefox/Profiles/"
+     register: firefox_default_profile
+
+   - name: insert update disabled (Firefox Config)
+     lineinfile: 
+        path: "~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout.split(';')[0] }}/prefs.js"
+        insertbefore: '^user_pref*'
+        line: 'user_pref("app.update.enabled", false);' 
+        state: present
+    
+   - name: insert no update (Firefox Config)
+     lineinfile: 
+        path: "~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout.split(';')[0] }}/prefs.js"
+        insertbefore: '^user_pref*'
+        line: 'user_pref("app.update.auto", false);'
+        state: present
+
+   - name: insert no elevate update (Firefox Config)
+     lineinfile: 
+        path: "~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout.split(';')[0] }}/prefs.js"
+        insertbefore: '^user_pref*'
+        line: 'user_pref("app.update.elevate.attempts", 0);'
+        state: present
+
+   
+
+
+
         
+      
