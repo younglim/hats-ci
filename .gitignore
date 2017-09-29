@@ -1,0 +1,6 @@
+
+*.log
+*.retry
+virtualenv/testpage/log.html
+virtualenv/testpage/output.xml
+virtualenv/testpage/report.html

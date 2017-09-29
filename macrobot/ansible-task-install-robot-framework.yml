@@ -122,28 +122,28 @@
 
    - name: insert update disabled (Firefox Config)
      lineinfile: 
-        path: "~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout.split(';')[0] }}/prefs.js"
+        dest: "~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout.split(';')[0] }}/prefs.js"
         insertbefore: '^user_pref*'
         line: 'user_pref("app.update.enabled", false);' 
         state: present
     
    - name: insert no update (Firefox Config)
      lineinfile: 
-        path: "~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout.split(';')[0] }}/prefs.js"
+        dest: "~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout.split(';')[0] }}/prefs.js"
         insertbefore: '^user_pref*'
         line: 'user_pref("app.update.auto", false);'
         state: present
 
    - name: insert no elevate update (Firefox Config)
      lineinfile: 
-        path: "~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout.split(';')[0] }}/prefs.js"
+        dest: "~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout.split(';')[0] }}/prefs.js"
         insertbefore: '^user_pref*'
         line: 'user_pref("app.update.elevate.attempts", 0);'
         state: present
 
-   
+   - name: Add ~/.bash_profile if not present
+     file: path=~/.bash_profile state=touch
 
-
-
-        
+   - name: Add to .bash_profile alias for hats_shell
+     lineinfile: dest="~/.bash_profile" line='alias hats_shell=". ~/hats/bin/activate"' state=present
       
