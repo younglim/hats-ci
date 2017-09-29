@@ -1,0 +1,35 @@
+---
+
+    - name: Brew install nvm
+      homebrew: name={{item}} state=present
+      with_items:
+        - "nvm"
+
+    - name: Brew link nvm
+      homebrew: name={{item}} state=linked
+      with_items:
+        - "nvm"
+
+    - name: Create ~/.nvm directory
+      sudo: no
+      file: path="~/.nvm" state="directory"
+
+    - name: Add ~/.bash_profile if not present
+      file: path=~/.bash_profile state=touch
+
+    - name: Add to .bash_profile nvm.sh
+      lineinfile: dest="~/.bash_profile" line='{{item}}' state=present
+      with_items:
+      - 'export NVM_DIR="$HOME/.nvm"'
+      - 'source $(brew --prefix nvm)/nvm.sh'
+
+    - name: "Install and Use Node.js {{ node_js_version }}"
+      shell: >
+        source ~/.bash_profile;
+        nvm install v{{ node_js_version }};
+
+    - name: nvm use
+      shell: >
+        source ~/.bash_profile;
+        nvm use --delete-prefix v{{ node_js_version }}
+  
