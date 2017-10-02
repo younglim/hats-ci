@@ -1,0 +1,39 @@
+---
+
+   - name: Get current username
+     shell: echo `whoami`
+     register: ansible_username     
+
+   - debug: 
+        msg: "{{ ansible_username.stdout }}"
+
+   - name: Install Android SDK, Java through cask
+     homebrew_cask: 
+        name: "{{ item }}"
+        state: present
+     with_items:
+       - java8
+       - android-sdk
+     ignore_errors: true
+
+   - name: Install System Image for creating Android AVD of v25
+     shell: sdkmanager 'system-images;android-25;google_apis;x86'
+  
+   - name: Create AVD of version 25 
+     shell: echo no | avdmanager create avd -n testAVD25 -k "system-images;android-25;google_apis;x86" -g "google_apis" --force
+
+   - name: Set Environment Variable for ANDROID_SDK_ROOT
+     lineinfile: 
+        path: ~/.bash_profile
+        insertafter: EOF
+        line: "{{ item.path }}"
+        state: present
+     with_items:
+       - { path: 'export ANDROID_SDK_ROOT=/usr/local/share/android-sdk' }
+       - { path: 'export ANDROID_HOME=/usr/local/share/android-sdk' }
+       - { path: 'export ANDROID_SDK_HOME=/usr/local/share/android-sdk' }
+       - { path: 'PATH=$ANDROID_HOME/platform-tools:$PATH' }
+       - { path: 'PATH=$ANDROID_HOME/tools:$PATH' }
+
+   - name: Set Environment Variable for PATH for emulator
+     shell: echo "export PATH=/usr/local/share/android-sdk/platform-tools:$PATH" >> ~/.bash_profile
