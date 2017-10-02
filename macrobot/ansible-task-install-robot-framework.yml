@@ -116,6 +116,12 @@
      with_fileglob:
        - /tmp/geckodriver*
 
+   - name: Launch Firefox to start pref file
+     shell: open -a Firefox 'http://www.google.com/'
+    
+   - name: Close Firefox after start pref file
+     shell: pkill -f firefox
+
    - name: List firefox default profile folder (Firefox Config) 
      command: ls -v "~/Library/Application Support/Firefox/Profiles/"
      register: firefox_default_profile
