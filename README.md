@@ -67,6 +67,10 @@ cd "C:\Program Files\hats"
 pybot testpage\test.robot
 ```
 
+### Testing with Android
+1. Make sure all $ANDROID environment variables are set.
+2. To programatically boot the Android Virtual Device(AVD), the commmand `emulator -avd testAVD25` must be run from the *tools* folder in the *android-sdk* directory.
+
 ## Contributions
 We welcome your involvement, be it fixing bugs or implementing new features that you find relevant to this project.
 
