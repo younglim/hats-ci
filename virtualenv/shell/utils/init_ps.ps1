@@ -45,11 +45,11 @@ if ($value) {
 echo "Enabling protected mode for all zones..."
 for ($zone=1; $zone -lt 5; $zone++) {
 
-	REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\$zone" /v 2500 /t REG_DWORD /d 0 /f
+	REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\$zone" /v 2500 /t REG_DWORD /d 3 /f
 
-	REG ADD "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\$zone" /v 2500 /t REG_DWORD /d 0 /f
+	REG ADD "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\$zone" /v 2500 /t REG_DWORD /d 3 /f
 
-	REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\$zone" /v 2500 /t REG_DWORD /d 0 /f
+	REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\$zone" /v 2500 /t REG_DWORD /d 3 /f
 }
 
 echo "Set environment variables"
