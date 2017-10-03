@@ -13,7 +13,7 @@ goto check_Permissions
         
     ) else (
         echo Failure: Attempting to run as administrator.
-        powershell -NoProfile -ExecutionPolicy Bypass -Command "Start-Process '%CD%\patches.cmd' -Verb runas"
+        powershell -NoProfile -ExecutionPolicy Bypass -Command "Start-Process '%CD%\init.cmd' -Verb runas"
         GOTO END
 
     )

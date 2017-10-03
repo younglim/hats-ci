@@ -99,7 +99,7 @@ echo $null >> "$path_to_hats\androidSDK\.android\repositories.cfg"
 echo "Install android emulator"
 sdkmanager "emulator"
 echo "Create an android system image"
-sdkmanager "system-images;android-23;google_apis;x86"
+sdkmanager "system-images;android-25;google_apis;x86"
 
 echo "Create testAVD with Chrome"
 echo no | avdmanager create avd -n testAVD -k 'system-images;android-25;google_apis;x86' -g 'google_apis'
