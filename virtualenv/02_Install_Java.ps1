@@ -15,17 +15,8 @@ $client = new-object System.Net.WebClient;
 $cookie = "oraclelicense=accept-securebackup-cookie"
 $client.Headers.Add([System.Net.HttpRequestHeader]::Cookie, $cookie)
 
-if ([System.IntPtr]::Size -eq 4)
-{
-	echo "Your system is 32-bit - Downloading..."
-	$client.DownloadFile($iniContent["Java"]["JRE-32"],"$path_to_hats\jre.exe");
-}
-else
-{
-	echo "Your system is 64-bit - Downloading..."
-	$client.DownloadFile($iniContent["Java"]["JRE-64"],"$path_to_hats\jre.exe");
-
-}
+echo "Your system is 32-bit - Downloading..."
+$client.DownloadFile($iniContent["Java"]["JRE-32"],"$path_to_hats\jre32.exe");
 
 echo "Downloaded JRE 8"
 
@@ -36,10 +27,10 @@ echo "Installing 7-Zip"
 Start-Process msiexec.exe -ArgumentList "/a `"$path_to_hats\7z.msi`" /qn TargetDir=`"$path_to_hats\7-Zip`" PrependPath=0 Include_test=0 DefaultFeature=1" -NoNewWindow -Wait;
 
 echo "Unzipping JRE 8"
-Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"jre.exe"', '-o"jre"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"jre32.exe"', '-o"jre32"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
 
 echo "Completed unzipping JRE 8"
 
-echo "Set path to JRE for this session"
-$env:Path = "$env:Path;$path_to_hats\jre\bin;$path_to_hats\jre\lib"
-echo $env:Path
+# echo "Set path to JRE for this session"
+# $env:Path = "$env:Path;$path_to_hats\jre32\bin;$path_to_hats\jre32\lib"
+# echo $env:Path

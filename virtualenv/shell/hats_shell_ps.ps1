@@ -21,9 +21,18 @@ $env:Path = "$env:windir;$env:windir\system32;$env:windir\system32\WindowsPowerS
 echo "Set path to Python27"
 $env:Path = "$env:Path;$path_to_hats\Python27;$path_to_hats\Python27\Scripts";
 
-echo "Set path to JDK for this session"
-$env:JAVA_HOME = "$path_to_hats\jdk"
-$env:Path = "$env:Path;$env:JAVA_HOME\bin";
+if ([System.IntPtr]::Size -eq 4)
+{
+	echo "Set path to JRE32 for this session"
+	$env:JAVA_HOME = "$path_to_hats\jre32"
+	$env:Path = "$env:Path;$env:JAVA_HOME\bin";
+}
+else
+{
+	echo "Set path to JDK for this session"
+	$env:JAVA_HOME = "$path_to_hats\jdk"
+	$env:Path = "$env:Path;$env:JAVA_HOME\bin";
+}
 
 echo "Set path to browser drivers for this session"
 
@@ -33,6 +42,17 @@ if ([System.IntPtr]::Size -eq 4)
 }
 else
 {
+
+	$chrome_version = (Get-Item "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe").VersionInfo.FileVersion
+	
+	if ($chrome_version -match "58.*") 
+	{
+
+	echo "Support for Chrome v58 enabled"
+	$env:Path = "$env:Path;$path_to_hats\drivers\win64\chrome-58";
+	
+	}
+
 	$env:Path = "$env:Path;$path_to_hats\drivers\win64";
 }
 

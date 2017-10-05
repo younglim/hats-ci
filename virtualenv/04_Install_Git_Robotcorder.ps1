@@ -23,7 +23,6 @@ $iniContent = Get-IniContent "config.ini"
 
 echo "Download Git"
 $client = new-object System.Net.WebClient;
-$cookie = "oraclelicense=accept-securebackup-cookie"
 $client.DownloadFile($iniContent["Git"]["Git"],"$path_to_hats\PortableGit.exe");
 
 echo "Unzipping Git"
@@ -31,7 +30,6 @@ Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList '
 
 echo "Download Robotcorder"
 $client = new-object System.Net.WebClient;
-$cookie = "oraclelicense=accept-securebackup-cookie"
 $client.DownloadFile($iniContent["hats"]["Robotcorder"],"$path_to_hats\Robotcorder.crx");
 
 echo "Unzipping Robotcorder"
@@ -39,4 +37,18 @@ Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList '
 
 echo "Rename Robotcorder\_metadata folder to metadata"
 Rename-Item "$path_to_hats\Robotcorder\_metadata" "metadata"
+
+echo "Download Gatling"
+$client = new-object System.Net.WebClient;
+$client.DownloadFile($iniContent["Gatling"]["Gatling"],"$path_to_hats\Gatling.zip");
+
+echo "Unzipping Gatling"
+Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"Gatling.zip"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+
+If(test-path "$path_to_hats\Gatling")
+{
+	Remove-Item -ItemType Directory -Force -Path "$path_to_hats\Gatling"
+}
+
+Rename-Item "$path_to_hats\gatling-charts-highcharts-bundle-2.3.0" "Gatling"
 
