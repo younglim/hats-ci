@@ -37,7 +37,7 @@ else
 echo "Set path to browser drivers for this session"
 
 $path_to_programfiles_x86 = "C:\Program Files (x86)"
-if (-Not Test-Path $path_to_programfiles_x86)
+if (-Not (Test-Path $path_to_programfiles_x86))
 {
 	$path_to_programfiles_x86 = "C:\Program Files"
 }
