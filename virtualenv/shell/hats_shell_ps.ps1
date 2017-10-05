@@ -71,12 +71,15 @@ $env:Path = "$env:Path;$path_to_hats\npm-global;$path_to_hats\npm-global\bin";
 echo "Set path to androidSDK tools for this session"
 $env:Path = "$env:Path;$path_to_hats\androidSDK\emulator;$path_to_hats\androidSDK\tools;$path_to_hats\androidSDK\tools\bin\;$path_to_hats\androidSDK\platform-tools";
 
-echo "Set path to Git for this session"
-$env:Path = "$env:Path;$path_to_hats\Git\cmd;$path_to_hats\Git\mingw32\bin;$path_to_hats\Git\usr\bin;"
-
 $env:ANDROID_HOME = "$path_to_hats\androidSDK"
 $env:ANDROID_SDK_HOME = "$path_to_hats\androidSDK"
 $env:ANDROID_SDK_ROOT = "$path_to_hats\androidSDK"
+
+echo "Set path to Git for this session"
+$env:Path = "$env:Path;$path_to_hats\Git\cmd;$path_to_hats\Git\mingw32\bin;$path_to_hats\Git\usr\bin;"
+
+echo "Set path to Gatling for this session"
+$env:Path = "$env:Path;$path_to_hats\Gatling\bin;"
 
 echo "Activate hats virtual environment"
 cd "$path_to_hats"

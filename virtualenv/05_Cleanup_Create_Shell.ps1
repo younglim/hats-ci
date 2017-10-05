@@ -15,6 +15,7 @@ $fso.DeleteFile("$path_to_hats\chromedriver-32.zip")
 $fso.DeleteFile("$path_to_hats\geckodriver-32.zip")
 $fso.DeleteFile("$path_to_hats\IEDriverServer-32.zip")
 $fso.DeleteFile("$path_to_hats\chromedriver-64.zip")
+$fso.DeleteFile("$path_to_hats\chromedriver-64-chrome58.zip")
 $fso.DeleteFile("$path_to_hats\geckodriver-64.zip")
 $fso.DeleteFile("$path_to_hats\IEDriverServer-64.zip")
 $fso.DeleteFile("$path_to_hats\VCForPython27.msi")
@@ -29,6 +30,7 @@ $fso.DeleteFile("$path_to_hats\get-pip.py")
 $fso.DeleteFile("$path_to_hats\node.zip")
 $fso.DeleteFile("$path_to_hats\haxm.zip")
 $fso.DeleteFile("$path_to_hats\PortableGit.exe");
+$fso.DeleteFile("$path_to_hats\Gatling.zip")
 
 echo "Copy shell scripts to $path_to_hats"
 Copy-Item "shell\*" "$path_to_hats" -recurse
