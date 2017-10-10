@@ -122,6 +122,8 @@ $client.DownloadFile($iniContent["hats"]["NpmPackageJson"],"$path_to_hats\packag
 echo "Download and unpack Visual C++ Build Tools"
 $client.DownloadFile($iniContent["Microsoft"]["Windows-Build-Tools"],"$path_to_hats\utils\visualcppbuildtools_full.exe");
 
+mkdir "$path_to_hats\utils\visualcppbuildtools"
+
 Start-Process "$path_to_hats\utils\visualcppbuildtools_full.exe" -ArgumentList "/layout $path_to_hats\utils\visualcppbuildtools /Full /Silent" -NoNewWindow -Wait;
 
 echo "Install Visual C++ Build Tools"
