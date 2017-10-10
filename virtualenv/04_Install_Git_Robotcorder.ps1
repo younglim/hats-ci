@@ -76,4 +76,7 @@ echo "Unzipping RED"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"RED.zip"', '-o"RED"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
 
 echo "Replace RED splash bitmap"
-$client.DownloadFile($iniContent["hats"]["splash.bmp"],"$path_to_hats\RED\configuration\org.eclipse.equinox.launcher\org.robotframework.ide.eclipse.product.plugin_0.8.0.201710041027\splash.bmp");
+$path_to_RED_splash_bmp = "RED\configuration\org.eclipse.equinox.launcher\org.robotframework.ide.eclipse.product.plugin_0.8.0.201710041027";
+New-Item "$path_to_hats\$path_to_RED_splash_bmp" -ItemType Directory
+
+$client.DownloadFile($iniContent["hats"]["splash.bmp"],"$path_to_hats\$path_to_RED_splash_bmp\splash.bmp");
