@@ -52,8 +52,6 @@ cd "$scriptpath"
 echo 'Testing adb command'
 adb
 
-echo "Create repositories.cfg"
-mkdir "$path_to_hats\androidSDK\.android"
 echo $null >> "$path_to_hats\androidSDK\.android\repositories.cfg"
 
 echo "Install android emulator"
