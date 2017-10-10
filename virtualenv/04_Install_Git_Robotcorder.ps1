@@ -68,3 +68,12 @@ If(test-path "$path_to_hats\JMeter")
 
 Rename-Item "$path_to_hats\apache-jmeter-3.3" "JMeter"
 
+echo "Download RED"
+$client = new-object System.Net.WebClient;
+$client.DownloadFile($iniContent["RED"]["RED"],"$path_to_hats\RED.zip");
+
+echo "Unzipping RED"
+Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"RED.zip"', '-o"RED"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+
+echo "Replace RED splash bitmap"
+$client.DownloadFile($iniContent["hats"]["splash.bmp"],"$path_to_hats\RED\configuration\org.eclipse.equinox.launcher\org.robotframework.ide.eclipse.product.plugin_0.8.0.201710041027\splash.bmp");
