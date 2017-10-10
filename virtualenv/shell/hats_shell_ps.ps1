@@ -55,6 +55,28 @@ if (Test-Path $chrome_path)
 	}
 }
 
+$firefox_path = "C:\Program Files\Mozilla Firefox\firefox.exe";
+
+if (Test-Path $firefox_path) 
+{
+	$firefox_version = (Get-Item $firefox_path).VersionInfo.FileVersion
+
+	if ($firefox_version -match "[0-5][0-4].*") 
+	{
+		echo "Support for Firefox <= v54 enabled"
+
+		if ([System.IntPtr]::Size -eq 4)
+			$env:Path = "$env:Path;$path_to_hats\drivers\win32\firefox-54";
+		}
+		else 
+		{ 
+			$env:Path = "$env:Path;$path_to_hats\drivers\win64\firefox-54";
+		}
+		
+	}
+}
+
+
 if ([System.IntPtr]::Size -eq 4)
 {
 	$env:Path = "$env:Path;$path_to_hats\drivers\win32";

@@ -40,6 +40,8 @@ $client.DownloadFile($iniContent["BrowserDrivers"]["IE-64"],"$path_to_hats\IEDri
 echo "Download Firefox driver"
 $client.DownloadFile($iniContent["BrowserDrivers"]["Firefox-32"],"$path_to_hats\geckodriver-32.zip");
 $client.DownloadFile($iniContent["BrowserDrivers"]["Firefox-64"],"$path_to_hats\geckodriver-64.zip");
+$client.DownloadFile($iniContent["BrowserDrivers"]["Firefox-32-firefox54"],"$path_to_hats\geckodriver-64-firefox54.zip");
+$client.DownloadFile($iniContent["BrowserDrivers"]["Firefox-64-firefox54"],"$path_to_hats\geckodriver-64-firefox54.zip");
 
 echo "Unzipping Chrome driver"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"chromedriver-32.zip"', '-o"drivers\win32"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
@@ -53,3 +55,5 @@ Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList '
 echo "Unzipping Firefox driver"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"geckodriver-32.zip"', '-o"drivers\win32"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"geckodriver-64.zip"', '-o"drivers\win64"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+'e', '"geckodriver-32-firefox54.zip"', '-o"drivers\win32\firefox-54"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"geckodriver-64-firefox54.zip"', '-o"drivers\win64\firefox-54"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
