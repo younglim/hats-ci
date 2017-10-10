@@ -84,10 +84,17 @@ $env:ANDROID_SDK_HOME = "$path_to_hats\androidSDK"
 $env:ANDROID_SDK_ROOT = "$path_to_hats\androidSDK"
 
 echo "Set path to Git for this session"
-$env:Path = "$env:Path;$path_to_hats\Git\cmd;$path_to_hats\Git\mingw32\bin;$path_to_hats\Git\usr\bin;"
+$env:Path = "$env:Path;$path_to_hats\Git\cmd;$path_to_hats\Git\mingw32\bin;$path_to_hats\Git\usr\bin"
 
 echo "Set path to Gatling for this session"
-$env:Path = "$env:Path;$path_to_hats\Gatling\bin;"
+$env:Path = "$env:Path;$path_to_hats\Gatling\bin"
+$env:GATLING_HOME = "$path_to_hats\Gatling"
+
+echo "Set path to JMeter for this session"
+$env:Path = "$env:Path;$path_to_hats\JMeter\bin"
+
+echo "Set path to RED for this session"
+$env:Path = "$env:Path;$path_to_hats\RED"
 
 echo "Activate hats virtual environment"
 cd "$path_to_hats"

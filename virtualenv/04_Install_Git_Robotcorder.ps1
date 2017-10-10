@@ -45,10 +45,26 @@ $client.DownloadFile($iniContent["Gatling"]["Gatling"],"$path_to_hats\Gatling.zi
 echo "Unzipping Gatling"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"Gatling.zip"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
 
+echo "Rename Gatling folder"
 If(test-path "$path_to_hats\Gatling")
 {
 	Remove-Item -ItemType Directory -Force -Path "$path_to_hats\Gatling"
 }
 
 Rename-Item "$path_to_hats\gatling-charts-highcharts-bundle-2.3.0" "Gatling"
+
+echo "Download JMeter"
+$client = new-object System.Net.WebClient;
+$client.DownloadFile($iniContent["JMeter"]["JMeter"],"$path_to_hats\JMeter.zip");
+
+echo "Unzipping JMeter"
+Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"JMeter.zip"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+
+echo "Rename JMeter"
+If(test-path "$path_to_hats\JMeter")
+{
+	Remove-Item -ItemType Directory -Force -Path "$path_to_hats\JMeter"
+}
+
+Rename-Item "$path_to_hats\apache-jmeter-3.3" "JMeter"
 
