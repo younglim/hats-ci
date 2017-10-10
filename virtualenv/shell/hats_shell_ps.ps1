@@ -66,6 +66,7 @@ if (Test-Path $firefox_path)
 		echo "Support for Firefox <= v54 enabled"
 
 		if ([System.IntPtr]::Size -eq 4)
+		{
 			$env:Path = "$env:Path;$path_to_hats\drivers\win32\firefox-54";
 		}
 		else 
