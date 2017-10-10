@@ -36,13 +36,15 @@ else
 
 echo "Set path to browser drivers for this session"
 
+$env:Path = "$env:Path;$path_to_hats\drivers\ie";
+
 $path_to_programfiles_x86 = "C:\Program Files (x86)"
-if (-Not (Test-Path $path_to_programfiles_x86))
-{
-	$path_to_programfiles_x86 = "C:\Program Files"
-}
 
 $chrome_path = "$path_to_programfiles_x86\Google\Chrome\Application\chrome.exe";
+if (-Not (Test-Path $chrome_path))
+{
+	$chrome_path = "C:\Program Files\Google\Chrome\Application\chrome.exe"
+}
 
 if (Test-Path $chrome_path) 
 {
@@ -51,40 +53,50 @@ if (Test-Path $chrome_path)
 	if ($chrome_version -match "5[6-8].*") 
 	{
 		echo "Support for Chrome v58 enabled"
-		$env:Path = "$env:Path;$path_to_hats\drivers\win64\chrome-58";
+		$env:Path = "$env:Path;$path_to_hats\drivers\chrome-58";
 	}
 }
 
-$firefox_path = "C:\Program Files\Mozilla Firefox\firefox.exe";
-
-if (Test-Path $firefox_path) 
+$firefox_path = "$path_to_programfiles_x86\Mozilla Firefox\firefox.exe";
+if ((Test-Path $firefox_path) -or ([System.IntPtr]::Size -eq 4))
 {
-	$firefox_version = (Get-Item $firefox_path).VersionInfo.FileVersion
 
-	if ($firefox_version -match "[0-5][0-4].*") 
+	if (-Not (Test-Path $firefox_path)) 
 	{
-		echo "Support for Firefox <= v54 enabled"
-
-		if ([System.IntPtr]::Size -eq 4)
-		{
-			$env:Path = "$env:Path;$path_to_hats\drivers\win32\firefox-54";
-		}
-		else 
-		{ 
-			$env:Path = "$env:Path;$path_to_hats\drivers\win64\firefox-54";
-		}
-		
+		$firefox_path = "C:\Program Files\Mozilla Firefox\firefox.exe"
 	}
-}
+	
+	if (Test-Path $firefox_path)
+	{
+		$firefox_version = (Get-Item $firefox_path).VersionInfo.FileVersion
 
-
-if ([System.IntPtr]::Size -eq 4)
-{
-	$env:Path = "$env:Path;$path_to_hats\drivers\win32";
+		if ($firefox_version -match "[0-5][0-4].*") 
+		{
+			$env:Path = "$env:Path;$path_to_hats\drivers\firefox32-firefox-54";
+		}
+		else
+		{
+			$env:Path = "$env:Path;$path_to_hats\drivers\firefox32";
+		}
+	}
 }
 else
 {
-	$env:Path = "$env:Path;$path_to_hats\drivers\win64";
+	$firefox_path = "C:\Program Files\Mozilla Firefox\firefox.exe"
+	if (Test-Path $firefox_path)
+	{
+		$firefox_version = (Get-Item $firefox_path).VersionInfo.FileVersion
+
+		if ($firefox_version -match "[0-5][0-4].*") 
+		{
+			$env:Path = "$env:Path;$path_to_hats\drivers\firefox64-firefox-54";
+		}
+		else
+		{
+			$env:Path = "$env:Path;$path_to_hats\drivers\firefox64";
+		}
+	}
+	
 }
 
 echo "Set path to utils for this session"
