@@ -8,6 +8,7 @@
 AppId={{AB17F62F-BE30-45C1-8E66-E232BF6939AB}
 AppName=hats for Windows
 AppVersion=1.1.3
+VersionInfoVersion=1.1.3
 AppVerName=hats for Windows
 AppPublisher=GovTech
 AppPublisherURL=
