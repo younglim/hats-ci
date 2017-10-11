@@ -119,12 +119,14 @@ npm init -y
 echo "Download package.json"
 $client.DownloadFile($iniContent["hats"]["NpmPackageJson"],"$path_to_hats\package.json");
 
-echo "Download and unpack Visual C++ Build Tools"
+
+echo "Download Visual C++ Build Tools"
 $client.DownloadFile($iniContent["Microsoft"]["Windows-Build-Tools"],"$path_to_hats\utils\visualcppbuildtools_full.exe");
 
-mkdir "$path_to_hats\utils\visualcppbuildtools"
+echo "Unpack Visual C++ Build Tools"
+New-Item -ItemType Directory -Force -Path "$path_to_hats\utils\visualcppbuildtools"
 
-Start-Process "$path_to_hats\utils\visualcppbuildtools_full.exe" -ArgumentList "/layout $path_to_hats\utils\visualcppbuildtools /Full /Silent" -NoNewWindow -Wait;
+Start-Process "$path_to_hats\utils\visualcppbuildtools_full.exe" -ArgumentList "/layout '$path_to_hats\utils\visualcppbuildtools' /passive" -NoNewWindow -Wait;
 
 echo "Install Visual C++ Build Tools"
 Start-Process "$path_to_hats\utils\visualcppbuildtools\VisualCppBuildTools_Full.exe" -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
