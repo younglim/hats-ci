@@ -20,6 +20,7 @@ DisableProgramGroupPage=yes
 OutputBaseFilename=hats_for_Windows
 Compression=lzma
 SolidCompression=yes
+DiskSpanning=yes
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
