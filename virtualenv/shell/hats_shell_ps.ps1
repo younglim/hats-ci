@@ -40,6 +40,10 @@ echo "INFO: Set path to browser drivers for this session"
 
 $ie_path = "C:\Program Files\Internet Explorer\iexplore.exe"
 
+if (Test-Path env:ie_path) {
+	$ie_path = $env:ie_path
+}
+
 if (Test-Path $ie_path) 
 {
 	$ie_version = (Get-Item $ie_path).VersionInfo.FileVersion
@@ -69,6 +73,11 @@ $env:Path = "$env:Path;$path_to_hats\drivers\ie";
 $path_to_programfiles_x86 = "C:\Program Files (x86)"
 
 $chrome_path = "$path_to_programfiles_x86\Google\Chrome\Application\chrome.exe";
+
+if (Test-Path env:chrome_path) {
+	$chrome_path = $env:chrome_path
+}
+
 if (-Not (Test-Path $chrome_path))
 {
 	$chrome_path = "C:\Program Files\Google\Chrome\Application\chrome.exe"
@@ -96,6 +105,11 @@ else
 
 
 $firefox_path = "$path_to_programfiles_x86\Mozilla Firefox\firefox.exe";
+
+if (Test-Path env:firefox_path) {
+	$firefox_path = $env:firefox_path
+}
+
 if (-Not (Test-Path $firefox_path))
 {
 	$firefox_path = "C:\Program Files\Mozilla Firefox\firefox.exe"
@@ -186,5 +200,6 @@ if ($allArgs)
 	iex "& $allArgs"
 } else
 {
-
+	echo "Run 'commands' to get a list of useful commands."
+	echo ""
 }
