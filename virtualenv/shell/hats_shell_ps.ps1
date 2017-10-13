@@ -64,7 +64,7 @@ if (Test-Path $ie_path)
 }
 else 
 {
-	echo "WARN: Could not Microsoft internet Explorer"
+	echo "WARN: Could not detect Microsoft internet Explorer"
 	$env:Path = "$env:Path;$path_to_hats\drivers\ie64";
 }
 
@@ -74,28 +74,36 @@ $path_to_programfiles_x86 = "C:\Program Files (x86)"
 
 $chrome_path = "$path_to_programfiles_x86\Google\Chrome\Application\chrome.exe";
 
-if (Test-Path env:chrome_path) {
-	$chrome_path = $env:chrome_path
-}
-
 if (-Not (Test-Path $chrome_path))
 {
 	$chrome_path = "C:\Program Files\Google\Chrome\Application\chrome.exe"
+}
+
+if (Test-Path env:chrome_path) {
+	$chrome_path = $env:chrome_path
 }
 
 if (Test-Path $chrome_path) 
 {
 	$chrome_version = (Get-Item $chrome_path).VersionInfo.FileVersion
 
-	echo "INFO: Found Google Chrome Version $chrome_version"
-	if ($chrome_version -match "5[6-8].*") 
+	if ($chrome_version -eq $null)
 	{
-		echo "Support for Chrome v58 enabled"
-		$env:Path = "$env:Path;$path_to_hats\drivers\chrome-58";
+		echo "WARN: Could not detect Google Chrome"
 	}
-	else {
-		$env:Path = "$env:Path;$path_to_hats\drivers\chrome";
+	else
+	{
+		echo "INFO: Found Google Chrome Version $chrome_version"
+		if ($chrome_version -match "5[6-8].*") 
+		{
+			echo "Support for Chrome v58 enabled"
+			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-58";
+		}
+		else {
+			$env:Path = "$env:Path;$path_to_hats\drivers\chrome";
+		}
 	}
+	
 }
 else
 {
@@ -106,13 +114,13 @@ else
 
 $firefox_path = "$path_to_programfiles_x86\Mozilla Firefox\firefox.exe";
 
-if (Test-Path env:firefox_path) {
-	$firefox_path = $env:firefox_path
-}
-
 if (-Not (Test-Path $firefox_path))
 {
 	$firefox_path = "C:\Program Files\Mozilla Firefox\firefox.exe"
+}
+
+if (Test-Path env:firefox_path) {
+	$firefox_path = $env:firefox_path
 }
 
 if (Test-Path $firefox_path)
@@ -134,6 +142,8 @@ if (Test-Path $firefox_path)
 	} 
 	else 
 	{
+		echo "WARN: Could not detect Mozilla Firefox"
+	
 		if ($firefox_version -match "[0-5][0-4].*") 
 		{
 			$env:Path = "$env:Path;$path_to_hats\drivers\firefox32-firefox-54";
