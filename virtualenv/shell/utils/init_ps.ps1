@@ -60,6 +60,10 @@ REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Zoom" /v ResetZo
 REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Zoom" /v ResetZoomOnStartup2 /t REG_DWORD /d 0 /f
 REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Zoom" /v ZoomFactor /t REG_DWORD /d 100000 /f
 
+echo "Disable IE ESC"
+REG ADD "HKLM\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}" /v IsInstalled /t REG_DWORD /d 00000000 /f
+REG ADD "HKLM\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}" /v IsInstalled /t REG_DWORD /d 00000000 /f
+
 echo "Set environment variables"
 [Environment]::SetEnvironmentVariable("HATS", $path_to_hats, [System.EnvironmentVariableTarget]::Machine)
 
