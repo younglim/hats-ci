@@ -1,6 +1,8 @@
 $scriptpath = $MyInvocation.MyCommand.Path
 $path_to_utils = Split-Path $scriptpath
 
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12;
+
 Get-Date > "$path_to_utils\last-check.txt"
 echo "Downloading latest version of pip modules"
 $url = Get-Content "$path_to_utils\pip-install-list.url"

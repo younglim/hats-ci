@@ -12,58 +12,18 @@ $client.DownloadFile($iniContent["7-Zip"]["7-Zip"],"$path_to_hats\7z.msi");
 echo "Installing 7-Zip"
 Start-Process msiexec.exe -ArgumentList "/a `"$path_to_hats\7z.msi`" /qn TargetDir=`"$path_to_hats\7-Zip`" PrependPath=0 Include_test=0 DefaultFeature=1" -NoNewWindow -Wait;
 
-echo "Preparing to download JDK"
+echo "Set path to JDK for this session"
+
 if ([System.IntPtr]::Size -eq 4)
 {
-	echo "Your system is 32-bit - Downloading..."
-	$client.DownloadFile($iniContent["Java"]["JDK-32"],"$path_to_hats\jdk.exe");
-	echo "Downloaded JDK"
-
-	echo "Unzipping JDK - first step"
-	Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"jdk.exe"', '-o"jdk-first-extraction"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
-
-	echo "Unzipping JDK - final step"
-	Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"jdk-first-extraction\tools.zip"', '-o"jdk"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
-
+	$env:JAVA_HOME = "$path_to_hats\jdk32"
 }
-else
+else 
 {
-	echo "Your system is 64-bit - Downloading..."
-	$client.DownloadFile($iniContent["Java"]["JDK-64"],"$path_to_hats\jdk.exe");
-
-	echo "Downloaded JDK"
-
-	echo "Unzipping JDK - first step"
-	Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"jdk.exe"', '-o"jdk-first-extraction"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
-
-	echo "Unzipping JDK - second step"
-	Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"jdk-first-extraction\.rsrc\1033\JAVA_CAB10\111"', '-o"jdk-second-extraction"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
-	
-	echo "Unzipping JDK - final step"
-	Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"jdk-second-extraction\tools.zip"', '-o"jdk"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
-
+	$env:JAVA_HOME = "$path_to_hats\jdk"
 }
-
-echo "Set path to JDK for this session"
-$env:JAVA_HOME = "$path_to_hats\jdk"
 echo $env:JAVA_HOME
 $env:Path = "$env:Path;$env:JAVA_HOME\bin"
-
-echo "Unpack jre/lib .pack files to .jar"
-$files = Get-ChildItem -Path "$path_to_hats\jdk\jre\lib" -Recurse -Include *.pack;
-$libFilePath = "$path_to_hats\jdk\jre\lib";
-
-foreach($file in $files) {
-	$fileJarName = $null;
-	$fileOrgName = "$($libFilePath)\$($file.name)";
-	$fileJarName = "$($libFilePath)\$($file.BaseName).jar"
-	. "$path_to_hats\jdk\bin\unpack200.exe" "$fileOrgName" "$fileJarName"
-}
-
-. "$path_to_hats\jdk\bin\unpack200.exe" "$($libFilePath)\ext\localedata.pack" "$($libFilePath)\ext\localedata.jar"
-
-dir "$path_to_hats\jdk\jre\lib"
-echo "Completed unpacking .pack files to jar"
 
 echo "Preparing to download Android SDK"
 $client.DownloadFile($iniContent["AndroidSDK"]["AndroidSDK"],"$path_to_hats\androidSDK.zip");
@@ -92,8 +52,6 @@ cd "$scriptpath"
 echo 'Testing adb command'
 adb
 
-echo "Create repositories.cfg"
-mkdir "$path_to_hats\androidSDK\.android"
 echo $null >> "$path_to_hats\androidSDK\.android\repositories.cfg"
 
 echo "Install android emulator"
@@ -161,17 +119,26 @@ npm init -y
 echo "Download package.json"
 $client.DownloadFile($iniContent["hats"]["NpmPackageJson"],"$path_to_hats\package.json");
 
-echo "Install Windows Build Tools"
-$client.DownloadFile($iniContent["Microsoft"]["Windows-Build-Tools"],"$path_to_hats\utils\BuildTools_Full.exe");
-Start-Process "$path_to_hats\utils\BuildTools_Full.exe" -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
+
+echo "Download Visual C++ Build Tools"
+$client.DownloadFile($iniContent["Microsoft"]["Windows-Build-Tools"],"$path_to_hats\utils\visualcppbuildtools_full.exe");
+
+echo "Unpack Visual C++ Build Tools"
+New-Item -ItemType Directory -Force -Path "$path_to_hats\utils\visualcppbuildtools"
+
+Start-Process "$path_to_hats\utils\visualcppbuildtools_full.exe" -ArgumentList '/Layout "$path_to_hats\utils\visualcppbuildtools"','/Passive' -NoNewWindow -Wait;
+
+echo "Install Visual C++ Build Tools"
+Start-Process "$path_to_hats\utils\visualcppbuildtools\VisualCppBuildTools_Full.exe" -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
 
 echo "Installing Appium through npm"
 # npm --vcc-build-tools-parameters='[""/CustomInstallPath"", ""$path_to_hats\MSBUILD""]' install -g -production windows-build-tools 
 
-$env:Path = "$env:Path;C:\Program Files\MSBuild\14.0\Bin;$path_to_hats\Python27;$path_to_hats\Python27\Scripts";
+$env:Path = "$env:Path;$path_to_hats\Python27;$path_to_hats\Python27\Scripts";
 npm install -g appium
 npm config set msvs_version 2015
 
 echo "Pop and check location"
 Pop-Location
 Get-Location
+

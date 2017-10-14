@@ -42,7 +42,7 @@ if ($value) {
 }
 
 # see https://superuser.com/questions/1031225/what-is-the-registry-setting-to-enable-protected-mode-in-a-specific-zone
-echo "Enabling protected mode for all zones..."
+echo "Disabling IE protected mode for all zones..."
 for ($zone=1; $zone -lt 5; $zone++) {
 
 	REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\$zone" /v 2500 /t REG_DWORD /d 3 /f
@@ -51,6 +51,18 @@ for ($zone=1; $zone -lt 5; $zone++) {
 
 	REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\$zone" /v 2500 /t REG_DWORD /d 3 /f
 }
+
+echo "Set Zoom Level of IE to 100%"
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Zoom" /v ZoomDisabled /t REG_DWORD /d 0 /f
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Zoom" /v ResetTextSizeOnStartup /t REG_DWORD /d 0 /f
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Zoom" /v ResetTextSizeOnZoom /t REG_DWORD /d 1 /f
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Zoom" /v ResetZoomOnStartup /t REG_DWORD /d 1 /f
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Zoom" /v ResetZoomOnStartup2 /t REG_DWORD /d 0 /f
+REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Zoom" /v ZoomFactor /t REG_DWORD /d 100000 /f
+
+echo "Disable IE ESC"
+REG ADD "HKLM\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}" /v IsInstalled /t REG_DWORD /d 00000000 /f
+REG ADD "HKLM\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}" /v IsInstalled /t REG_DWORD /d 00000000 /f
 
 echo "Set environment variables"
 [Environment]::SetEnvironmentVariable("HATS", $path_to_hats, [System.EnvironmentVariableTarget]::Machine)
@@ -67,8 +79,8 @@ $key.Dispose()
 # $file = "$env:windir\System32\drivers\etc\hosts"
 # "127.0.0.1	127.0.0.1" | Add-Content -PassThru $file
 
-echo "Install Windows Build Tools"
-Start-Process "$path_to_hats\utils\BuildTools_Full.exe" -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
+echo "Install Visual C++ Build Tools"
+Start-Process "$path_to_hats\utils\visualcppbuildtools\VisualCppBuildTools_Full.exe" -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
 
 echo "Install Hardware Accelerated Execution Manager"
 Start-Process "$path_to_hats\androidSDK\haxm\silent_install.bat" -NoNewWindow -Wait -WorkingDirectory "$path_to_hats\androidSDK\haxm";
