@@ -83,8 +83,8 @@ $key.Dispose()
 # $file = "$env:windir\System32\drivers\etc\hosts"
 # "127.0.0.1	127.0.0.1" | Add-Content -PassThru $file
 
-echo "Install Visual C++ Build Tools"
-Start-Process "$path_to_hats\utils\visualcppbuildtools\VisualCppBuildTools_Full.exe" -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
+#echo "Install Visual C++ Build Tools"
+#Start-Process "$path_to_hats\utils\visualcppbuildtools\VisualCppBuildTools_Full.exe" -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
 
 echo "Install Hardware Accelerated Execution Manager"
 Start-Process "$path_to_hats\androidSDK\haxm\silent_install.bat" -NoNewWindow -Wait -WorkingDirectory "$path_to_hats\androidSDK\haxm";
