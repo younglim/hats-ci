@@ -47,7 +47,6 @@ python-dateutil==2.6.0
 python-owasp-zap-v2.4==0.0.12
 pytz==2017.2
 query-string==0.0.11
-request
 requests==2.18.1
 robot-appeyes==1.2
 robotframework-angularjs==0.0.6
