@@ -35,7 +35,6 @@ public==0.0.37
 py==1.4.31
 pycparser==2.17
 pyfiglet==0.7.5
-pygame
 pyocr==0.4.7
 pyOpenSSL==17.0.0
 pyparsing==2.2.0
@@ -89,7 +88,6 @@ selenium==3.5.0
 setupfiles==0.0.14
 setuptools-scm==1.15.0
 six==1.10.0
-termcolor
 urllib3==1.21.1
 wrapt==1.10.10
 xlrd==1.1.0
