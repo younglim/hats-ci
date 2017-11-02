@@ -131,7 +131,7 @@ $client.DownloadFile($iniContent["Microsoft"]["Windows-Build-Tools"],"$path_to_h
 echo "Unpack Visual C++ Build Tools"
 New-Item -ItemType Directory -Force -Path "$path_to_hats\utils\visualcppbuildtools"
 
-Start-Process "visualcppbuildtools_full.exe" -ArgumentList '/Layout "visualcppbuildtools"','/Passive' -NoNewWindow -Wait  -WorkingDirectory "$path_to_hats\utils";
+Start-Process ".\visualcppbuildtools_full.exe" -ArgumentList '/Layout "visualcppbuildtools"','/Passive' -NoNewWindow -Wait  -WorkingDirectory "$path_to_hats\utils";
 
 echo "Install Visual C++ Build Tools"
 Start-Process "$path_to_hats\utils\visualcppbuildtools\VisualCppBuildTools_Full.exe" -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
