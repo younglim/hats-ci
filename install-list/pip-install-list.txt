@@ -78,7 +78,7 @@ robotframework-seleniumlibrary==2.9.2
 robotframework-sshlibrary==2.1.3
 robotframework-stringformat==0.1.7
 robotframework-sudslibrary==0.8
-robotframework-tftplibrary==1.0
+robotframework-ftplibrary==1.4
 robotframework-weblibrary==2.0.1
 robotframework-websocketclient==1.3.0
 robotframework-xlsxlibrary==0.1.0.1
