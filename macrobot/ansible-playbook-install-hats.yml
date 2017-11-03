@@ -2,6 +2,9 @@
 
 - hosts: all
 
+  vars:
+    - node_js_version: 8.9.0
+ 
   tasks:  
   - include: ansible-task-install-robot-framework.yml
   - include: ansible-task-install-nvm-node.yml
