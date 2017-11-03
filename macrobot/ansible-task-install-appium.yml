@@ -1,0 +1,12 @@
+---
+
+   - name: Uninstall appium if it exist
+     npm:
+      name: appium
+      global: yes
+      state: absent
+
+   - name: Install appium through npm
+     npm:
+      name: appium
+      global: yes
