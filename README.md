@@ -43,7 +43,7 @@ Steps recommended for experienced developers or those who want to contribute to 
 
 ## Experimental: For Mac
 1. Navigate to `macrobot`
-2. Run `install-robot.sh`
+2. Run `install-hats.sh`
 3. Start testing!
 
 ## Automated Tests
