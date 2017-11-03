@@ -134,7 +134,7 @@ New-Item -ItemType Directory -Force -Path "$path_to_hats\utils\visualcppbuildtoo
 Start-Process "$path_to_hats\utils\visualcppbuildtools_full.exe" -ArgumentList '/Layout "visualcppbuildtools"','/Passive' -NoNewWindow -Wait  -WorkingDirectory "$path_to_hats\utils";
 
 echo "Install Visual C++ Build Tools"
-Start-Process "$path_to_hats\utils\visualcppbuildtools\VisualCppBuildTools_Full.exe" -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
+Start-Process "$path_to_hats\utils\visualcppbuildtools\VisualCppBuildTools_Full.exe" -ArgumentList "/Full /Passive" -NoNewWindow -Wait;
 
 echo "Installing Appium through npm"
 # npm --vcc-build-tools-parameters='[""/CustomInstallPath"", ""$path_to_hats\MSBUILD""]' install -g -production windows-build-tools 
