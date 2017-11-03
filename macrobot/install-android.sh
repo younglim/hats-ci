@@ -29,5 +29,5 @@ echo -e "Source bash_profile"
 source ~/.bash_profile
 
 echo -e "\n============================================================================================================"
-echo -e "Install complete. Please re-open your terminal. In future, run 'hats_shell' to start the testing environment."
+echo -e "Install complete. Please re-open your terminal."
 echo -e "============================================================================================================\n"

@@ -25,6 +25,6 @@ echo -e "====================================\n"
 
 ansible-playbook -i "localhost," -c local "ansible-playbook-install-hats.yml" --ask-become-pass
 
-echo -e "\n======================================================================="
-echo -e "Install complete. In future, node will ready when 'source .bash_profile'"
-echo -e "=======================================================================\n"
+echo -e "\n============================================================================================================"
+echo -e "Install complete. Please re-open your terminal. In future, run 'hats_shell' to start the testing environment."
+echo -e "============================================================================================================\n"

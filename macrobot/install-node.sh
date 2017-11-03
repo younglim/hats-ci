@@ -26,5 +26,5 @@ echo -e "====================================\n"
 ansible-playbook -i "localhost," -c local "ansible-playbook-install-nvm-node.yml" --ask-become-pass
 
 echo -e "\n======================================================================="
-echo -e "Install complete. In future, node will ready when 'source .bash_profile'"
+echo -e "Install complete. In future, node will ready when 'source ~/.bash_profile'"
 echo -e "=======================================================================\n"
