@@ -68,9 +68,11 @@ mkdir "$path_to_hats\androidSDK\platforms"
 echo "Install sdkmanager build-tools"
 sdkmanager "build-tools;26.0.1"
 
-# echo "Run emulator testavd"
-# emulator -avd testAVD
- 
+echo "Download Samsung TouchWiz Launcher"
+mkdir "$path_to_hats\androidSDK\apk"
+$client.DownloadFile($iniContent["AndroidSDK"]["samsung.android.app.launcher"],"$path_to_hats\androidSDK\apk\samsung.android.app.launcher.apk")
+
+
 echo "Download Intel HAXM"
 $client.DownloadFile($iniContent["Intel"]["HAXM"],"$path_to_hats\haxm.zip");
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'x', '"haxm.zip"','-o"androidSDK\haxm"','-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
@@ -86,6 +88,9 @@ else
 	echo "Your system is 64-bit - Downloading..."
 	$client.DownloadFile($iniContent["Node"]["Node-64"],"$path_to_hats\node.zip");
 }
+
+# echo "Run emulator testavd"
+# emulator -avd testAVD
 
 echo "Downloaded Node"
 
@@ -126,10 +131,10 @@ $client.DownloadFile($iniContent["Microsoft"]["Windows-Build-Tools"],"$path_to_h
 echo "Unpack Visual C++ Build Tools"
 New-Item -ItemType Directory -Force -Path "$path_to_hats\utils\visualcppbuildtools"
 
-Start-Process "$path_to_hats\utils\visualcppbuildtools_full.exe" -ArgumentList '/Layout "$path_to_hats\utils\visualcppbuildtools"','/Passive' -NoNewWindow -Wait;
+Start-Process "$path_to_hats\utils\visualcppbuildtools_full.exe" -ArgumentList '/Layout "visualcppbuildtools"','/Passive' -NoNewWindow -Wait  -WorkingDirectory "$path_to_hats\utils";
 
 echo "Install Visual C++ Build Tools"
-Start-Process "$path_to_hats\utils\visualcppbuildtools\VisualCppBuildTools_Full.exe" -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
+Start-Process "$path_to_hats\utils\visualcppbuildtools\VisualCppBuildTools_Full.exe" -ArgumentList "/Full /Passive" -NoNewWindow -Wait;
 
 echo "Installing Appium through npm"
 # npm --vcc-build-tools-parameters='[""/CustomInstallPath"", ""$path_to_hats\MSBUILD""]' install -g -production windows-build-tools 

@@ -126,6 +126,7 @@ if (Test-Path env:firefox_path) {
 if (Test-Path $firefox_path)
 {	
 	$firefox_version = (Get-Item $firefox_path).VersionInfo.FileVersion
+
 	if ((Get-ExeTargetMachine $firefox_path).TargetMachine -eq "x64")
 	{
 		echo "INFO: Found 64-bit Mozilla Firefox Version $firefox_version"
@@ -143,8 +144,6 @@ if (Test-Path $firefox_path)
 	} 
 	else 
 	{
-		echo "WARN: Could not detect Mozilla Firefox"
-	
 		if ($firefox_version -match "[0-5][0-4].*") 
 		{
 			echo "INFO: Support for Mozilla Firefox <= v54 enabled"
@@ -152,6 +151,7 @@ if (Test-Path $firefox_path)
 		}
 		else
 		{
+			echo "INFO: Found 32-bit Mozilla Firefox Version $firefox_version"
 			$env:Path = "$env:Path;$path_to_hats\drivers\firefox32";
 		}
 	}

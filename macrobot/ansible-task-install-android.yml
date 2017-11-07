@@ -24,7 +24,7 @@
 
    - name: Set Environment Variable for ANDROID_SDK_ROOT, ANDROID_HOME, ANDROID_SDK_HOME and PATHs
      lineinfile: 
-        path: ~/.bash_profile
+        dest: ~/.bash_profile
         insertafter: EOF
         line: "{{ item.path }}"
         state: present

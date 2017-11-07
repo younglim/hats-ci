@@ -9,6 +9,8 @@ if ((gwmi win32_operatingsystem | select osarchitecture).osarchitecture -eq "64-
 	if ($isIe11PatchRequired) {
 		echo "Applying IE11 FEATURE_BFCACHE patch..."
 		REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BFCACHE" /v iexplore.exe /t REG_DWORD /d 0 /f
+		echo "Applying IE FEATURE_HTTP_USERNAME_PASSWORD_DISABLE patch for user:password in url"
+		REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_HTTP_USERNAME_PASSWORD_DISABLE" /v iexplore.exe /t REG_DWORD /d 0 /f
     }
 }	
 else 
@@ -18,6 +20,8 @@ else
 	if ($isIe11PatchRequired) {
 		echo "Applying IE11 FEATURE_BFCACHE patch..."
 		REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BFCACHE" /v iexplore.exe /t REG_DWORD /d 0 /f
+		echo "Applying IE FEATURE_HTTP_USERNAME_PASSWORD_DISABLE patch for user:password in url"
+		REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_HTTP_USERNAME_PASSWORD_DISABLE" /v iexplore.exe /t REG_DWORD /d 0 /f
     }
 
 }
@@ -79,8 +83,8 @@ $key.Dispose()
 # $file = "$env:windir\System32\drivers\etc\hosts"
 # "127.0.0.1	127.0.0.1" | Add-Content -PassThru $file
 
-echo "Install Visual C++ Build Tools"
-Start-Process "$path_to_hats\utils\visualcppbuildtools\VisualCppBuildTools_Full.exe" -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
+#echo "Install Visual C++ Build Tools"
+#Start-Process "$path_to_hats\utils\visualcppbuildtools\VisualCppBuildTools_Full.exe" -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
 
 echo "Install Hardware Accelerated Execution Manager"
 Start-Process "$path_to_hats\androidSDK\haxm\silent_install.bat" -NoNewWindow -Wait -WorkingDirectory "$path_to_hats\androidSDK\haxm";

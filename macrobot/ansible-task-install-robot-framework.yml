@@ -25,10 +25,20 @@
          state: absent
 
    - name: Create Virtual Env
+     become: no
      shell: bash -lc "virtualenv ~/hats && source ~/hats/bin/activate"
 
    - name: Install functools for avoiding pip bug
      shell: bash -lc "source ~/hats/bin/activate && easy_install functools"
+
+   - name: Install dependencies for Mac in Virtual Env 
+     pip: 
+        name: "{{item}}"
+        virtualenv: ~/hats
+     with_items:
+      - pyobjc-core
+      - pyobjc
+      - pyautogui
 
    - name: Install requirements for Python pip
      pip: 
