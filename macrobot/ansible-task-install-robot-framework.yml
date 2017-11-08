@@ -50,18 +50,18 @@
         virtualenv: ~/hats
 
    - name: Download Chromedriver
-     get_url: url="https://chromedriver.storage.googleapis.com/2.32/chromedriver_mac64.zip" dest={{ ansible_tmpdir }}   force=yes
+     get_url: url="https://chromedriver.storage.googleapis.com/2.32/chromedriver_mac64.zip" dest="{{ ansible_tmpdir }}"   force=yes
    
    - name: Unzip Chromedriver
      unarchive: 
-        src: "{{ ansible_tmpdir }}  /chromedriver_mac64.zip"
-        dest: "{{ ansible_tmpdir }}  " 
+        src: "{{ ansible_tmpdir }} /chromedriver_mac64.zip"
+        dest: "{{ ansible_tmpdir }}" 
 
    - name: Copy Chromedriver executable to /usr/local/share and set executable
      become: yes
      become_method: sudo
      copy:
-        src: {{ ansible_tmpdir }}  /chromedriver
+        src: "{{ ansible_tmpdir }} /chromedriver"
         dest: /usr/local/share/chromedriver
         mode: 755
 
