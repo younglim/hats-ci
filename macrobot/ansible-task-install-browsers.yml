@@ -1,0 +1,19 @@
+---
+
+   - name: Install Google Chrome and Dev Tools
+     homebrew_cask:
+        name: "{{ item }}"
+        state: present
+     with_items:
+      - google-chrome
+      - chrome-devtools
+      - chrome-remote-desktop-host
+     ignore_errors: true
+
+   - name: Install Mozilla Firefox
+     homebrew_cask:
+        name: "{{ item }}"
+        state: present
+     with_items:
+      - firefox
+     ignore_errors: true

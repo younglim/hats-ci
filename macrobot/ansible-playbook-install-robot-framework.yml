@@ -2,5 +2,6 @@
 
 - hosts: all
 
-  tasks:  
+  tasks: 
+  - include: ansible-task-install-browsers.yml 
   - include: ansible-task-install-robot-framework.yml
