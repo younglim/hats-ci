@@ -1,0 +1,6 @@
+---
+
+- hosts: all
+
+  tasks:
+  - include: ansible-task-enable-sudo-timeout.yml

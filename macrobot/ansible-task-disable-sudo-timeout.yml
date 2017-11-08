@@ -1,0 +1,10 @@
+---
+
+   - name: Disable sudo timeout
+     become: yes
+     lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: 'Defaults timestamp_timeout=.*'
+        line: 'Defaults timestamp_timeout=-1'
+        validate: '/usr/sbin/visudo -cf %s'
