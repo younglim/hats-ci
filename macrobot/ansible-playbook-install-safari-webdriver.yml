@@ -1,0 +1,6 @@
+---
+
+- hosts: all
+
+  tasks:
+  - include: ansible-task-install-safari-webdriver.yml

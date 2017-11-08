@@ -1,0 +1,25 @@
+---
+
+   - name: Download Safari WebDriver
+     get_url: url="http://selenium-release.storage.googleapis.com/2.48/SafariDriver.safariextz" dest="~/Downloads"   force=yes
+   
+   - name: Download Automator to Install Safari WebDriver
+     get_url: url="https://raw.githubusercontent.com/younglim/hats-ci/master/assets/Install_Safari_WebDriver.app.zip" dest="~/Downloads"   force=yes
+
+   - name: Unzip Automator App to Install Safari WebDriver
+     unarchive: 
+        src: "~/Downloads/Install_Safari_WebDriver.app.zip"
+        dest: "~/Downloads" 
+   
+   - name: Install tccutil
+     homebrew:
+        name: tccutil
+        state: present
+
+   - name: Allow Automator to run
+     become: yes
+     become_method: sudo
+     shell: tccutil -i ~/Install_Safari_WebDriver.app
+
+   - name: Run Automator to install SafariWebDriver
+     shell: open ~/Install_Safari_WebDriver.app
