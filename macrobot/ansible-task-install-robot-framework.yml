@@ -16,20 +16,15 @@
       - python
 
    - name: Install virtualenv
-     become: yes
-     become_method: sudo
      pip:
        name: virtualenv
 
    - name: Check if virtualenv ~/hats folder exists
-     become: yes
-     become_method: sudo
      file:
          path: ~/hats
          state: absent
 
    - name: Create Virtual Env
-     become: no
      shell: bash -lc "virtualenv ~/hats && source ~/hats/bin/activate"
 
    - name: Install functools for avoiding pip bug
@@ -64,8 +59,6 @@
         dest: "{{ ansible_tmpdir.stdout }}" 
 
    - name: Copy Chromedriver executable to /usr/local/share and set executable
-     become: yes
-     become_method: sudo
      copy:
         src: "{{ ansible_tmpdir.stdout }}/chromedriver"
         dest: /usr/local/share/chromedriver
@@ -119,8 +112,6 @@
      ignore_errors: true
 
    - name: Remove chrome downloads
-     become: yes
-     become_method: sudo
      file:
        path: "{{item}}"
        state: absent
@@ -128,8 +119,6 @@
        - "{{ ansible_tmpdir.stdout }}/chromedriver*"
 
    - name: Remove gecko downloads
-     become: yes
-     become_method: sudo
      file:
        path: "{{item}}"
        state: absent
