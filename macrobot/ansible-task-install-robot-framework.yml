@@ -4,6 +4,10 @@
      shell: echo `whoami`
      register: ansible_username     
 
+   - name: Get Temp Directory
+     shell: echo `$TMPDIR`
+     register: ansible_tmpdir     
+
    - name: Install dependencies
      pip:
         name: "{{item}}"
@@ -14,7 +18,7 @@
    - name: Install virtualenv
      become: yes
      become_method: sudo
-     pip: 
+     pip:
        name: virtualenv
 
    - name: Check if virtualenv ~/hats folder exists
@@ -46,18 +50,18 @@
         virtualenv: ~/hats
 
    - name: Download Chromedriver
-     get_url: url="https://chromedriver.storage.googleapis.com/2.32/chromedriver_mac64.zip" dest=/tmp force=yes
+     get_url: url="https://chromedriver.storage.googleapis.com/2.32/chromedriver_mac64.zip" dest={{ ansible_tmpdir }}   force=yes
    
    - name: Unzip Chromedriver
      unarchive: 
-        src: "/tmp/chromedriver_mac64.zip"
-        dest: "/tmp" 
+        src: "{{ ansible_tmpdir }}  /chromedriver_mac64.zip"
+        dest: "{{ ansible_tmpdir }}  " 
 
    - name: Copy Chromedriver executable to /usr/local/share and set executable
      become: yes
      become_method: sudo
      copy:
-        src: /tmp/chromedriver
+        src: {{ ansible_tmpdir }}  /chromedriver
         dest: /usr/local/share/chromedriver
         mode: 755
 
@@ -77,18 +81,18 @@
         state: present 
 
    - name: Download Firefox Gecko Driver
-     get_url: url="https://github.com/mozilla/geckodriver/releases/download/v0.16.1/geckodriver-v0.16.1-macos.tar.gz" dest=/tmp force=yes
+     get_url: url="https://github.com/mozilla/geckodriver/releases/download/v0.16.1/geckodriver-v0.16.1-macos.tar.gz" dest="{{ ansible_tmpdir }}"   force=yes
    
    - name: Unzip GeckoDriver
      unarchive: 
-        src: "/tmp/geckodriver-v0.16.1-macos.tar.gz"
-        dest: "/tmp" 
+        src: "{{ ansible_tmpdir }}/geckodriver-v0.16.1-macos.tar.gz"
+        dest: "{{ ansible_tmpdir }}" 
 
    - name: Copy GeckoDriver executable to /usr/local/share and set executable
      become: yes
      become_method: sudo
      copy:
-        src: /tmp/geckodriver
+        src: "{{ ansible_tmpdir }}/geckodriver"
         dest: /usr/local/share/geckodriver
         mode: 755
 
@@ -115,7 +119,7 @@
        path: "{{item}}"
        state: absent
      with_fileglob:
-       - /tmp/chromedriver*
+       - "{{ ansible_tmpdir }}/chromedriver*"
 
    - name: Remove gecko downloads
      become: yes
@@ -124,7 +128,7 @@
        path: "{{item}}"
        state: absent
      with_fileglob:
-       - /tmp/geckodriver*
+       - "{{ ansible_tmpdir }}/geckodriver*"
 
    - name: Launch Firefox to start pref file
      shell: open -a Firefox 'http://www.google.com/'
