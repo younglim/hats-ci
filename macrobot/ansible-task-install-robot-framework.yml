@@ -146,6 +146,9 @@
      command: ls -v "~/Library/Application Support/Firefox/Profiles/"
      register: firefox_default_profile
 
+   - name: Create Firefox Config if it does not exist
+     file: path="~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout.split(';')[0] }}/prefs.js" state="touch"
+
    - name: insert update disabled (Firefox Config)
      lineinfile: 
         dest: "~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout.split(';')[0] }}/prefs.js"
