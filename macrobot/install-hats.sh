@@ -8,7 +8,7 @@ echo -e "\n===================================="
 echo -e "Password is your login password"
 echo -e "====================================\n"
 
-sudo echo -e ""
+sudo echo ""
 
 echo -e "Install brew if currently not installed"
 if [ ! -f /usr/local/bin/brew ]; then
@@ -29,7 +29,7 @@ fi
 
 echo -e "Running Playbooks"
 
-sudo ansible-playbook -i "localhost," -c local "ansible-playbook-install-hats.yml"
+ansible-playbook -i "localhost," -c local "ansible-playbook-install-hats.yml"
 
 echo -e "\n============================================================================================================"
 echo -e "Install complete. Please re-open your terminal. In future, run 'hats_shell' to start the testing environment."

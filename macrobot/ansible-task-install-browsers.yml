@@ -5,9 +5,6 @@
      register: username_on_the_host
 
    - name: Install Google Chrome and Dev Tools
-     become: true
-     become_user: "{{ username_on_the_host }}"
-     become_method: sudo
      homebrew_cask:
         name: "{{ item }}"
         state: present
@@ -18,9 +15,6 @@
      ignore_errors: true
 
    - name: Install Mozilla Firefox
-     become: true
-     become_user: "{{ username_on_the_host }}"
-     become_method: sudo
      homebrew_cask:
         name: "{{ item }}"
         state: present
