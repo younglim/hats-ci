@@ -7,6 +7,7 @@
  
   tasks:
   - include: ansible-task-install-robot-framework.yml
+  - include: ansible-task-install-safari-webdriver.yml
   - include: ansible-task-install-nvm-node.yml
   - include: ansible-task-install-android.yml
   - include: ansible-task-install-appium.yml

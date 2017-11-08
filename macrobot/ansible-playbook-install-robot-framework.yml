@@ -3,5 +3,5 @@
 - hosts: all
 
   tasks: 
-  - include: ansible-task-install-browsers.yml 
   - include: ansible-task-install-robot-framework.yml
+  - include: ansible-task-install-safari-webdriver.yml
