@@ -20,6 +20,15 @@
      become: yes
      become_method: sudo
      shell: tccutil -i ~/Install_Safari_WebDriver.app
+     ignore_errors: yes
 
    - name: Run Automator to install SafariWebDriver
      shell: open ~/Install_Safari_WebDriver.app
+     ignore_errors: yes
+
+   - name: Remove Automator app and SafariWebDriver Downloads
+     file: path="~/Downloads/{{ item }}" state="absent"
+     with_items:
+      - "SafariDriver.safariextz"
+      - "Install_Safari_WebDriver.app.zip"
+      - "Install_Safari_WebDriver.app"
