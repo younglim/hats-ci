@@ -31,6 +31,8 @@ echo -e "Running Playbooks"
 
 ansible-playbook -i "localhost," -c local "ansible-playbook-install-hats.yml"
 
+. ~/.bash_profile
+
 echo -e "\n============================================================================================================"
 echo -e "Install complete. Please re-open your terminal. In future, run 'hats_shell' to start the testing environment."
 echo -e "============================================================================================================\n"
