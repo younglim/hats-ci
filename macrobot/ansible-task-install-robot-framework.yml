@@ -161,5 +161,5 @@
      file: path=~/.bash_profile state=touch
 
    - name: Add to .bash_profile alias for hats_shell
-     lineinfile: dest="~/.bash_profile" line='alias hats_shell=". ~/hats/bin/activate"' state=present
+     lineinfile: dest="~/.bash_profile" line='alias hats_shell=". ~/hats/bin/activate && eval $@"' state=present
       
