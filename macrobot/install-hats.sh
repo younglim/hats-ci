@@ -24,7 +24,9 @@ fi
 echo -e "Install Ansible if currenty not installed"
 if [ ! -f /usr/local/bin/ansible-playbook ]; then
 	echo -e "	Installing Ansible..."
-	brew install ansible
+	brew install ansible 
+else
+	brew upgrade ansible
 fi
 
 echo -e "Running Playbooks"
