@@ -1,0 +1,80 @@
+---
+
+   - name: Get current username
+     shell: command echo `whoami`
+     register: ansible_username     
+
+   - name: Get Temp Directory
+     shell: command echo `echo $TMPDIR`com.younglim.hats-ci
+     register: ansible_tmpdir
+
+   - name: Print TMPDIR location
+     debug: msg="{{ ansible_tmpdir.stdout }}"
+
+   - name: Create TMPDIR
+     file: path="{{ ansible_tmpdir.stdout }}" state="directory"
+
+   - name: Download Chromedriver
+     get_url: url="https://chromedriver.storage.googleapis.com/2.32/chromedriver_mac64.zip" dest="{{ ansible_tmpdir.stdout }}"   force=yes
+   
+   - name: Unzip Chromedriver
+     unarchive: 
+        src: "{{ ansible_tmpdir.stdout }}/chromedriver_mac64.zip"
+        dest: "{{ ansible_tmpdir.stdout }}" 
+
+   - name: Copy Chromedriver executable to /usr/local/share and set executable
+     copy:
+        src: "{{ ansible_tmpdir.stdout }}/chromedriver"
+        dest: /usr/local/share/chromedriver
+        mode: 755
+
+   - name: Symlink Chromedriver to /usr/local/bin
+     file:
+        src: /usr/local/share/chromedriver
+        dest: /usr/local/bin/chromedriver
+        state: link
+
+   - name: Tap dupes for homebrew to install gnu tar
+     homebrew_tap:
+        name: homebrew/dupes
+   
+   - name: Install gnu tar for unzipping gecko tarball
+     homebrew:
+        name: gnu-tar
+        state: present 
+
+   - name: Download Firefox Gecko Driver
+     get_url: url="https://github.com/mozilla/geckodriver/releases/download/v0.19.1/geckodriver-v0.19.1-macos.tar.gz" dest="{{ ansible_tmpdir.stdout }}"   force=yes
+   
+   - name: Unzip GeckoDriver
+     unarchive: 
+        src: "{{ ansible_tmpdir.stdout }}/geckodriver-v0.19.1-macos.tar.gz"
+        dest: "{{ ansible_tmpdir.stdout }}" 
+
+   - name: Copy GeckoDriver executable to /usr/local/share and set executable
+     become: yes
+     become_method: sudo
+     copy:
+        src: "{{ ansible_tmpdir.stdout }}/geckodriver"
+        dest: /usr/local/share/geckodriver
+        mode: 755
+
+   - name: Symlink GeckoDriver to /usr/local/bin
+     file:
+        src: /usr/local/share/geckodriver
+        dest: /usr/local/bin/geckodriver
+        state: link 
+
+   - name: Remove chrome downloads
+     file:
+       path: "{{item}}"
+       state: absent
+     with_fileglob:
+       - "{{ ansible_tmpdir.stdout }}/chromedriver*"
+
+   - name: Remove gecko downloads
+     file:
+       path: "{{item}}"
+       state: absent
+     with_fileglob:
+       - "{{ ansible_tmpdir.stdout }}/geckodriver*"
