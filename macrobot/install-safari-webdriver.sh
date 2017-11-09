@@ -33,6 +33,6 @@ ansible-playbook -i "localhost," -c local "ansible-playbook-install-safari-webdr
 
 . ~/.bash_profile
 
-echo -e "\n============================================================================================================"
+echo -e "\n===================================="
 echo -e "Install complete. Check Safari > Preferences > Extensions"
-echo -e "============================================================================================================\n"
+echo -e "====================================\n"

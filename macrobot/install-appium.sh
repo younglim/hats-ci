@@ -28,6 +28,6 @@ ansible-playbook -i "localhost," -c local "ansible-playbook-install-appium.yml" 
 echo -e "Source bash_profile"
 source ~/.bash_profile
 
-echo -e "\n============================================================================================================"
+echo -e "\n===================================="
 echo -e "Install complete. Please re-open your terminal."
-echo -e "============================================================================================================\n"
+echo -e "====================================\n"

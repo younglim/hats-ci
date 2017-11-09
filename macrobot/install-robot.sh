@@ -1,8 +1,14 @@
 #!/bin/bash
 
 echo -e "\n============================"
-echo -e "hats_shell for Mac installer"
+echo -e "Install Robot Framework and Browser Drivers"
 echo -e "============================\n"
+
+echo -e "\n===================================="
+echo -e "Password is your login password"
+echo -e "====================================\n"
+
+sudo echo ""
 
 echo -e "Install brew if currently not installed"
 if [ ! -f /usr/local/bin/brew ]; then
@@ -19,15 +25,11 @@ fi
 
 echo -e "Running Playbooks"
 
-echo -e "\n===================================="
-echo -e "SUDO password is your login password"
-echo -e "====================================\n"
-
-ansible-playbook -i "localhost," -c local "ansible-playbook-install-robot-framework.yml" --ask-become-pass
+ansible-playbook -i "localhost," -c local "ansible-playbook-install-robot-framework.yml"
 
 echo -e "Source bash_profile"
 source ~/.bash_profile
 
-echo -e "\n============================================================================================================"
-echo -e "Install complete. Please re-open your terminal. In future, run 'hats_shell' to start the testing environment."
-echo -e "============================================================================================================\n"
+echo -e "\n===================================="
+echo -e "Install complete. Please re-open your terminal. "
+echo -e "====================================\n"

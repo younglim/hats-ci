@@ -3,4 +3,4 @@
 - hosts: all
 
   tasks:
-  - include: ansible-task-enable-sudo-timeout.yml
+  - import_tasks:  ansible-task-enable-sudo-timeout.yml

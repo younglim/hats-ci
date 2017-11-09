@@ -3,4 +3,6 @@
 - hosts: all
 
   tasks:  
-  - include: ansible-task-install-android.yml
+  - import_tasks: ansible-task-disable-sudo-timeout.yml
+  - import_tasks: ansible-task-install-android.yml
+  - import_tasks: ansible-task-enable-sudo-timeout.yml

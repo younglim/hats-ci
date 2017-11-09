@@ -44,63 +44,6 @@
         requirements: "https://raw.githubusercontent.com/younglim/hats-ci/master/install-list/pip-install-list.txt"
         virtualenv: ~/hats
 
-   - name: Create TMPDIR
-     file: path="{{ ansible_tmpdir.stdout }}" state="directory"
-
-   - name: Print TMPDIR location
-     debug: msg="{{ ansible_tmpdir.stdout }}"
-
-   - name: Download Chromedriver
-     get_url: url="https://chromedriver.storage.googleapis.com/2.32/chromedriver_mac64.zip" dest="{{ ansible_tmpdir.stdout }}"   force=yes
-   
-   - name: Unzip Chromedriver
-     unarchive: 
-        src: "{{ ansible_tmpdir.stdout }}/chromedriver_mac64.zip"
-        dest: "{{ ansible_tmpdir.stdout }}" 
-
-   - name: Copy Chromedriver executable to /usr/local/share and set executable
-     copy:
-        src: "{{ ansible_tmpdir.stdout }}/chromedriver"
-        dest: /usr/local/share/chromedriver
-        mode: 755
-
-   - name: Symlink Chromedriver to /usr/local/bin
-     file:
-        src: /usr/local/share/chromedriver
-        dest: /usr/local/bin/chromedriver
-        state: link
-
-   - name: Tap dupes for homebrew to install gnu tar
-     homebrew_tap:
-        name: homebrew/dupes
-   
-   - name: Install gnu tar for unzipping gecko tarball
-     homebrew:
-        name: gnu-tar
-        state: present 
-
-   - name: Download Firefox Gecko Driver
-     get_url: url="https://github.com/mozilla/geckodriver/releases/download/v0.16.1/geckodriver-v0.16.1-macos.tar.gz" dest="{{ ansible_tmpdir.stdout }}"   force=yes
-   
-   - name: Unzip GeckoDriver
-     unarchive: 
-        src: "{{ ansible_tmpdir.stdout }}/geckodriver-v0.16.1-macos.tar.gz"
-        dest: "{{ ansible_tmpdir.stdout }}" 
-
-   - name: Copy GeckoDriver executable to /usr/local/share and set executable
-     become: yes
-     become_method: sudo
-     copy:
-        src: "{{ ansible_tmpdir.stdout }}/geckodriver"
-        dest: /usr/local/share/geckodriver
-        mode: 755
-
-   - name: Symlink GeckoDriver to /usr/local/bin
-     file:
-        src: /usr/local/share/geckodriver
-        dest: /usr/local/bin/geckodriver
-        state: link 
-
    - name: Install Google Chrome and Firefox with Brew Cask
      homebrew_cask: 
         name: "{{ item }}"
@@ -110,20 +53,6 @@
        - "caskroom/versions/firefox-esr"
        - chrome-devtools
      ignore_errors: true
-
-   - name: Remove chrome downloads
-     file:
-       path: "{{item}}"
-       state: absent
-     with_fileglob:
-       - "{{ ansible_tmpdir.stdout }}/chromedriver*"
-
-   - name: Remove gecko downloads
-     file:
-       path: "{{item}}"
-       state: absent
-     with_fileglob:
-       - "{{ ansible_tmpdir.stdout }}/geckodriver*"
 
    - name: Launch Firefox to start pref file
      shell: open -a Firefox 'http://www.google.com/'
@@ -138,21 +67,21 @@
    - name: Create Firefox Config if it does not exist
      file: path="~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout.split(';')[0] }}/prefs.js" state="touch"
 
-   - name: insert update disabled (Firefox Config)
+   - name: Insert update disabled (Firefox Config)
      lineinfile: 
         dest: "~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout.split(';')[0] }}/prefs.js"
         insertbefore: '^user_pref*'
         line: 'user_pref("app.update.enabled", false);' 
         state: present
     
-   - name: insert no update (Firefox Config)
+   - name: Insert no update (Firefox Config)
      lineinfile: 
         dest: "~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout.split(';')[0] }}/prefs.js"
         insertbefore: '^user_pref*'
         line: 'user_pref("app.update.auto", false);'
         state: present
 
-   - name: insert no elevate update (Firefox Config)
+   - name: Insert no elevate update (Firefox Config)
      lineinfile: 
         dest: "~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout.split(';')[0] }}/prefs.js"
         insertbefore: '^user_pref*'
