@@ -11,7 +11,6 @@
         - "nvm"
 
     - name: Create ~/.nvm directory
-      sudo: no
       file: path="~/.nvm" state="directory"
 
     - name: Add ~/.bash_profile if not present
