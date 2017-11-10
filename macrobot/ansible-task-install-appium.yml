@@ -1,12 +1,7 @@
 ---
 
    - name: Uninstall appium if it exist
-     npm:
-      name: appium
-      global: yes
-      state: absent
+     shell: . ~/.bash_profile && npm uninstall -g appium
 
    - name: Install appium through npm
-     npm:
-      name: appium
-      global: yes
+     shell: . ~/.bash_profile && npm install -g appium

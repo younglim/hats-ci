@@ -2,10 +2,7 @@
 
 - hosts: all
 
-  vars:
-    - node_js_version: 8.9.0
- 
-  tasks:  
+  tasks: 
   - import_tasks: ansible-task-disable-sudo-timeout.yml
-  - import_tasks: ansible-task-install-nvm-node.yml
+  - import_tasks: ansible-task-install-browser-drivers.yml
   - import_tasks: ansible-task-enable-sudo-timeout.yml

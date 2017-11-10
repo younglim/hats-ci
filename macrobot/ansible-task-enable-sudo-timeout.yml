@@ -1,0 +1,9 @@
+---
+
+   - name: Enable sudo timeout
+     become: yes
+     lineinfile:
+        path: /etc/sudoers
+        state: absent
+        regexp: 'Defaults timestamp_timeout=.*'
+        validate: '/usr/sbin/visudo -cf %s'

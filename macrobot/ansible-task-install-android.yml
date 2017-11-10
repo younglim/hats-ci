@@ -7,6 +7,10 @@
    - debug: 
         msg: "{{ ansible_username.stdout }}"
 
+   - name: Tap versions for homebrew to install
+     homebrew_tap:
+        name: caskroom/versions
+   
    - name: Install Android SDK, Java through cask
      homebrew_cask: 
         name: "{{ item }}"

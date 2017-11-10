@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo -e "\n=========================="
-echo -e "hats for Mac installer."
+echo -e "Disable sudo timeout"
 echo -e "==========================\n"
 
 echo -e "\n===================================="
@@ -24,17 +24,9 @@ fi
 echo -e "Install Ansible if currenty not installed"
 if [ ! -f /usr/local/bin/ansible-playbook ]; then
 	echo -e "	Installing Ansible..."
-	brew install ansible 
-else
-	brew upgrade ansible
+	brew install ansible
 fi
 
 echo -e "Running Playbooks"
 
-ansible-playbook -i "localhost," -c local "ansible-playbook-install-hats.yml"
-
-. ~/.bash_profile
-
-echo -e "\n===================================="
-echo -e "Install complete. Please re-open your terminal.\nIn future, run 'hats_shell' to start the testing environment.\n Run 'red' to start hats Robot Editor."
-echo -e "====================================\n"
+ansible-playbook -i "localhost," -c local "ansible-playbook-disable-sudo-timeout.yml"

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo -e "\n============================"
-echo -e "Install Robot Framework and Browser Drivers"
-echo -e "============================\n"
+echo -e "\n=========================="
+echo -e "Robot Editor for Mac installer."
+echo -e "==========================\n"
 
 echo -e "\n===================================="
 echo -e "Password is your login password"
@@ -13,8 +13,12 @@ sudo echo ""
 echo -e "Install brew if currently not installed"
 if [ ! -f /usr/local/bin/brew ]; then
 	echo -e "	Installing Brew..."
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	brew update
+	
+	ruby \
+  	-e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" \
+  	</dev/null
+  	
+  	brew update
 fi
 
 echo -e "Install Ansible if currenty not installed"
@@ -27,11 +31,10 @@ fi
 
 echo -e "Running Playbooks"
 
-ansible-playbook -i "localhost," -c local "ansible-playbook-install-robot-framework.yml"
+ansible-playbook -i "localhost," -c local "ansible-playbook-install-red.yml"
 
-echo -e "Source bash_profile"
-source ~/.bash_profile
+. ~/.bash_profile
 
 echo -e "\n===================================="
-echo -e "Install complete. Please re-open your terminal. "
+echo -e "Install complete. Please re-open your terminal. In future, run 'red' to start Robot Editor."
 echo -e "====================================\n"
