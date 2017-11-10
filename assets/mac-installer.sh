@@ -22,3 +22,5 @@ installer_directory=`pwd`
 
 cd $original_directory
 rm -rf $installer_directory
+
+. ~/.bash_profile
