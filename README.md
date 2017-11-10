@@ -41,10 +41,12 @@ Steps recommended for experienced developers or those who want to contribute to 
 5. You can also run `hats_shell` from Command Prompt or Powershell.
 6. For uninstallation, from Command Prompt or Powershell, run `hats_shell uninstall` .
 
-## Experimental: For Mac
-1. Navigate to `macrobot`
-2. Run `install-hats.sh`
-3. Start testing!
+## For Mac
+1. In Terminal, run:
+
+```
+bash <(curl -s https://raw.githubusercontent.com/younglim/hats-ci/master/assets/mac-installer.sh)
+```
 
 ## Automated Tests
 A quick way to create a test script is to use [Robotcorder](http://bit.ly/hats-robotcorder) and edit the script from Robotcorder.
