@@ -33,6 +33,9 @@
        - android-studio
      ignore_errors: true
 
+   - name: Update sdkmanager
+     shell: sdkmanager --update
+  
    - name: Install System Image for creating Android AVD of v25
      shell: sdkmanager 'system-images;android-25;google_apis;x86'
   
