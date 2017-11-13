@@ -11,13 +11,18 @@
    - name: Create Temp Directory
      file: path="{{ ansible_tmpdir.stdout }}" state="directory"
 
-   - name: Download Beanie offline testpage
-     shell: svn checkout https://github.com/younglim/hats-ci/trunk/virtualenv/testpage
-
+   - name: Checkout Beanie offline testpage
+     subversion: repo=https://github.com/younglim/hats-ci/trunk/virtualenv/testpage dest=testpage force=yes
+     
    - name: Run Beanie testpage for Mac
-     shell: . ~/.bash_profile && hats_shell pybot testpage/hats_for_mac.robot
+     shell: 
+      . ~/hats/hats_shell;
+      pybot testpage/test_for_mac.robot
      register: ansible_beanie_test
 
-   - name: Output of running Beanie testpage
+   - name: Results of running Beanie testpage
      debug:
-      msg: "{{ ansible_beanie_test.stdout }}"
+      msg: "{{ ansible_beanie_test.stdout.split('\n')[:-1] }}"
+
+   - name: Open Beanie testpage results
+     command: open report.html
