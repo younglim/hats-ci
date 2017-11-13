@@ -7,30 +7,17 @@
    - debug: 
         msg: "{{ ansible_username.stdout }}"
 
-   - name: Install ant, maven, gradle
-     homebrew: 
-        name: "{{ item }}"
-        state: present
-     with_items:
-       - ant
-       - maven
-       - gradle
-     ignore_errors: true
-
-
    - name: Tap versions for homebrew to install
      homebrew_tap:
         name: caskroom/versions
    
-   - name: Install Java, Android SDK, NDK and Studio through cask
+   - name: Install Android SDK, Java through cask
      homebrew_cask: 
         name: "{{ item }}"
         state: present
      with_items:
        - java8
        - android-sdk
-       - android-ndk
-       - android-studio
      ignore_errors: true
 
    - name: Install System Image for creating Android AVD of v25

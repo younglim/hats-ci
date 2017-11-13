@@ -4,12 +4,6 @@ echo -e "\n============================"
 echo -e "Appium for Mac installer"
 echo -e "============================\n"
 
-echo -e "\n===================================="
-echo -e "Password is your login password"
-echo -e "====================================\n"
-
-sudo echo ""
-
 echo -e "Install brew if currently not installed"
 if [ ! -f /usr/local/bin/brew ]; then
 	echo -e "	Installing Brew..."
@@ -31,7 +25,7 @@ echo -e "\n===================================="
 echo -e "SUDO password is your login password"
 echo -e "====================================\n"
 
-ansible-playbook -i "localhost," -c local "ansible-playbook-install-appium.yml"
+ansible-playbook -i "localhost," -c local "ansible-playbook-install-appium.yml" --ask-become-pass
 
 echo -e "Source bash_profile"
 source ~/.bash_profile
