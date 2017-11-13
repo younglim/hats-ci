@@ -33,6 +33,12 @@
        - android-studio
      ignore_errors: true
 
+   - name: Install Intel HAXM through cask
+     homebrew_cask: 
+        name: intel-haxm
+        state: present
+     ignore_errors: true
+
    - name: Update sdkmanager
      shell: sdkmanager --update
   
