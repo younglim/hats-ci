@@ -93,4 +93,7 @@
 
    - name: Add to .bash_profile alias for hats_shell
      lineinfile: dest="~/.bash_profile" line='alias hats_shell=". ~/hats/bin/activate && eval $@"' state=present
-      
+
+   - name: Add warning file to inform user ~/hats folder is temporary
+     file: path="~/hats/ FOLDER WILL BE DELETED UPON UPDATE" state=touch
+
