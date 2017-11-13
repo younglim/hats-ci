@@ -15,8 +15,9 @@
      shell: svn checkout https://github.com/younglim/hats-ci/trunk/virtualenv/testpage
 
    - name: Run Beanie testpage for Mac
-     shell: . ~/.bash_profile && hats_shell pybot testpage\test_for_Mac.robot
-     register: test_for_mac_result
+     shell: . ~/.bash_profile && hats_shell pybot testpage/hats_for_mac.robot
+     register: ansible_beanie_test
 
    - name: Output of running Beanie testpage
-     debug: msg= "{{ test_for_mac_result.stdout }}"
+     debug:
+      msg: "{{ ansible_beanie_test.stdout }}"

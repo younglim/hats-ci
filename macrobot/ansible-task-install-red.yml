@@ -35,5 +35,5 @@
      file: path=~/.bash_profile state=touch
 
    - name: Add to .bash_profile red alias for Robot Editor
-     lineinfile: dest="~/.bash_profile" line='alias red=". ~/hats/bin/activate && open ~/hats/Eclipse.app"' state=present
+     lineinfile: dest="~/.bash_profile" line='alias red=". ~/hats/hats_shell && open ~/hats/Eclipse.app"' state=present
       
