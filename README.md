@@ -41,10 +41,12 @@ Steps recommended for experienced developers or those who want to contribute to 
 5. You can also run `hats_shell` from Command Prompt or Powershell.
 6. For uninstallation, from Command Prompt or Powershell, run `hats_shell uninstall` .
 
-## Experimental: For Mac
-1. Navigate to `macrobot`
-2. Run `install-hats.sh`
-3. Start testing!
+## For Mac
+1. In Terminal, run:
+
+```
+bash <(curl -s https://raw.githubusercontent.com/younglim/hats-ci/master/assets/mac-installer.sh)
+```
 
 ## Automated Tests
 A quick way to create a test script is to use [Robotcorder](http://bit.ly/hats-robotcorder) and edit the script from Robotcorder.
@@ -55,7 +57,7 @@ A quick way to create a test script is to use [Robotcorder](http://bit.ly/hats-r
 
 ### Writing/Editing a test
 You can either use
-1. [Eclipse IDE](https://eclipse.org/) with [RED plugin](https://github.com/nokia/RED)
+1. [Eclipse IDE](https://eclipse.org/) with [RED plugin](https://github.com/nokia/RED). Type `red` in hats_shell to begin.
 2. [Pycharm IDE](PyCharm - JetBrains) with [IntelliBot plugin](https://plugins.jetbrains.com/plugin/7386-intellibot)
 3. [Notepad++](https://notepad-plus-plus.org/)
 
