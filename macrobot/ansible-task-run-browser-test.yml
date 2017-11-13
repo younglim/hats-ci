@@ -1,0 +1,22 @@
+---
+
+   - name: Get current username
+     shell: command echo `whoami`
+     register: ansible_username     
+
+   - name: Get Temp Directory
+     shell: command echo `echo $TMPDIR`com.younglim.hats-ci
+     register: ansible_tmpdir     
+
+   - name: Create Temp Directory
+     file: path="{{ ansible_tmpdir.stdout }}" state="directory"
+
+   - name: Download Beanie offline testpage
+     shell: svn checkout https://github.com/younglim/hats-ci/trunk/virtualenv/testpage
+
+   - name: Run Beanie testpage for Mac
+     shell: . ~/.bash_profile && hats_shell pybot testpage\test_for_Mac.robot
+     register: test_for_mac_result
+
+   - name: Output of running Beanie testpage
+     debug: msg= "{{ test_for_mac_result.stdout }}"
