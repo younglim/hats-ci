@@ -19,7 +19,8 @@
       . ~/hats/hats_shell;
       pybot testpage/test_for_mac.robot
      register: ansible_beanie_test
-
+     ignore_errors: yes
+     
    - name: Results of running Beanie testpage
      debug:
       msg: "{{ ansible_beanie_test.stdout.split('\n')[:-1] }}"
