@@ -103,3 +103,8 @@
    - name: Add warning file to inform user ~/hats folder is temporary
      file: path="~/hats/ FOLDER WILL BE DELETED UPON UPDATE" state=touch
 
+   - name: Install coreutils
+     homebrew: 
+        name: "coreutils"
+        state: present
+     ignore_errors: true
