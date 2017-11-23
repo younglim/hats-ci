@@ -8,6 +8,7 @@ Library           OperatingSystem
 ${IE_EXISTS}        True
 ${CHROME_EXISTS}    True
 ${FF_EXISTS}        True
+${SAFARI_EXISTS}    False
 
 *** Test Cases ***
 Beanie test using Internet Explorer
@@ -24,6 +25,11 @@ Beanie test using Firefox
   Log    ${CURDIR}
   Run Keyword If    ${FF_EXISTS}    Beanie test  ff
   ...         ELSE     Log  Firefox is not installed
+
+Beanie test using Safari
+  Log    ${CURDIR}
+  Run Keyword If    ${SAFARI_EXISTS}    Beanie test  safari
+  ...         ELSE     Log  Safari is not installed
 
 *** Keywords ***
 Beanie test

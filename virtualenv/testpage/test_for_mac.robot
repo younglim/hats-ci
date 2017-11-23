@@ -5,11 +5,16 @@ Library           Selenium2Library    timeout=10
 Library           OperatingSystem
 
 *** Variables ***
+${IE_EXISTS}        False
 ${CHROME_EXISTS}    True
 ${FF_EXISTS}        True
-${SAFARI_EXISTS}        True
+${SAFARI_EXISTS}    True
 
 *** Test Cases ***
+Beanie test using Internet Explorer
+  Log    ${CURDIR}
+  Run Keyword If    ${IE_EXISTS}    Beanie test  ie
+  ...         ELSE     Log  IE is not installed
 
 Beanie test using Chrome
   Log    ${CURDIR}
@@ -29,7 +34,7 @@ Beanie test using Safari
 *** Keywords ***
 Beanie test
   [Arguments]    ${browser}
-  Open Browser  http://beanie.herokuapp.com/  ${browser}
+  Open Browser  file://${CURDIR}/Beanie.html  ${browser}
   Wait Until Page Contains Element  //i[@id="link-edit-1-i"]
   Click Element  //i[@id="link-edit-1-i"]
   Wait Until Page Contains Element  //input[@name="device[name]"]

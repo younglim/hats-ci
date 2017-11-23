@@ -28,9 +28,12 @@
    - name: Replace Robot Editor Splash Image
      get_url: url="https://raw.githubusercontent.com/younglim/hats-ci/master/assets/splash.bmp" dest="~/hats/Eclipse.app/Contents/Eclipse/configuration/org.eclipse.equinox.launcher/org.robotframework.ide.eclipse.product.plugin_0.8.0.201710041027/splash.bmp" force="yes"
 
+   - name: Remove RED download
+     file: path="{{ ansible_tmpdir.stdout }}/RED.zip" state="absent"
+   
    - name: Add ~/.bash_profile if not present
      file: path=~/.bash_profile state=touch
 
    - name: Add to .bash_profile red alias for Robot Editor
-     lineinfile: dest="~/.bash_profile" line='alias red=". ~/hats/bin/activate && open ~/hats/Eclipse.app"' state=present
+     lineinfile: dest="~/.bash_profile" line='alias red=". ~/hats/hats_shell && open ~/hats/Eclipse.app"' state=present
       

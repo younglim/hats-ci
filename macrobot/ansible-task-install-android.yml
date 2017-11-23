@@ -7,19 +7,41 @@
    - debug: 
         msg: "{{ ansible_username.stdout }}"
 
+   - name: Install ant, maven, gradle
+     homebrew: 
+        name: "{{ item }}"
+        state: present
+     with_items:
+       - ant
+       - maven
+       - gradle
+     ignore_errors: true
+
+
    - name: Tap versions for homebrew to install
      homebrew_tap:
         name: caskroom/versions
    
-   - name: Install Android SDK, Java through cask
+   - name: Install Java, Android SDK, NDK and Studio through cask
      homebrew_cask: 
         name: "{{ item }}"
         state: present
      with_items:
        - java8
        - android-sdk
+       - android-ndk
+       - android-studio
      ignore_errors: true
 
+   - name: Install Intel HAXM through cask
+     homebrew_cask: 
+        name: intel-haxm
+        state: present
+     ignore_errors: true
+
+   - name: Update sdkmanager
+     shell: sdkmanager --update
+  
    - name: Install System Image for creating Android AVD of v25
      shell: sdkmanager 'system-images;android-25;google_apis;x86'
   

@@ -4,6 +4,12 @@ echo -e "\n============================"
 echo -e "Android SDK for Mac installer"
 echo -e "============================\n"
 
+echo -e "\n===================================="
+echo -e "Password is your login password"
+echo -e "====================================\n"
+
+sudo echo ""
+
 echo -e "Install brew if currently not installed"
 if [ ! -f /usr/local/bin/brew ]; then
 	echo -e "	Installing Brew..."
@@ -25,7 +31,7 @@ echo -e "\n===================================="
 echo -e "SUDO password is your login password"
 echo -e "====================================\n"
 
-ansible-playbook -i "localhost," -c local "ansible-playbook-install-android.yml" --ask-become-pass
+ansible-playbook -i "localhost," -c local "ansible-playbook-install-android.yml"
 
 echo -e "Source bash_profile"
 source ~/.bash_profile
