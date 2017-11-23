@@ -57,16 +57,16 @@ echo $null >> "$path_to_hats\androidSDK\.android\repositories.cfg"
 echo "Install android emulator"
 sdkmanager "emulator"
 echo "Create an android system image"
-sdkmanager "system-images;android-25;google_apis;x86"
+sdkmanager "system-images;android-26;google_apis;x86"
 
 echo "Create testAVD with Chrome"
-echo no | avdmanager create avd -n testAVD -k 'system-images;android-25;google_apis;x86' -g 'google_apis'
+echo no | avdmanager create avd -n testAVD -k 'system-images;android-26;google_apis;x86' -g 'google_apis'
 
 echo "Create platforms directory in androidSDK"
 mkdir "$path_to_hats\androidSDK\platforms"
 
 echo "Install sdkmanager build-tools"
-sdkmanager "build-tools;26.0.1"
+sdkmanager "build-tools;26.0.2"
 
 echo "Download Samsung TouchWiz Launcher"
 mkdir "$path_to_hats\androidSDK\apk"
