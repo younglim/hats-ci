@@ -58,7 +58,7 @@ A quick way to create a test script is to use [Robotcorder](http://bit.ly/hats-r
 ### Writing/Editing a test
 You can either use
 1. [Eclipse IDE](https://eclipse.org/) with [RED plugin](https://github.com/nokia/RED). Type `red` in hats_shell to begin.
-2. [Pycharm IDE](PyCharm - JetBrains) with [IntelliBot plugin](https://plugins.jetbrains.com/plugin/7386-intellibot)
+2. [Pycharm IDE](https://www.jetbrains.com/pycharm/) with [IntelliBot plugin](https://plugins.jetbrains.com/plugin/7386-intellibot)
 3. [Notepad++](https://notepad-plus-plus.org/)
 
 ### Running a test
@@ -71,7 +71,7 @@ pybot testpage\test.robot
 
 ### Testing with Android
 1. Make sure all $ANDROID environment variables are set.
-2. To programatically boot the Android Virtual Device(AVD), the commmand `emulator -avd testAVD25` must be run from the *tools* folder in the *android-sdk* directory.
+2. To programatically boot the Android Virtual Device(AVD), the commmand `emulator -avd testAVD` must be run from the *tools* folder in the *android-sdk* directory.
 
 ## Contributions
 We welcome your involvement, be it fixing bugs or implementing new features that you find relevant to this project.
