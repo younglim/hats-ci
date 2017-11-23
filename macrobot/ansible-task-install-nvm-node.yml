@@ -39,4 +39,4 @@
         nvm use --delete-prefix v{{ node_js_version }}
 
     - name: "Set hats_shell to use {{ node_js_version }}"
-      lineinfile: dest="~/hats/hats_shell" line="nvm --delete-prefix v{{ node_js_version }}" state=present
+      lineinfile: dest="~/hats/hats_shell" line="nvm use --delete-prefix v{{ node_js_version }}" state=present
