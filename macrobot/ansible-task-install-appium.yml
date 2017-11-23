@@ -32,32 +32,32 @@
       - ios-deploy
       - ios-deviceconsole
       - appium-doctor
-      - eslint
-      - eslint-config-appium
-      - eslint-plugin-import
-      - eslint-plugin-mocha
-      - eslint-plugin-promise
+      # - eslint
+      # - eslint-config-appium
+      # - eslint-plugin-import
+      # - eslint-plugin-mocha
+      # - eslint-plugin-promise
 
-   - name: Install dependencies through brew
-     homebrew: 
-        name: "{{ item }}"
-        state: present
-     with_items:
-       - ideviceinstaller
-       - carthage
-       - libimobiledevice 
+   # - name: Install dependencies through brew
+   #   homebrew: 
+   #      name: "{{ item }}"
+   #      state: present
+   #   with_items:
+   #     - ideviceinstaller
+   #     - carthage
+   #     - libimobiledevice 
    
-   - name: Install xcpretty dependency
-     gem:
-      name: xcpretty
-      state: present
+   # - name: Install xcpretty dependency
+   #   gem:
+   #    name: xcpretty
+   #    state: present
 
-   - name: Get appium-xcuitest-driver WebDriverAgent xcode project
-     shell: "~/hats/hats_shell ./Scripts/bootstrap.sh"
-     ignore_errors: yes
+   # - name: Get appium-xcuitest-driver WebDriverAgent xcode project
+   #   shell: "~/hats/hats_shell ./Scripts/bootstrap.sh"
+   #   ignore_errors: yes
      
-   - name: Create WebDriverAgent folder in ~/hats
-     file: path=~/hats/WebDriverAgent state=directory
+   # - name: Create WebDriverAgent folder in ~/hats
+   #   file: path=~/hats/WebDriverAgent state=directory
 
-   - name: Move WebDriverAgent xcode project
-     synchronize: src=~/.nvm/versions/node/v8.9.1/lib/node_modules/appium-xcuitest-driver/WebDriverAgent/ dest=~/hats/WebDriverAgent/
+   # - name: Move WebDriverAgent xcode project
+   #   synchronize: src=~/.nvm/versions/node/v8.9.1/lib/node_modules/appium-xcuitest-driver/WebDriverAgent/ dest=~/hats/WebDriverAgent/
