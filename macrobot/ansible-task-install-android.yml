@@ -42,11 +42,11 @@
    - name: Update sdkmanager
      shell: sdkmanager --update
   
-   - name: Install System Image for creating Android AVD of v25
-     shell: sdkmanager 'system-images;android-25;google_apis;x86'
+   - name: Install System Image for creating Android AVD of v26
+     shell: sdkmanager 'system-images;android-26;google_apis;x86'
   
-   - name: Create AVD of version 25 
-     shell: echo no | avdmanager create avd -n testAVD25 -k "system-images;android-25;google_apis;x86" -g "google_apis" --force
+   - name: Create AVD of version 26 
+     shell: echo no | avdmanager create avd -n testAVD -k "system-images;android-26;google_apis;x86" -g "google_apis" --force
 
    - name: Set Environment Variable for ANDROID_SDK_ROOT, ANDROID_HOME, ANDROID_SDK_HOME and PATHs
      lineinfile: 
