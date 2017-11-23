@@ -97,11 +97,11 @@
    - name: Add ~/.bash_profile if not present
      file: path=~/.bash_profile state=touch
 
-   - name: Add to .bash_profile PATH to hats_shell
-     lineinfile: dest="~/.bash_profile" line='export PATH=$PATH:~/hats' state=present
+   - name: Add to .bash_profile hats_shell
+     lineinfile: dest="~/.bash_profile" line='. ~/hats/hats_shell' state=present
 
-   - name: Set hats_shell to source bash_profile
-     lineinfile: dest="~/hats/hats_shell" line=". ~/.bash_profile" insertbefore=BOF state=present
+   - name: Set hats_shell "#!/bin/bash"
+     lineinfile: dest="~/hats/hats_shell" line="#!/bin/bash" insertbefore=BOF state=present
 
    - name: Set hats_shell to execute commands at the end (1/2)
      lineinfile: dest="~/hats/hats_shell" line="eval $@" state=absent
