@@ -1,7 +1,63 @@
 ---
 
-   - name: Uninstall appium if it exist
-     shell: . ~/.bash_profile && npm uninstall -g appium
+   - name: Create ~/hats/hats_shell
+     file: path="~/hats/hats_shell" state=touch mode=a+x
 
-   - name: Install appium through npm
-     shell: . ~/.bash_profile && npm install -g appium
+   - name: Add to .bash_profile alias to hats_shell
+     lineinfile: dest="~/.bash_profile" line='export PATH=$PATH:~/hats' state=present
+
+   - name: Set hats_shell to source bash_profile
+     lineinfile: dest="~/hats/hats_shell" line=". ~/.bash_profile" insertbefore=BOF state=present
+
+   - name: Set hats_shell JAVA_HOME
+     lineinfile: dest="~/hats/hats_shell" line='export JAVA_HOME=/Library/Java/Home' state=present
+
+   - name: Set hats_shell PATH to JAVA_HOME/bin
+     lineinfile: dest="~/hats/hats_shell" line='export PATH=$JAVA_HOME/bin:$PATH' state=present
+
+   - name: Set hats_shell to use node v8.9.1
+     lineinfile: dest="~/hats/hats_shell" line="nvm use 8.9.1" state=present
+
+   - name: Set hats_shell to execute commands at the end (1/2)
+     lineinfile: dest="~/hats/hats_shell" line="eval $@" state=absent
+     
+   - name: Set hats_shell to execute commands at the end (2/2)
+     lineinfile: dest="~/hats/hats_shell" line="eval $@" insertafter=EOF state=present
+
+   - name: Install appium and other dependencies through npm
+     shell: "~/hats/hats_shell npm install -g {{ item }}"
+     with_items:
+      - appium
+      - wd
+      - ios-deploy
+      - ios-deviceconsole
+      - appium-doctor
+      - eslint
+      - eslint-config-appium
+      - eslint-plugin-import
+      - eslint-plugin-mocha
+      - eslint-plugin-promise
+
+   - name: Install dependencies through brew
+     homebrew: 
+        name: "{{ item }}"
+        state: present
+     with_items:
+       - ideviceinstaller
+       - carthage
+       - libimobiledevice 
+   
+   - name: Install xcpretty dependency
+     gem:
+      name: xcpretty
+      state: present
+
+   - name: Get appium-xcuitest-driver WebDriverAgent xcode project
+     shell: "~/hats/hats_shell ./Scripts/bootstrap.sh"
+     ignore_errors: yes
+     
+   - name: Create WebDriverAgent folder in ~/hats
+     file: path=~/hats/WebDriverAgent state=directory
+
+   - name: Move WebDriverAgent xcode project
+     synchronize: src=~/.nvm/versions/node/v8.9.1/lib/node_modules/appium-xcuitest-driver/WebDriverAgent/ dest=~/hats/WebDriverAgent/
