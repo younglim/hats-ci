@@ -9,9 +9,9 @@ Test Teardown    close browser
 *** Keywords ***
 Go to google page
     # Insert iOS Desired Capabilities Settings as Dictionary
-    # Set platformVersion DeviceName Xcode
-    ${caps}=  create dictionary  browserName=safari  platformName=iOS  platformVersion=11.1
-    ...                          deviceName=iPhone Simulator
+    # Set platformVersion DeviceName Android emu
+    ${caps}=  create dictionary  browserName=chrome  platformName=android  platformVersion=8.0.0
+    ...                          deviceName=Android SDK built for x86
 
     # Use WebDriver Remote command_executor to Appium's URL
     # desired_capabilities for appium input 
@@ -24,8 +24,8 @@ Go to google page
     capture page screenshot  filename=result_google_top.png
 
 Google Python and log its links to the console
-    ${caps}=  create dictionary  browserName=safari  platformName=iOS  platformVersion=11.1
-    ...                          deviceName=iPhone Simulator
+    ${caps}=  create dictionary  browserName=chrome  platformName=android  platformVersion=8.0.0
+    ...                          deviceName=Android SDK built for x86
     create webdriver  Remote  command_executor=http://localhost:4723/wd/hub  desired_capabilities=${caps}
     go to  https://www.google.co.jp/
 
@@ -35,7 +35,7 @@ Google Python and log its links to the console
 
     # Input search term Python and hit enter
     input text  name=q  Python
-    # Robot Framework Enter Key 
+    # Robot Framework Enter Key
     # https://github.com/robotframework/Selenium2Library/issues/4
     press key  name=q  \\13
 
