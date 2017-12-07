@@ -88,9 +88,32 @@
         line: 'user_pref("app.update.elevate.attempts", 0);'
         state: present
 
+   - name: Create ~/hats/hats_shell
+     file: path="~/hats/hats_shell" state=touch mode=a+x
+
+   - name: Add to hats_shell activate virtual env
+     lineinfile: dest="~/hats/hats_shell" line='. ~/hats/bin/activate' state=present
+
    - name: Add ~/.bash_profile if not present
      file: path=~/.bash_profile state=touch
 
-   - name: Add to .bash_profile alias for hats_shell
-     lineinfile: dest="~/.bash_profile" line='alias hats_shell=". ~/hats/bin/activate && eval $@"' state=present
-      
+   - name: Add to .bash_profile hats_shell
+     lineinfile: dest="~/.bash_profile" line='. ~/hats/hats_shell' state=present
+
+   - name: Set hats_shell "#!/bin/bash"
+     lineinfile: dest="~/hats/hats_shell" line="#!/bin/bash" insertbefore=BOF state=present
+
+   - name: Set hats_shell to execute commands at the end (1/2)
+     lineinfile: dest="~/hats/hats_shell" line="eval $@" state=absent
+     
+   - name: Set hats_shell to execute commands at the end (2/2)
+     lineinfile: dest="~/hats/hats_shell" line="eval $@" insertafter=EOF state=present
+
+   - name: Add warning file to inform user ~/hats folder is temporary
+     file: path="~/hats/ FOLDER WILL BE DELETED UPON UPDATE" state=touch
+
+   - name: Install coreutils
+     homebrew: 
+        name: "coreutils"
+        state: present
+     ignore_errors: true

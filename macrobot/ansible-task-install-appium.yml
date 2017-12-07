@@ -1,7 +1,37 @@
 ---
 
-   - name: Uninstall appium if it exist
-     shell: . ~/.bash_profile && npm uninstall -g appium
+   - name: Set hats_shell JAVA_HOME
+     lineinfile: dest="~/hats/hats_shell" line='export JAVA_HOME=/Library/Java/Home' state=present
 
-   - name: Install appium through npm
-     shell: . ~/.bash_profile && npm install -g appium
+   - name: Set hats_shell PATH to JAVA_HOME/bin
+     lineinfile: dest="~/hats/hats_shell" line='export PATH=$JAVA_HOME/bin:$PATH' state=present
+
+   - name: Allow aliases to run in non-interactive shell
+     lineinfile: dest="~/hats/hats_shell" line="shopt -s expand_aliases" state=present
+     
+   - name: Allow appium to restart automatically
+     lineinfile: dest="~/hats/hats_shell" line='alias appium="lsof -ti:4723 | xargs kill; appium"' state=present
+
+   - name: Set hats_shell to execute commands at the end (1/2)
+     lineinfile: dest="~/hats/hats_shell" line="eval $@" state=absent
+     
+   - name: Set hats_shell to execute commands at the end (2/2)
+     lineinfile: dest="~/hats/hats_shell" line="eval $@" insertafter=EOF state=present
+
+   - name: Install appium and other dependencies through npm
+     shell: "~/hats/hats_shell npm install -g {{ item }}"
+     with_items:
+      - appium
+      - wd
+      - ios-deploy
+      - ios-deviceconsole
+      - appium-doctor
+
+   - name: Install dependencies through brew
+     homebrew: 
+        name: "{{ item }}"
+        state: present
+     with_items:
+       - ideviceinstaller
+       - carthage
+       - libimobiledevice 

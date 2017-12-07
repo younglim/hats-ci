@@ -5,10 +5,10 @@ Library           Selenium2Library    timeout=10
 Library           OperatingSystem
 
 *** Variables ***
-${IE_EXISTS}        True
+${IE_EXISTS}        False
 ${CHROME_EXISTS}    True
 ${FF_EXISTS}        True
-${SAFARI_EXISTS}    False
+${SAFARI_EXISTS}    True
 
 *** Test Cases ***
 Beanie test using Internet Explorer
