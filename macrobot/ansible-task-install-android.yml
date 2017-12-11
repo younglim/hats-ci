@@ -63,6 +63,12 @@
      shell: "{{ hats_directory.stdout }}/haxm/silent_install.sh"
      ignore_errors: yes
 
+   - name: Create $ANDROID_HOME/.android/repositories.cfg
+     file: path="/usr/local/share/android-sdk/.android/repositories.cfg" state="touch"
+
+   - name: Create platform folder
+     file: path-"/usr/local/share/android-sdk/platforms" state="directory"
+   
    - name: Update sdkmanager
      shell: sdkmanager --update
   
@@ -84,3 +90,5 @@
        - { path: 'export ANDROID_SDK_HOME=/usr/local/share/android-sdk' }
        - { path: 'export PATH=$ANDROID_HOME/platform-tools:$PATH' }
        - { path: 'export PATH=$ANDROID_HOME/tools:$PATH' }
+       - { path: 'export PATH=$ANDROID_HOME/tools/bin:$PATH' }
+       - { path: 'function emulator { cd "$(dirname "$(which emulator)")" && ./emulator "$@"; }' }
