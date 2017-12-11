@@ -37,6 +37,6 @@
    - name: Delete temp jmeter folder
      file: path=~/hats/apache-jmeter-3.3/ state=absent
 
-   - name: Add to .bash_profile red alias for Robot Editor
+   - name: Add to .bash_profile red alias for JMeter
      lineinfile: dest="~/.bash_profile" line='alias jmeter=". ~/hats/hats_shell && open ~/hats/jmeter/bin/jmeter"' state=present
       
