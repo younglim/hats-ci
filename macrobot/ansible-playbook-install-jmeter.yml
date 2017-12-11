@@ -1,0 +1,6 @@
+---
+
+- hosts: all
+
+  tasks:  
+  - import_tasks: ansible-task-install-jmeter.yml
