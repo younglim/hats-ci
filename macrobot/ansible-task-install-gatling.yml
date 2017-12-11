@@ -1,0 +1,35 @@
+---
+
+   - name: Get current username
+     shell: command echo `whoami`
+     register: ansible_username     
+
+   - name: Get Temp Directory
+     shell: command echo `echo $TMPDIR`com.younglim.hats-ci
+     register: ansible_tmpdir     
+
+   - name: Create Temp Directory
+     file: path="{{ ansible_tmpdir.stdout }}" state="directory"
+
+   - name: Download Gatling 2.3.0
+     get_url: url="https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/2.3.0/gatling-charts-highcharts-bundle-2.3.0-bundle.zip" dest="{{ ansible_tmpdir.stdout }}/gatling-charts-highcharts-bundle-bundle.zip"   force=yes
+    
+   - name: Delete existing Gatling installation
+     file: path=~/hats/{{ item }} state=absent
+     with_items:
+      - "gatling"
+
+   - name: Create gatling Directory
+     file: path="~/hats/gatling" state="directory"
+
+   - name: Unzip Gatling
+     unarchive: 
+        src: "{{ ansible_tmpdir.stdout }}/gatling-charts-highcharts-bundle-bundle.zip"
+        dest: "~/hats/gatling" 
+
+   - name: Remove Gatling download
+     file: path="{{ ansible_tmpdir.stdout }}/gatling-charts-highcharts-bundle-bundle.zip" state="absent"
+   
+   - name: Add gatling to PATH
+     lineinfile: dest="~/hats/hats_shell" line='export PATH=~/hats/gatling/bin:$PATH' state=present
+      
