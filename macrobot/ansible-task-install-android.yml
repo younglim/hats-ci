@@ -82,5 +82,5 @@
        - { path: 'export ANDROID_SDK_ROOT=/usr/local/share/android-sdk' }
        - { path: 'export ANDROID_HOME=/usr/local/share/android-sdk' }
        - { path: 'export ANDROID_SDK_HOME=/usr/local/share/android-sdk' }
-       - { path: 'PATH=$ANDROID_HOME/platform-tools:$PATH' }
-       - { path: 'PATH=$ANDROID_HOME/tools:$PATH' }
+       - { path: 'export PATH=$ANDROID_HOME/platform-tools:$PATH' }
+       - { path: 'export PATH=$ANDROID_HOME/tools:$PATH' }
