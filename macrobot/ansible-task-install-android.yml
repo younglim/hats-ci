@@ -67,7 +67,7 @@
      file: path="/usr/local/share/android-sdk/.android/repositories.cfg" state="touch"
 
    - name: Create platform folder
-     file: path-"/usr/local/share/android-sdk/platforms" state="directory"
+     file: path="/usr/local/share/android-sdk/platforms" state="directory"
    
    - name: Update sdkmanager
      shell: sdkmanager --update
