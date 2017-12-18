@@ -78,3 +78,23 @@
        state: absent
      with_fileglob:
        - "{{ ansible_tmpdir.stdout }}/geckodriver*"
+
+   - name: Create hats directory
+     file:
+       path: "~/hats"
+       state: "directory"
+
+   - name: Copy Chromedriver executable to /usr/local/share and set executable
+     copy:
+        src: "check_browser.sh"
+        dest: "~/hats/"
+        mode: "+x"
+
+   - name: Set browser versions CHROME_VERSION, FIREFOX_VERSIOn, SAFARI_VERSION
+     lineinfile: 
+        dest: ~/hats/hats_shell
+        insertafter: EOF
+        line: "{{ item.path }}"
+        state: present
+     with_items:
+       - { path: '. ~/hats/check_browser.sh >> /dev/null' }
