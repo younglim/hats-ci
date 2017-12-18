@@ -14,17 +14,6 @@
    - name: Create Temp Directory
      file: path="{{ ansible_tmpdir.stdout }}" state="directory"
 
-   - name: Install ant, maven, gradle
-     homebrew: 
-        name: "{{ item }}"
-        state: present
-     with_items:
-       - ant
-       - maven
-       - gradle
-     ignore_errors: true
-
-
    - name: Tap versions for homebrew to install
      homebrew_tap:
         name: caskroom/versions
@@ -38,6 +27,16 @@
        - android-sdk
        - android-ndk
        - android-studio
+     ignore_errors: true
+
+   - name: Install ant, maven, gradle
+     homebrew: 
+        name: "{{ item }}"
+        state: present
+     with_items:
+       - ant
+       - maven
+       - gradle
      ignore_errors: true
 
    - name: Download Google Intel HAXM installer
@@ -62,6 +61,9 @@
      become: yes
      shell: "{{ hats_directory.stdout }}/haxm/silent_install.sh"
      ignore_errors: yes
+
+   - name: Create $ANDROID_HOME/.android directory
+     file: path="/usr/local/share/android-sdk/.android" state="directory"
 
    - name: Create $ANDROID_HOME/.android/repositories.cfg
      file: path="/usr/local/share/android-sdk/.android/repositories.cfg" state="touch"
