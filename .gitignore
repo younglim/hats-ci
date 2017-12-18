@@ -1,6 +1,11 @@
 
 *.log
+*.log.*
 *.retry
 virtualenv/testpage/log.html
 virtualenv/testpage/output.xml
 virtualenv/testpage/report.html
+macrobot/output.xml
+macrobot/report.xml
+macrobot/report.html
+macrobot/log.html
