@@ -75,7 +75,7 @@
      shell: sdkmanager --update
   
    - name: Install System Image for creating Android AVD of v26
-     shell: echo Y | sdkmanager 'system-images;android-26;google_apis;x86'
+     shell: echo y | sdkmanager 'system-images;android-26;google_apis;x86'
   
    - name: Create AVD of version 26 
      shell: echo no | avdmanager create avd -n testAVD -k "system-images;android-26;google_apis;x86" -g "google_apis" --force
