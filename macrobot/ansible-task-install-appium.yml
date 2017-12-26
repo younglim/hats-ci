@@ -26,6 +26,7 @@
       - ios-deploy
       - ios-deviceconsole
       - appium-doctor
+     ignore_errors: true
 
    - name: Install dependencies through brew
      homebrew: 
@@ -34,4 +35,6 @@
      with_items:
        - ideviceinstaller
        - carthage
-       - libimobiledevice 
+       - libimobiledevice
+     ignore_errors: true
+
