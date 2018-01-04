@@ -14,17 +14,6 @@
    - name: Create Temp Directory
      file: path="{{ ansible_tmpdir.stdout }}" state="directory"
 
-   - name: Install ant, maven, gradle
-     homebrew: 
-        name: "{{ item }}"
-        state: present
-     with_items:
-       - ant
-       - maven
-       - gradle
-     ignore_errors: true
-
-
    - name: Tap versions for homebrew to install
      homebrew_tap:
         name: caskroom/versions
@@ -38,6 +27,16 @@
        - android-sdk
        - android-ndk
        - android-studio
+     ignore_errors: true
+
+   - name: Install ant, maven, gradle
+     homebrew: 
+        name: "{{ item }}"
+        state: present
+     with_items:
+       - ant
+       - maven
+       - gradle
      ignore_errors: true
 
    - name: Download Google Intel HAXM installer
@@ -63,11 +62,20 @@
      shell: "{{ hats_directory.stdout }}/haxm/silent_install.sh"
      ignore_errors: yes
 
+   - name: Create $ANDROID_HOME/.android directory
+     file: path="/usr/local/share/android-sdk/.android" state="directory"
+
+   - name: Create $ANDROID_HOME/.android/repositories.cfg
+     file: path="/usr/local/share/android-sdk/.android/repositories.cfg" state="touch"
+
+   - name: Create platform folder
+     file: path="/usr/local/share/android-sdk/platforms" state="directory"
+   
    - name: Update sdkmanager
      shell: sdkmanager --update
   
    - name: Install System Image for creating Android AVD of v26
-     shell: echo Y | sdkmanager 'system-images;android-26;google_apis;x86'
+     shell: echo y | sdkmanager 'system-images;android-26;google_apis;x86'
   
    - name: Create AVD of version 26 
      shell: echo no | avdmanager create avd -n testAVD -k "system-images;android-26;google_apis;x86" -g "google_apis" --force
@@ -82,5 +90,7 @@
        - { path: 'export ANDROID_SDK_ROOT=/usr/local/share/android-sdk' }
        - { path: 'export ANDROID_HOME=/usr/local/share/android-sdk' }
        - { path: 'export ANDROID_SDK_HOME=/usr/local/share/android-sdk' }
-       - { path: 'PATH=$ANDROID_HOME/platform-tools:$PATH' }
-       - { path: 'PATH=$ANDROID_HOME/tools:$PATH' }
+       - { path: 'export PATH=$ANDROID_HOME/platform-tools:$PATH' }
+       - { path: 'export PATH=$ANDROID_HOME/tools:$PATH' }
+       - { path: 'export PATH=$ANDROID_HOME/tools/bin:$PATH' }
+       - { path: 'function emulator { cd "$(dirname "$(which emulator)")" && ./emulator "$@"; }' }

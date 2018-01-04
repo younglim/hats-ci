@@ -19,10 +19,16 @@
      pip:
        name: virtualenv
 
-   - name: Check if virtualenv ~/hats folder exists
+   - name: Check if virtualenv ~/hats folder exists (1/2)
      file:
-         path: ~/hats
-         state: absent
+         path: "~/hats"
+         state: "touch"
+     ignore_errors: yes
+
+   - name: Check if virtualenv ~/hats folder exists (2/2)
+     file:
+         path: "~/hats"
+         state: "absent"
 
    - name: Create Virtual Env
      shell: bash -lc "virtualenv ~/hats && source ~/hats/bin/activate"

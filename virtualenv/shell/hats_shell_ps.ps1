@@ -163,6 +163,10 @@ else
 	$env:Path = "$env:Path;$path_to_hats\drivers\firefox64";
 }
 
+$env:ie_version = $ie_version;
+$env:chrome_version = $chrome_version;
+$env:firefox_version = $firefox_version;
+
 echo "INFO: Set path to utils for this session"
 $env:Path = "$env:Path;$path_to_hats\utils";
 
