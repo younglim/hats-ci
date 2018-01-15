@@ -62,24 +62,6 @@
      shell: "{{ hats_directory.stdout }}/haxm/silent_install.sh"
      ignore_errors: yes
 
-   - name: Create $ANDROID_HOME/.android directory
-     file: path="/usr/local/share/android-sdk/.android" state="directory"
-
-   - name: Create $ANDROID_HOME/.android/repositories.cfg
-     file: path="/usr/local/share/android-sdk/.android/repositories.cfg" state="touch"
-
-   - name: Create platform folder
-     file: path="/usr/local/share/android-sdk/platforms" state="directory"
-   
-   - name: Update sdkmanager
-     shell: sdkmanager --update
-  
-   - name: Install System Image for creating Android AVD of v26
-     shell: printf 'y\ny\ny\n' | sdkmanager 'system-images;android-26;google_apis;x86'
-  
-   - name: Create AVD of version 26 
-     shell: echo no | avdmanager create avd -n testAVD -k "system-images;android-26;google_apis;x86" -g "google_apis" --force
-
    - name: Set Environment Variable for ANDROID_SDK_ROOT, ANDROID_HOME, ANDROID_SDK_HOME and PATHs
      lineinfile: 
         dest: ~/hats/hats_shell
@@ -94,3 +76,21 @@
        - { path: 'export PATH=$ANDROID_HOME/tools:$PATH' }
        - { path: 'export PATH=$ANDROID_HOME/tools/bin:$PATH' }
        - { path: 'function emulator { cd "$(dirname "$(which emulator)")" && ./emulator "$@"; }' }
+       
+   - name: Create $ANDROID_HOME/.android directory
+     file: path="/usr/local/share/android-sdk/.android" state="directory"
+
+   - name: Create $ANDROID_HOME/.android/repositories.cfg
+     file: path="/usr/local/share/android-sdk/.android/repositories.cfg" state="touch"
+
+   - name: Create platform folder
+     file: path="/usr/local/share/android-sdk/platforms" state="directory"
+   
+   - name: Update sdkmanager
+     shell: . ~/hats/hats_shell && sdkmanager --update
+  
+   - name: Install System Image for creating Android AVD of v26
+     shell: . ~/hats/hats_shell && printf 'y\ny\ny\n' | sdkmanager 'system-images;android-26;google_apis;x86'
+  
+   - name: Create AVD of version 26 
+     shell: . ~/hats/hats_shell && echo no | avdmanager create avd -n testAVD -k "system-images;android-26;google_apis;x86" -g "google_apis" --force
