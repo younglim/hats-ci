@@ -20,13 +20,14 @@ DisableProgramGroupPage=yes
 OutputBaseFilename=hats_for_Windows
 Compression=lzma
 SolidCompression=yes
-DiskSpanning=yes
+DiskSpanning=no
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-Source: "C:\Program Files\hats\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;
+Source: "\\?\Volume{95914872-a32e-4856-8b63-da4d54c6a9b7}\Program Files\hats\*"; DestDir: "\\?\{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;
+; Use 'mountvol' to find UNC path to volume
 ;Source: "C:\Program Files\hats\*"; DestDir: "{app}"; Excludes: "androidSDK\.android\avd"; Flags: ignoreversion recursesubdirs createallsubdirs;
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
