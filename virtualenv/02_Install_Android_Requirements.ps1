@@ -44,8 +44,12 @@ android list
 echo "Testing avdmanager command"
 avdmanager
 
-echo "Download platform-tools using sdkmanager"
 cd "$path_to_hats"
+
+echo "Accept license agreement for Android SDK"
+for($i=0;$i -lt 30;$i++) { $response += "y`n"}; $response | sdkmanager --licenses
+
+echo "Download platform-tools using sdkmanager"
 echo "y" | sdkmanager "platform-tools" --sdk_root="androidSDK"
 cd "$scriptpath"
 
