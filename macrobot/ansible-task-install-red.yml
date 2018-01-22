@@ -11,8 +11,8 @@
    - name: Create Temp Directory
      file: path="{{ ansible_tmpdir.stdout }}" state="directory"
 
-   - name: Download Robot Editor 0.8.0
-     get_url: url="https://github.com/nokia/RED/releases/download/0.8.0/RED_0.8.0.20171004103347-macosx.cocoa.x86_64.zip" dest="{{ ansible_tmpdir.stdout }}/RED.zip"   force=yes
+   - name: Download Robot Editor 0.8.2
+     get_url: url="https://github.com/nokia/RED/releases/download/0.8.2/RED_0.8.2.20171218124404-macosx.cocoa.x86_64.zip" dest="{{ ansible_tmpdir.stdout }}/RED.zip"   force=yes
     
    - name: Remove existing Robot Editor if present
      file: path=~/hats/Eclipse.app state=absent
