@@ -35,6 +35,8 @@ $fso.DeleteFile("$path_to_hats\PortableGit.exe");
 $fso.DeleteFile("$path_to_hats\Gatling.zip")
 $fso.DeleteFile("$path_to_hats\JMeter.zip")
 $fso.DeleteFile("$path_to_hats\RED.zip")
+$fso.DeleteFolder("$path_to_hats\utils\visualcppbuildtools")
+$fso.DeleteFile("$path_to_hats\utils\visualcppbuildtools_full.exe")
 
 echo "Copy shell scripts to $path_to_hats"
 Copy-Item "shell\*" "$path_to_hats" -recurse
