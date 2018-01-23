@@ -1,7 +1,7 @@
 @echo OFF
-echo.
+echo\
 echo Useful Commands:
-echo.
+echo\
 echo   adb		- Android Debug Bridge
 echo   appium	- appium server
 echo   docs		- Documentation folder
@@ -17,12 +17,12 @@ echo   python	- Run python interpreter
 echo   red		- Robot Editor IDE
 echo   robotcorder	- Robotcorder for Google Chrome Extension
 echo   virtualenv	- Manage Python virtual environment
-echo.
-echo.
+echo\
+echo\
 echo Custom web browser location environment variables:
-echo.
-echo.  Set the following environment variables to the location of the respective executable before running 'hats_shell':
+echo\
+echo\  Set the following environment variables to the location of the respective executable before running 'hats_shell':
 echo     IE_PATH		iexplore.exe
 echo     CHROME_PATH		chrome.exe	
 echo     FIREFOX_PATH	firefox.exe
-echo.
+echo\
