@@ -8,6 +8,6 @@ exit /B 1
 :usage
 echo "hats Shell - Created By younglim - NO WARRANTY PROVIDED"
 echo "================================================================"
-echo.
+echo .
 
 @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NoExit -ExecutionPolicy Bypass -File "%~dp0hats_shell_ps.ps1"
