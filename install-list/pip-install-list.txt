@@ -106,7 +106,7 @@ robotframework-scplibrary==1.1.1
 robotframework-selenium2accessibility==0.2.1
 robotframework-selenium2library==1.8.0
 robotframework-selenium2screenshots==0.7.2
-robotframework-seleniumlibrary==2.9.2
+robotframework-seleniumlibrary==3.0.1
 robotframework-sshlibrary==2.1.3
 robotframework-stringformat==0.1.7
 robotframework-sudslibrary==0.8
