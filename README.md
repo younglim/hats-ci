@@ -17,7 +17,7 @@ As a group of passionate quality engineers, we want to lower the barrier of entr
 *hats* has been tested on the following platforms:
 
 ##### Operating Systems
-* Windows 7, 8.1, 10 (32-bit and 64-bit)
+* Windows 7, 8.1, 10 (64-bit)
 
 ##### Browsers
 * Internet Explorer 11
