@@ -18,6 +18,7 @@ As a group of passionate quality engineers, we want to lower the barrier of entr
 
 ##### Operating Systems
 * Windows 7, 8.1, 10 (64-bit)
+* Mac OS X El-Capitan, macOS Sierra, High Sierra
 
 ##### Browsers
 * Internet Explorer 11
