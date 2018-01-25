@@ -21,9 +21,10 @@ As a group of passionate quality engineers, we want to lower the barrier of entr
 * Mac OS X El-Capitan, macOS Sierra, High Sierra
 
 ##### Browsers
-* Internet Explorer 11
+* Microsoft Internet Explorer 11
 * Google Chrome 54 (or newer)
-* Firefox 54 (or newer)
+* Mozilla Firefox 54 (or newer)
+* Apple Safari 10 and later
 
 ## Recommended: User Setup (Offline Installer)
 Steps recommended for quickly getting started on automated testing.
