@@ -1,0 +1,5 @@
+---
+
+   - name: Switch to /Applications/Xcode.app/Contents/Developer  
+     become: true
+     shell: xcode-select -s /Applications/Xcode.app/Contents/Developer     
