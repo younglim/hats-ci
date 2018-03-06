@@ -8,12 +8,12 @@
      shell: command echo `echo $TMPDIR`com.younglim.hats-ci
      register: ansible_tmpdir     
 
-   - name: Install dependencies
-     pip:
-        name: "{{item}}"
-        state: present
-     with_items:
-      - python
+#   - name: Install dependencies
+#     pip:
+#        name: "{{item}}"
+#        state: present
+#     with_items:
+#      - python
 
    - name: Install virtualenv
      pip:
