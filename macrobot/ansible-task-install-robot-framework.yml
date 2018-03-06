@@ -47,7 +47,7 @@
 
    - name: Install requirements for Python pip
      pip: 
-        requirements: "https://rawgit.com/younglim/hats-ci/master/install-list/pip-install-list.txt"
+        requirements: "https://cdn.rawgit.com/younglim/hats-ci/c15a1317/install-list/pip-install-list.txt"
         virtualenv: ~/hats
 
    - name: Install Google Chrome and Firefox with Brew Cask
