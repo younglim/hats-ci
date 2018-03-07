@@ -36,5 +36,5 @@ ansible-playbook -i "localhost," -c local "ansible-playbook-install-jmeter.yml"
 . ~/.bash_profile
 
 echo -e "\n===================================="
-echo -e "Install complete. Please re-open your terminal. In future, run 'jmeter' to start Robot Editor."
+echo -e "Install complete. Please re-open your terminal. In future, run 'jmeter' to start."
 echo -e "====================================\n"
