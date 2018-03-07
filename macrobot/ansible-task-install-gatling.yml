@@ -25,7 +25,10 @@
    - name: Unzip Gatling
      unarchive: 
         src: "{{ ansible_tmpdir.stdout }}/gatling-charts-highcharts-bundle-bundle.zip"
-        dest: "~/hats/gatling" 
+        dest: "~/hats" 
+
+   - name: Move gatling folder
+     synchronize: src=~/hats/gatling-charts-highcharts-bundle-2.3.1/ dest=~/hats/gatling/
 
    - name: Remove Gatling download
      file: path="{{ ansible_tmpdir.stdout }}/gatling-charts-highcharts-bundle-bundle.zip" state="absent"
