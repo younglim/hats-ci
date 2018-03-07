@@ -11,8 +11,8 @@
    - name: Create Temp Directory
      file: path="{{ ansible_tmpdir.stdout }}" state="directory"
 
-   - name: Download JMeter 3.3
-     get_url: url="http://www-us.apache.org/dist//jmeter/binaries/apache-jmeter-3.3.zip" dest="{{ ansible_tmpdir.stdout }}/apache-jmeter.zip"   force=yes
+   - name: Download JMeter 4.0
+     get_url: url="https://www-eu.apache.org/dist//jmeter/binaries/apache-jmeter-4.0.zip" dest="{{ ansible_tmpdir.stdout }}/apache-jmeter.zip"   force=yes
     
    - name: Delete existing jmeter installation
      file: path=~/hats/{{ item }} state=absent
@@ -32,10 +32,10 @@
      file: path=~/.bash_profile state=touch
 
    - name: Move jmeter folder
-     synchronize: src=~/hats/apache-jmeter-3.3/ dest=~/hats/jmeter/
+     synchronize: src=~/hats/apache-jmeter-4.0/ dest=~/hats/jmeter/
 
    - name: Delete temp jmeter folder
-     file: path=~/hats/apache-jmeter-3.3/ state=absent
+     file: path=~/hats/apache-jmeter-4.0/ state=absent
 
    - name: Add JMeter to PATH
      lineinfile: dest="~/hats/hats_shell" line='export PATH=~/hats/jmeter/bin:$PATH' state=present
