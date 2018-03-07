@@ -36,5 +36,5 @@ ansible-playbook -i "localhost," -c local "ansible-playbook-install-gatling.yml"
 . ~/.bash_profile
 
 echo -e "\n===================================="
-echo -e "Install complete. Please re-open your terminal. In future, run 'gatling' to start."
+echo -e "Install complete. Please re-open your terminal. In future, run 'gatling.sh' to start."
 echo -e "====================================\n"
