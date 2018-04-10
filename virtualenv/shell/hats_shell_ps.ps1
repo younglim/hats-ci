@@ -149,6 +149,8 @@ if (Test-Path $firefox_path)
 	} 
 	else 
 	{
+		echo "INFO: Found 32-bit Mozilla Firefox Version $firefox_version"
+		
 		if ($firefox_version -match "[0-5][0-4].*") 
 		{
 			echo "INFO: Support for Mozilla Firefox <= v54 enabled"
@@ -156,7 +158,6 @@ if (Test-Path $firefox_path)
 		}
 		else
 		{
-			echo "INFO: Found 32-bit Mozilla Firefox Version $firefox_version"
 			$env:Path = "$env:Path;$path_to_hats\drivers\firefox32";
 		}
 	}
