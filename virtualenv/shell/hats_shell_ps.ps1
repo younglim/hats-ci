@@ -99,6 +99,11 @@ if (Test-Path $chrome_path)
 			echo "INFO: Support for Chrome v58 enabled"
 			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-58";
 		}
+		else if ($chrome_version -match "(59|6[0-3]).*") 
+		{
+			echo "INFO: Support for Chrome v59-63 enabled"
+			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-63";
+		}
 		else {
 			$env:Path = "$env:Path;$path_to_hats\drivers\chrome";
 		}
