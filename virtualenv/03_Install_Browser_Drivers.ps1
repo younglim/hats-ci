@@ -19,7 +19,7 @@ $iniContent = Get-IniContent "config.ini"
 echo "Download Chrome driver"
 $client = new-object System.Net.WebClient;
 $client.DownloadFile($iniContent["BrowserDrivers"]["Chrome-32"],"$path_to_hats\chromedriver-32.zip");
-$client.DownloadFile($iniContent["BrowserDrivers"]["Chrome-32-chrome62"],"$path_to_hats\chromedriver-32-chrome62.zip");
+$client.DownloadFile($iniContent["BrowserDrivers"]["Chrome-32-chrome63"],"$path_to_hats\chromedriver-32-chrome63.zip");
 $client.DownloadFile($iniContent["BrowserDrivers"]["Chrome-32-chrome58"],"$path_to_hats\chromedriver-32-chrome58.zip");
 
 echo "Download IE driver"
@@ -34,7 +34,7 @@ $client.DownloadFile($iniContent["BrowserDrivers"]["Firefox-64-firefox54"],"$pat
 
 echo "Unzipping Chrome driver"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"chromedriver-32.zip"', '-o"drivers\chrome"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
-Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"chromedriver-32-chrome62.zip"', '-o"drivers\chrome-62"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"chromedriver-32-chrome63.zip"', '-o"drivers\chrome-63"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"chromedriver-32-chrome58.zip"', '-o"drivers\chrome-58"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
 
 echo "Unzipping IE driver"
