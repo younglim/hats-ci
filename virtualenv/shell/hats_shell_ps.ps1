@@ -205,6 +205,12 @@ $env:Path = "$env:Path;$path_to_hats\JMeter\bin"
 echo "INFO: Set path to RED for this session"
 $env:Path = "$env:Path;$path_to_hats\RED"
 
+if (Test-Path "$path_to_hats\jython2.7.0")
+{	
+	echo "INFO: Add path to Jython"
+	$env:Path = "$env:Path;$path_to_hats\jython2.7.0\bin"
+}
+
 echo "INFO: Activate hats virtual environment"
 cd "$path_to_hats"
 hats\Scripts\activate
