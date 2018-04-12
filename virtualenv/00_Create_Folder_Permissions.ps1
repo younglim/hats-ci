@@ -19,7 +19,6 @@ If(!(test-path $path_to_hats))
 $user = "$env:UserDomain\$env:UserName"
 echo "Setting permisions for user $user"
 
-$Folders = Get-childItem $path_to_hats -attributes D
 $InheritanceFlag = [System.Security.AccessControl.InheritanceFlags]::ContainerInherit -bor [System.Security.AccessControl.InheritanceFlags]::ObjectInherit
 $PropagationFlag = [System.Security.AccessControl.PropagationFlags]::None
 $objType = [System.Security.AccessControl.AccessControlType]::Allow
