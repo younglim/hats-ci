@@ -90,7 +90,7 @@
      shell: . ~/hats/hats_shell && sdkmanager --update
  
    - name: Accept sdkmanager license
-     shell: . ~/hats/hats_shell && yes | sdkmanager --licenses
+     shell: . ~/hats/hats_shell && sdkmanager --licenses
      
    - name: Install System Image for creating Android AVD of v27
      shell: . ~/hats/hats_shell && sdkmanager 'system-images;android-27;google_apis;x86' 'build-tools;27.0.3' 'platform-tools'
