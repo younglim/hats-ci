@@ -99,6 +99,11 @@ if (Test-Path $chrome_path)
 			echo "INFO: Support for Chrome v58 enabled"
 			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-58";
 		}
+		elseif ($chrome_version -match "(59|6[0-3]).*") 
+		{
+			echo "INFO: Support for Chrome v59-63 enabled"
+			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-63";
+		}
 		else {
 			$env:Path = "$env:Path;$path_to_hats\drivers\chrome";
 		}
@@ -144,6 +149,8 @@ if (Test-Path $firefox_path)
 	} 
 	else 
 	{
+		echo "INFO: Found 32-bit Mozilla Firefox Version $firefox_version"
+		
 		if ($firefox_version -match "[0-5][0-4].*") 
 		{
 			echo "INFO: Support for Mozilla Firefox <= v54 enabled"
@@ -151,7 +158,6 @@ if (Test-Path $firefox_path)
 		}
 		else
 		{
-			echo "INFO: Found 32-bit Mozilla Firefox Version $firefox_version"
 			$env:Path = "$env:Path;$path_to_hats\drivers\firefox32";
 		}
 	}
@@ -198,6 +204,12 @@ $env:Path = "$env:Path;$path_to_hats\JMeter\bin"
 
 echo "INFO: Set path to RED for this session"
 $env:Path = "$env:Path;$path_to_hats\RED"
+
+if (Test-Path "$path_to_hats\jython2.7.0")
+{	
+	echo "INFO: Add path to Jython"
+	$env:Path = "$env:Path;$path_to_hats\jython2.7.0\bin"
+}
 
 echo "INFO: Activate hats virtual environment"
 cd "$path_to_hats"

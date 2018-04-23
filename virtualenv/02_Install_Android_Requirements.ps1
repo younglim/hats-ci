@@ -61,21 +61,20 @@ echo $null >> "$path_to_hats\androidSDK\.android\repositories.cfg"
 echo "Install android emulator"
 sdkmanager "emulator"
 echo "Create an android system image"
-sdkmanager "system-images;android-26;google_apis;x86"
+sdkmanager "system-images;android-27;google_apis;x86"
 
 echo "Create testAVD with Chrome"
-echo no | avdmanager create avd -n testAVD -k 'system-images;android-26;google_apis;x86' -g 'google_apis'
+echo no | avdmanager create avd -n testAVD -k 'system-images;android-27;google_apis;x86' -g 'google_apis'
 
 echo "Create platforms directory in androidSDK"
-mkdir "$path_to_hats\androidSDK\platforms"
+New-Item -ItemType Directory -Force -Path "$path_to_hats\androidSDK\platforms"
 
 echo "Install sdkmanager build-tools"
-sdkmanager "build-tools;26.0.2"
+sdkmanager "build-tools;27.0.3"
 
-echo "Download Samsung TouchWiz Launcher"
-mkdir "$path_to_hats\androidSDK\apk"
-$client.DownloadFile($iniContent["AndroidSDK"]["samsung.android.app.launcher"],"$path_to_hats\androidSDK\apk\samsung.android.app.launcher.apk")
-
+# echo "Download Samsung TouchWiz Launcher"
+# New-Item -ItemType Directory -Force -Path "$path_to_hats\androidSDK\apk"
+# $client.DownloadFile($iniContent["AndroidSDK"]["samsung.android.app.launcher"],"$path_to_hats\androidSDK\apk\samsung.android.app.launcher.apk")
 
 echo "Download Intel HAXM"
 $client.DownloadFile($iniContent["Intel"]["HAXM"],"$path_to_hats\haxm.zip");

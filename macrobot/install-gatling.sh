@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo -e "\n=========================="
-echo -e "JMeter for Mac installer."
+echo -e "Gatling for Mac installer."
 echo -e "==========================\n"
 
 echo -e "\n===================================="
@@ -31,10 +31,10 @@ fi
 
 echo -e "Running Playbooks"
 
-ansible-playbook -i "localhost," -c local "ansible-playbook-install-jmeter.yml"
+ansible-playbook -i "localhost," -c local "ansible-playbook-install-gatling.yml"
 
 . ~/.bash_profile
 
 echo -e "\n===================================="
-echo -e "Install complete. Please re-open your terminal. In future, run 'jmeter' to start."
+echo -e "Install complete. Please re-open your terminal. In future, run 'gatling.sh' to start."
 echo -e "====================================\n"

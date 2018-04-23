@@ -9,9 +9,9 @@ If(!(test-path $path_to_hats))
 
 . .\Get-IniContent.ps1
 $iniContent = Get-IniContent "config.ini"
-
+ 
 echo "Set webclient connection to TLS/1.2"
-[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12;
+[System.Net.ServicePointManager]::SecurityProtocol =  [Enum]::ToObject([Net.SecurityProtocolType], 3072);
 
 echo "Downloading Microsoft Visual C++ Compiler for Python 2.7"
 $client = new-object System.Net.WebClient;
@@ -60,7 +60,8 @@ virtualenv hats
 & hats\Scripts\activate
 
 echo "Install pip modules"
-mkdir "$path_to_hats\utils"
+
+New-Item -ItemType Directory -Force -Path "$path_to_hats\utils"
 $url = $iniContent["hats"]["RobotPipInstallList"]
 $url > "$path_to_hats\utils\pip-install-list.url"
 $client.DownloadFile($url,"$path_to_hats\utils\pip-install-list.txt");

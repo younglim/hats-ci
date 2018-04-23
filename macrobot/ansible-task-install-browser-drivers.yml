@@ -15,7 +15,7 @@
      file: path="{{ ansible_tmpdir.stdout }}" state="directory"
 
    - name: Download Chromedriver
-     get_url: url="https://chromedriver.storage.googleapis.com/2.33/chromedriver_mac64.zip" dest="{{ ansible_tmpdir.stdout }}"   force=yes
+     get_url: url="https://chromedriver.storage.googleapis.com/2.36/chromedriver_mac64.zip" dest="{{ ansible_tmpdir.stdout }}"   force=yes
    
    - name: Unzip Chromedriver
      unarchive: 
@@ -33,10 +33,6 @@
         src: /usr/local/share/chromedriver
         dest: /usr/local/bin/chromedriver
         state: link
-
-   - name: Tap dupes for homebrew to install gnu tar
-     homebrew_tap:
-        name: homebrew/dupes
    
    - name: Install gnu tar for unzipping gecko tarball
      homebrew:

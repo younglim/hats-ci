@@ -17,12 +17,14 @@ As a group of passionate quality engineers, we want to lower the barrier of entr
 *hats* has been tested on the following platforms:
 
 ##### Operating Systems
-* Windows 7, 8.1, 10 (32-bit and 64-bit)
+* Windows 7, 8.1, 10 (64-bit)
+* Mac OS X El-Capitan, macOS Sierra, High Sierra
 
 ##### Browsers
-* Internet Explorer 11
+* Microsoft Internet Explorer 11
 * Google Chrome 54 (or newer)
-* Firefox 54 (or newer)
+* Mozilla Firefox 54 (or newer)
+* Apple Safari 10 and later
 
 ## Recommended: User Setup (Offline Installer)
 Steps recommended for quickly getting started on automated testing.
