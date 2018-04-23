@@ -143,7 +143,9 @@ echo "Installing Appium through npm"
 # npm --vcc-build-tools-parameters='[""/CustomInstallPath"", ""$path_to_hats\MSBUILD""]' install -g -production windows-build-tools 
 
 $env:Path = "$env:Path;$path_to_hats\Python27;$path_to_hats\Python27\Scripts";
-npm install -g appium
+npm install -g appium@1.8.0beta5
+npm install -g phantomjs
+
 npm config set msvs_version 2015
 
 echo "Pop and check location"
