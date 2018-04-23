@@ -94,12 +94,12 @@ if (Test-Path $chrome_path)
 	else
 	{
 		echo "INFO: Found Google Chrome Version $chrome_version"
-		if ($chrome_version -match "5[6-8].*") 
+		if ($chrome_version -match "^5[6-8].*") 
 		{
 			echo "INFO: Support for Chrome v58 enabled"
 			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-58";
 		}
-		elseif ($chrome_version -match "(59|6[0-3]).*") 
+		elseif ($chrome_version -match "^(59|6[0-3]).*") 
 		{
 			echo "INFO: Support for Chrome v59-63 enabled"
 			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-63";
@@ -136,7 +136,7 @@ if (Test-Path $firefox_path)
 	{
 		echo "INFO: Found 64-bit Mozilla Firefox Version $firefox_version"
 		
-		if ($firefox_version -match "[0-5][0-4].*") 
+		if ($firefox_version -match "^[0-5][0-4].*") 
 		{
 			echo "INFO: Support for Mozilla Firefox <= v54 enabled"
 			$env:Path = "$env:Path;$path_to_hats\drivers\firefox64-firefox-54";
