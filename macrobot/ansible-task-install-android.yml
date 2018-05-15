@@ -75,6 +75,7 @@
        - { path: 'export PATH=$ANDROID_HOME/platform-tools:$PATH' }
        - { path: 'export PATH=$ANDROID_HOME/tools:$PATH' }
        - { path: 'export PATH=$ANDROID_HOME/tools/bin:$PATH' }
+       - { path: 'export PATH=$ANDROID_HOME/emulator:$PATH' }
        - { path: 'function emulator { cd "$(dirname "$(which emulator)")" && ./emulator "$@"; }' }
        
    - name: Create $ANDROID_HOME/.android directory
@@ -93,7 +94,7 @@
      shell: . ~/hats/hats_shell && sdkmanager --licenses
      
    - name: Install System Image for creating Android AVD of v27
-     shell: . ~/hats/hats_shell && sdkmanager 'system-images;android-27;google_apis;x86' 'build-tools;27.0.3' 'platform-tools'
+     shell: . ~/hats/hats_shell && sdkmanager 'build-tools;27.0.3' 'system-images;android-27;google_apis;x86' 'platform-tools'
      
    - name: Create AVD of version 27 
      shell: . ~/hats/hats_shell && echo no | avdmanager create avd -n testAVD -k "system-images;android-27;google_apis;x86" -g "google_apis" --force
