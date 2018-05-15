@@ -75,6 +75,7 @@
        - { path: 'export PATH=$ANDROID_HOME/platform-tools:$PATH' }
        - { path: 'export PATH=$ANDROID_HOME/tools:$PATH' }
        - { path: 'export PATH=$ANDROID_HOME/tools/bin:$PATH' }
+       - { path: 'export PATH=$ANDROID_HOME/emulator:$PATH' }
        - { path: 'function emulator { cd "$(dirname "$(which emulator)")" && ./emulator "$@"; }' }
        
    - name: Create $ANDROID_HOME/.android directory
