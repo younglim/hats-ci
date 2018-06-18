@@ -15,7 +15,7 @@
      file: path="{{ ansible_tmpdir.stdout }}" state="directory"
         
    - name: Untap, tap and update caskroom/versions
-     shell: homebrew untap caskroom/versions && homebrew tap caskroom/versions && homebrew update
+     shell: brew untap caskroom/versions && homebrew tap caskroom/versions && homebrew update
      ignore_erroes: true
      
    - name: Install Java, Android SDK, NDK and Studio through cask
