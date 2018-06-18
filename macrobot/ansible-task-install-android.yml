@@ -24,9 +24,9 @@
    - name: Install Java, Android SDK, NDK and Studio through cask
      homebrew_cask: 
         name: "{{ item }}"
-        state: present
+        state: upgraded
      with_items:
-       - java8
+       - java
        - android-sdk
        - android-ndk
        - android-studio
