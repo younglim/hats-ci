@@ -50,6 +50,18 @@ Steps recommended for experienced developers or those who want to contribute to 
 bash <(curl -s https://raw.githubusercontent.com/younglim/hats-ci/master/assets/mac-installer.sh)
 ```
 
+OR 
+
+use our .dmg file but before that
+
+Install java8 in macOS
+```
+brew tap caskroom/versions
+brew cask install java8
+```
+
+Install Xcode, Chrome and Firefox
+
 ## Automated Tests
 A quick way to create a test script is to use [Robotcorder](http://bit.ly/hats-robotcorder) and edit the script from Robotcorder.
 
