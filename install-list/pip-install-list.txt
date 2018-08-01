@@ -45,7 +45,7 @@ numpy==1.11.1
 oauthlib==2.0.6
 olefile==0.44
 opencv-python==3.3.0.9
-openpyxl==2.5.0a3
+openpyxl==2.5.1
 openpyxl-templates==0.1.15
 packaging==16.8
 paramiko==2.4.0
