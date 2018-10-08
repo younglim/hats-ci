@@ -122,6 +122,7 @@ setuptools-scm==1.15.0
 singledispatch==3.4.0.3
 six==1.10.0
 suds==0.4
+termcolor==1.1.0
 tornado==4.5.3
 tox==2.9.1
 urllib3==1.21.1
