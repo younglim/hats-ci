@@ -216,6 +216,9 @@ $env:Path = "$env:Path;$path_to_hats\tagui\src"
 echo "INFO: Set path to SikuliX for this session"
 $env:Path = "$env:Path;$path_to_hats\tagui\src\tagui.sikuli"
 
+echo "INFO: Set path to scrcpy for this session"
+$env:Path = "$env:Path;$path_to_hats\scrcpy-win64"
+
 if (Test-Path "$path_to_hats\jython2.7.0")
 {	
 	echo "INFO: Add path to Jython"
