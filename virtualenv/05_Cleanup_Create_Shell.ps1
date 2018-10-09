@@ -31,6 +31,7 @@ $fso.DeleteFile("$path_to_hats\PortableGit.exe");
 $fso.DeleteFile("$path_to_hats\Gatling.zip")
 $fso.DeleteFile("$path_to_hats\JMeter.zip")
 $fso.DeleteFile("$path_to_hats\RED.zip")
+$fso.DeleteFile("$path_to_hats\scrcpy.zip")
 $fso.DeleteFolder("$path_to_hats\utils\visualcppbuildtools")
 $fso.DeleteFile("$path_to_hats\utils\visualcppbuildtools_full.exe")
 
