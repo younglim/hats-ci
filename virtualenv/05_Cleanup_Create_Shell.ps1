@@ -10,7 +10,7 @@ If(!(test-path $path_to_hats))
 echo "Removing temporary files that are no longer needed"
 $fso = New-Object -ComObject scripting.filesystemobject
 $fso.DeleteFolder("$path_to_hats\7-Zip")
-$fso.DeleteFile("$path_to_hats\IEDriverServer-64.zip")
+$fso.DeleteFile("$path_to_hats\IEDriverServer-32.zip")
 $fso.DeleteFile("$path_to_hats\chromedriver-32.zip")
 $fso.DeleteFile("$path_to_hats\geckodriver-32.zip")
 $fso.DeleteFile("$path_to_hats\geckodriver-64.zip")
