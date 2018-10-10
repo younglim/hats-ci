@@ -23,6 +23,8 @@ $iniContent = Get-IniContent "config.ini"
 
 echo "Download Git"
 $client = new-object System.Net.WebClient;
+[System.Net.ServicePointManager]::SecurityProtocol =  [Enum]::ToObject([Net.SecurityProtocolType], 3072);
+
 $client.DownloadFile($iniContent["Git"]["Git"],"$path_to_hats\PortableGit.exe");
 
 echo "Unzipping Git"
@@ -51,7 +53,7 @@ If(test-path "$path_to_hats\Gatling")
 	Remove-Item -ItemType Directory -Force -Path "$path_to_hats\Gatling"
 }
 
-Rename-Item "$path_to_hats\gatling-charts-highcharts-bundle-2.3.0" "Gatling"
+Rename-Item "$path_to_hats\gatling-charts-highcharts-bundle-3.0.0-RC3" "Gatling"
 
 echo "Download JMeter"
 $client = new-object System.Net.WebClient;
