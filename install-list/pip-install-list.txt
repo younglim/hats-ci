@@ -13,7 +13,7 @@ chardet==3.0.4
 click==6.7
 colorama==0.3.9
 coverage==4.3.4
-cryptography==1.9
+cryptography>=1.9
 decorator==4.0.11
 Django==1.11
 docutils==0.12
@@ -45,7 +45,7 @@ numpy==1.11.1
 oauthlib==2.0.6
 olefile==0.44
 opencv-python==3.3.0.9
-openpyxl==2.5.0a3
+openpyxl==2.5.1
 openpyxl-templates==0.1.15
 packaging==16.8
 paramiko==2.4.0
@@ -122,6 +122,7 @@ setuptools-scm==1.15.0
 singledispatch==3.4.0.3
 six==1.10.0
 suds==0.4
+termcolor==1.1.0
 tornado==4.5.3
 tox==2.9.1
 urllib3==1.21.1

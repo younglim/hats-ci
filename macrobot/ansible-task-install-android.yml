@@ -13,17 +13,20 @@
 
    - name: Create Temp Directory
      file: path="{{ ansible_tmpdir.stdout }}" state="directory"
-
-   - name: Tap versions for homebrew to install
-     homebrew_tap:
+        
+   - name: Upgrade caskroom/versions
+     homebrew_cask:
         name: caskroom/versions
-   
+        state: upgraded
+        update_homebrew: yes
+        install_options: force
+
    - name: Install Java, Android SDK, NDK and Studio through cask
      homebrew_cask: 
         name: "{{ item }}"
-        state: present
+        state: upgraded
      with_items:
-       - java8
+       - caskroom/versions/java8
        - android-sdk
        - android-ndk
        - android-studio
@@ -91,7 +94,7 @@
      shell: . ~/hats/hats_shell && sdkmanager --update
  
    - name: Accept sdkmanager license
-     shell: . ~/hats/hats_shell && sdkmanager --licenses
+     shell: . ~/hats/hats_shell && yes | sdkmanager --licenses
      
    - name: Install System Image for creating Android AVD of v27
      shell: . ~/hats/hats_shell && sdkmanager 'build-tools;27.0.3' 'system-images;android-27;google_apis;x86' 'platform-tools'

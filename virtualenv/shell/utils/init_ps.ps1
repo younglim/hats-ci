@@ -89,6 +89,10 @@ $key.Dispose()
 echo "Install Hardware Accelerated Execution Manager"
 Start-Process "$path_to_hats\androidSDK\haxm\silent_install.bat" -NoNewWindow -Wait -WorkingDirectory "$path_to_hats\androidSDK\haxm";
 
+echo "Patch UIAutomatorViewer"
+$path_to_UIAutomatorViewer = $path_to_hats + "\androidSDK\tools\bin\uiautomatorviewer.bat"
+(Get-Content $path_to_UIAutomatorViewer ).replace('-Dcom.android.uiautomator.bindir=%prog_dir%', '-Dcom.android.uiautomator.bindir=%hats%\androidSDK\platform-tools') | Set-Content $path_to_UIAutomatorViewer
+
 echo "Setting permisions for Users"
 
 $Folders = Get-childItem $path_to_hats -attributes D

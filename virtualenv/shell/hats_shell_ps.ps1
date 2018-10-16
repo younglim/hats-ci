@@ -104,6 +104,11 @@ if (Test-Path $chrome_path)
 			echo "INFO: Support for Chrome v59-63 enabled"
 			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-63";
 		}
+		elseif ($chrome_version -match "^(6[4-6]).*") 
+		{
+			echo "INFO: Support for Chrome v64-66 enabled"
+			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-66";
+		}
 		else {
 			$env:Path = "$env:Path;$path_to_hats\drivers\chrome";
 		}
@@ -204,6 +209,15 @@ $env:Path = "$env:Path;$path_to_hats\JMeter\bin"
 
 echo "INFO: Set path to RED for this session"
 $env:Path = "$env:Path;$path_to_hats\RED"
+
+echo "INFO: Set path to TagUI for this session"
+$env:Path = "$env:Path;$path_to_hats\tagui\src"
+
+echo "INFO: Set path to SikuliX for this session"
+$env:Path = "$env:Path;$path_to_hats\tagui\src\tagui.sikuli"
+
+echo "INFO: Set path to scrcpy for this session"
+$env:Path = "$env:Path;$path_to_hats\scrcpy-win64"
 
 if (Test-Path "$path_to_hats\jython2.7.0")
 {	

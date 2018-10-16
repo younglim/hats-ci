@@ -60,21 +60,18 @@ echo $null >> "$path_to_hats\androidSDK\.android\repositories.cfg"
 
 echo "Install android emulator"
 sdkmanager "emulator"
-echo "Create an android system image"
-sdkmanager "system-images;android-27;google_apis;x86"
-
-echo "Create testAVD with Chrome"
-echo no | avdmanager create avd -n testAVD -k 'system-images;android-27;google_apis;x86' -g 'google_apis'
 
 echo "Create platforms directory in androidSDK"
 New-Item -ItemType Directory -Force -Path "$path_to_hats\androidSDK\platforms"
 
-echo "Install sdkmanager build-tools"
-sdkmanager "build-tools;27.0.3"
+echo "Install sdkmanager system-images, build-tools, platform-tools"
+sdkmanager 'system-images;android-28;google_apis;x86' 'build-tools;28.0.2' 'platform-tools' 'platforms;android-28'
 
-# echo "Download Samsung TouchWiz Launcher"
-# New-Item -ItemType Directory -Force -Path "$path_to_hats\androidSDK\apk"
-# $client.DownloadFile($iniContent["AndroidSDK"]["samsung.android.app.launcher"],"$path_to_hats\androidSDK\apk\samsung.android.app.launcher.apk")
+echo "Create AVDPBIG with Chrome"
+# echo no | avdmanager create avd -n testAVD -k 'system-images;android-27;google_apis;x86' -g 'google_apis'
+# avdmanager create avd --package 'system-images;android-28;google_apis_playstore;x86_64' --name AVDPBIG --device 'pixel_xl'
+avdmanager create avd --package 'system-images;android-28;google_apis;x86'  --name AVDPBIG --device 'pixel_xl'
+Add-Content "$path_to_hats\androidSDK\.android\avd\AVDPBIG.avd\config.ini" "hw.keyboard=yes"
 
 echo "Download Intel HAXM"
 $client.DownloadFile($iniContent["Intel"]["HAXM"],"$path_to_hats\haxm.zip");
