@@ -10,7 +10,7 @@ if [ -d "hats-for-mac" ]; then
 	rm -rf hats-for-mac
 fi
 
-touch ~/.bash_profile
+echo "" > ~/.bash_profile
 mkdir hats-for-mac
 cd hats-for-mac
 
