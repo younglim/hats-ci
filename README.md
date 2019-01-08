@@ -45,8 +45,9 @@ Steps recommended for experienced developers or those who want to contribute to 
 6. For uninstallation, from Command Prompt or Powershell, run `hats_shell uninstall` .
 
 ## For Mac
-1. Install Xcode and Xcode Developer tools with your own Apple Credentials in the App Store. 
-2. In Terminal, run:
+1. Install Xcode and Xcode Developer tools with your own Apple Credentials in the App Store. (Skip this step if Xcode was already installed)
+2. Open Xcode for the first time and Click Agree. (Skip this step if Xcode was previously used)
+3. In Terminal, run:
 
 ```
 bash <(curl -s https://raw.githubusercontent.com/younglim/hats-ci/master/assets/mac-installer.sh)
