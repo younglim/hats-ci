@@ -7,6 +7,12 @@
    - name: Get Temp Directory
      shell: command echo `echo $TMPDIR`com.younglim.hats-ci
      register: ansible_tmpdir     
+     
+   - name: Install Pip with easy_install
+     easy_install:
+       name: pip
+       state: latest
+     sudo: yes
 
    - name: Install dependencies
      pip:
