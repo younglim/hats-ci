@@ -47,7 +47,8 @@ Steps recommended for experienced developers or those who want to contribute to 
 ## For Mac
 1. Install Xcode and Xcode Developer tools with your own Apple Credentials in the App Store. (Skip this step if Xcode was already installed)
 2. Open Xcode for the first time and Click Agree. (Skip this step if Xcode was previously used)
-3. In Terminal, run:
+3. Make sure Google Chrome and Firefox have been installed prior (Or at least opened once to overcome Apple's security popup)
+4. In Terminal, run:
 
 ```
 bash <(curl -s https://raw.githubusercontent.com/younglim/hats-ci/master/assets/mac-installer.sh)
