@@ -24,6 +24,7 @@
    - name: Install virtualenv
      pip:
        name: virtualenv
+     sudo: yes
 
    - name: Check if virtualenv ~/hats folder exists (1/2)
      file:
