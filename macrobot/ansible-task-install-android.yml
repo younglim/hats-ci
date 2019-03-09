@@ -96,8 +96,8 @@
    - name: Accept sdkmanager license
      shell: . ~/hats/hats_shell && yes | sdkmanager --licenses
      
-   - name: Install System Image for creating Android AVD of v27
-     shell: . ~/hats/hats_shell && sdkmanager 'build-tools;27.0.3' 'system-images;android-27;google_apis;x86' 'platform-tools'
+   - name: Install System Image for creating Android AVD of v28
+     shell: . ~/hats/hats_shell && sdkmanager 'build-tools;28.0.3' 'system-images;android-28;google_apis;x86' 'platform-tools' 'platforms;android-28'
      
-   - name: Create AVD of version 27 
-     shell: . ~/hats/hats_shell && echo no | avdmanager create avd -n testAVD -k "system-images;android-27;google_apis;x86" -g "google_apis" --force
+   - name: Create AVD of version 28
+     shell: . ~/hats/hats_shell && echo no | avdmanager create avd -n testAVD -k "system-images;android-28;google_apis;x86" -g "google_apis" --force
