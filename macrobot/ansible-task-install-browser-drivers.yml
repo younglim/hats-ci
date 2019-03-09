@@ -44,7 +44,7 @@
    
    - name: Unzip GeckoDriver
      unarchive: 
-        src: "{{ ansible_tmpdir.stdout }}/geckodriver-v0.19.1-macos.tar.gz"
+        src: "{{ ansible_tmpdir.stdout }}/geckodriver-v0.24.0-macos.tar.gz"
         dest: "{{ ansible_tmpdir.stdout }}" 
 
    - name: Copy GeckoDriver executable to /usr/local/share and set executable
