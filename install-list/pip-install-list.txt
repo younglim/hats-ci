@@ -117,7 +117,7 @@ robotframework-zaplibrary==0.0.1
 robotremoteserver==1.1
 sauceclient==0.2.1
 scp==0.10.2
-selenium==3.5.0
+selenium==3.141.0
 setuptools-scm==1.15.0
 singledispatch==3.4.0.3
 six==1.10.0
