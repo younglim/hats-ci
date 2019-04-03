@@ -100,4 +100,4 @@
      shell: . ~/hats/hats_shell && sdkmanager 'build-tools;28.0.3' 'system-images;android-28;google_apis;x86' 'platform-tools' 'platforms;android-28'
      
    - name: Create AVD of version 28
-     shell: . ~/hats/hats_shell && echo no | avdmanager create avd -n testAVD -k "system-images;android-28;google_apis;x86" -g "google_apis" --force
+     shell: . ~/hats/hats_shell && echo no | avdmanager create avd -n testAVD --device pixel_xl' -k "system-images;android-28;google_apis;x86" -g "google_apis" --force
