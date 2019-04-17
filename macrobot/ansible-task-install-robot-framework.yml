@@ -8,25 +8,26 @@
      shell: command echo `echo $TMPDIR`com.younglim.hats-ci
      register: ansible_tmpdir     
      
-   - name: Install pip by shell easy_install (temp fix for Mojave)
-     shell: easy_install pip
-   
-  #  - name: Install Pip with easy_install
-  #    easy_install:
-  #      name: pip
-  #      state: latest
-  #    sudo: yes
-   
-   - name: Install dependencies
-     pip:
-        name: "{{item}}"
-        state: present
-     with_items:
-      - python
+  # python_version is a given variable
+   - name: Check if python3 is there
+     command: python3 --version
+     register: python_version_result
+     ignore_errors: true
+
+  #  - name: Python version
+  #    debug:
+  #    msg: "{{ python_version_result}}"
+
+   - name: Intall/Update python
+     apt: name="python{{ '3.7.3' }}-dev" staansbite=present
+     when: python_version_result.stdout | replace('Python ', '') is version('3.7', '<') 
+     ignore_errors: true
+
 
    - name: Install virtualenv
      pip:
        name: virtualenv
+       executable: pip3
      sudo: yes
 
    - name: Check if virtualenv ~/hats folder exists (1/2)
@@ -43,22 +44,30 @@
    - name: Create Virtual Env
      shell: bash -lc "virtualenv ~/hats && source ~/hats/bin/activate"
 
-   - name: Install functools for avoiding pip bug
-     shell: bash -lc "source ~/hats/bin/activate && easy_install functools"
+  # functools is included in python 3 now
+  #  - name: Install functools for avoiding pip bug
+  #    shell: bash -lc "source ~/hats/bin/activate && easy_install functools"
 
    - name: Install dependencies for Mac in Virtual Env 
      pip: 
         name: "{{item}}"
         virtualenv: ~/hats
+        #executable: pip3
      with_items:
       - pyobjc-core
       - pyobjc
       - pyautogui
 
-   - name: Install requirements for Python pip
-     pip: 
-        requirements: "https://raw.githubusercontent.com/younglim/hats-ci/master/install-list/pip-install-list.txt"
+   - name: Print path
+     shell: pwd
+
+   - name: Install requirements for Python pip   
+     pip:
+        chdir: ../install-list
+        requirements: pip-install-list.txt
         virtualenv: ~/hats
+        # executable: pip3
+
 
    - name: Install Google Chrome and Firefox with Brew Cask
      homebrew_cask: 
