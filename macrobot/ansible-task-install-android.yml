@@ -101,3 +101,6 @@
      
    - name: Create AVD of version 28
      shell: . ~/hats/hats_shell && echo no | avdmanager create avd -n testAVD --device "pixel_xl" -k "system-images;android-28;google_apis;x86" -g "google_apis" --force
+     
+   - name: Add keyboard setting  
+     shell: grep 'hw.keyboard=yes' /usr/local/share/android-sdk/.android/avd/testAVD.avd/config.ini || echo 'hw.keyboard=yes' >> /usr/local/share/android-sdk/.android/avd/testAVD.avd/config.ini
