@@ -58,16 +58,11 @@
       - pyobjc
       - pyautogui
 
-   - name: Print path
-     shell: pwd
 
    - name: Install requirements for Python pip   
      pip:
-        chdir: ../install-list
-        requirements: pip-install-list.txt
+        requirements: "https://raw.githubusercontent.com/younglim/hats-ci/master/install-list/pip-install-list.txt"
         virtualenv: ~/hats
-        # executable: pip3
-
 
    - name: Install Google Chrome and Firefox with Brew Cask
      homebrew_cask: 
