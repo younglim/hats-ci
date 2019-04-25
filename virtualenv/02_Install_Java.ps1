@@ -17,8 +17,8 @@ echo "Preparing to download JDK64"
 $source = $iniContent["Java"]["JDK-64"]
 $destination = "$path_to_hats\jdk.exe"
 $client = new-object System.Net.WebClient 
-$cookie = "oraclelicense=accept-securebackup-cookie"
-$client.Headers.Add([System.Net.HttpRequestHeader]::Cookie, $cookie) 
+# $cookie = "oraclelicense=accept-securebackup-cookie"
+# $client.Headers.Add([System.Net.HttpRequestHeader]::Cookie, $cookie) 
 $client.downloadFile($source, $destination)
 
 echo "Installing JDK"

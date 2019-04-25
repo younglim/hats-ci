@@ -3,12 +3,17 @@ $current_path = (Get-Item -Path ".\" -Verbose).FullName
 
 echo "INFO: Stored current working directory at $current_path"
 
-# INFO: Set path to hats
-$path_to_hats  = split-path -parent $MyInvocation.MyCommand.Definition
-
+# INFO: Set path to hats C:\Users\hats\Desktop\hats-ci\virtualenv\shell\
+# $path_to_hats  = split-path -parent $MyInvocation.MyCommand.Definition
+$path_to_hats = "$env:PROGRAMFILES\hats"
 $path_to_origPrefix = "$path_to_hats\hats\Lib\orig-prefix.txt";
+
+echo "path_to_origPrefix: $path_to_origPrefix "
+
 $origPrefixContent = [IO.File]::ReadAllText($path_to_origPrefix)
-$pythonDir = "$path_to_hats\Python27".ToLower();
+echo "origPrefixContent $origPrefixContent"
+$pythonDir = "$path_to_hats\Python37".ToLower();
+echo "pythonDir: $pythonDir "
 
 If (!$pythonDir.equals($origPrefixContent)) {
 	echo "Overwrite 'hats\Lib\orig-prefix.txt' with directory to Python"
@@ -18,8 +23,8 @@ If (!$pythonDir.equals($origPrefixContent)) {
 
 $env:Path = "$env:windir;$env:windir\system32;$env:windir\system32\WindowsPowerShell\v1.0"
 
-echo "INFO: Set path to Python27"
-$env:Path = "$env:Path;$path_to_hats\Python27;$path_to_hats\Python27\Scripts";
+echo "INFO: Set path to Python37"
+$env:Path = "$env:Path;$path_to_hats\Python37;$path_to_hats\Python37\Scripts";
 
 if ([System.IntPtr]::Size -eq 4)
 {

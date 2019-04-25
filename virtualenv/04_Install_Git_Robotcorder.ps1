@@ -68,7 +68,7 @@ If(test-path "$path_to_hats\JMeter")
 	Remove-Item -ItemType Directory -Force -Path "$path_to_hats\JMeter"
 }
 
-Rename-Item "$path_to_hats\apache-jmeter-5.0" "JMeter"
+Rename-Item "$path_to_hats\apache-jmeter-5.1.1" "JMeter"
 
 echo "Download RED"
 $client = new-object System.Net.WebClient;
