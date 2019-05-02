@@ -6,11 +6,11 @@ $scriptpath = Split-Path $MyInvocation.MyCommand.Path
 $iniContent = Get-IniContent "config.ini"
 $client = new-object System.Net.WebClient;
 
-echo "Downloading 7-Zip"
-$client.DownloadFile($iniContent["7-Zip"]["7-Zip"],"$path_to_hats\7z.msi");
+# echo "Downloading 7-Zip"
+# $client.DownloadFile($iniContent["7-Zip"]["7-Zip"],"$path_to_hats\7z.msi");
 
-echo "Installing 7-Zip"
-Start-Process msiexec.exe -ArgumentList "/a `"$path_to_hats\7z.msi`" /qn TargetDir=`"$path_to_hats\7-Zip`" PrependPath=0 Include_test=0 DefaultFeature=1" -NoNewWindow -Wait;
+# echo "Installing 7-Zip"
+# Start-Process msiexec.exe -ArgumentList "/a `"$path_to_hats\7z.msi`" /qn TargetDir=`"$path_to_hats\7-Zip`" PrependPath=0 Include_test=0 DefaultFeature=1" -NoNewWindow -Wait;
 
 echo "Preparing to download JDK64"
 
