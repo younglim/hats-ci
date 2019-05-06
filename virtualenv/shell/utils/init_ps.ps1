@@ -56,6 +56,13 @@ for ($zone=1; $zone -lt 5; $zone++) {
 	REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\$zone" /v 2500 /t REG_DWORD /d 3 /f
 }
 
+echo "Disabling IE Welcome screen..."
+$LocalMachineKeyPath = "HKLM:\Software\Policies\Microsoft\Internet Explorer\Main"
+
+New-Item -Path $LocalMachineKeyPath -Value 1 -Force
+Set-ItemProperty -Path $LocalMachineKeyPath -Name "DisableFirstRunCustomize" -Value 1 -Force
+Write-Host "Disabled IE Welcome screen"
+
 echo "Set Zoom Level of IE to 100%"
 REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Zoom" /v ZoomDisabled /t REG_DWORD /d 0 /f
 REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Zoom" /v ResetTextSizeOnStartup /t REG_DWORD /d 0 /f
