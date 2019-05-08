@@ -32,6 +32,8 @@ $client.DownloadFile($iniContent["BrowserDrivers"]["Firefox-32"],"$path_to_hats\
 $client.DownloadFile($iniContent["BrowserDrivers"]["Firefox-64"],"$path_to_hats\geckodriver-64.zip");
 $client.DownloadFile($iniContent["BrowserDrivers"]["Firefox-32-firefox54"],"$path_to_hats\geckodriver-32-firefox54.zip");
 $client.DownloadFile($iniContent["BrowserDrivers"]["Firefox-64-firefox54"],"$path_to_hats\geckodriver-64-firefox54.zip");
+$client.DownloadFile($iniContent["BrowserDrivers"]["Firefox-32-firefox62"],"$path_to_hats\geckodriver-32-firefox62.zip");
+$client.DownloadFile($iniContent["BrowserDrivers"]["Firefox-64-firefox62"],"$path_to_hats\geckodriver-64-firefox62.zip");
 
 echo "Unzipping Chrome driver"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"chromedriver-32.zip"', '-o"drivers\chrome"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
@@ -47,3 +49,5 @@ Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList '
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"geckodriver-64.zip"', '-o"drivers\firefox64"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"geckodriver-32-firefox54.zip"', '-o"drivers\firefox32-firefox-54"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"geckodriver-64-firefox54.zip"', '-o"drivers\firefox64-firefox-54"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"geckodriver-32-firefox62.zip"', '-o"drivers\firefox32-firefox-62"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"geckodriver-64-firefox62.zip"', '-o"drivers\firefox64-firefox-62"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
