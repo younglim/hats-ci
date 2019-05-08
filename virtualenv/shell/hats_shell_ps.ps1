@@ -151,7 +151,7 @@ if (Test-Path $firefox_path)
 			echo "INFO: Support for Mozilla Firefox <= v54 enabled"
 			$env:Path = "$env:Path;$path_to_hats\drivers\firefox64-firefox-54";
 		}
-		else if ($firefox_version -match "^([5][5-9])|(6[0-2]).*")
+		elseif ($firefox_version -match "^([5][5-9])|(6[0-2]).*")
 		{
 			echo "INFO: Support for Mozilla Firefox <= v62 enabled"
 			$env:Path = "$env:Path;$path_to_hats\drivers\firefox64-firefox-62";
@@ -171,7 +171,7 @@ if (Test-Path $firefox_path)
 			echo "INFO: Support for Mozilla Firefox <= v54 enabled"
 			$env:Path = "$env:Path;$path_to_hats\drivers\firefox32-firefox-54";
 		}
-		else if ($firefox_version -match "^([5][5-9])|(6[0-2]).*")
+		elseif ($firefox_version -match "^([5][5-9])|(6[0-2]).*")
 		{
 			echo "INFO: Support for Mozilla Firefox <= v62 enabled"
 			$env:Path = "$env:Path;$path_to_hats\drivers\firefox32-firefox-62";
