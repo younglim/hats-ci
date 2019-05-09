@@ -10,7 +10,7 @@ ${CHROME_EXISTS}    True
 ${FF_EXISTS}        True
 
 *** Test Cases ***
-Beanie test using Internet Explorer
+Beanie test using Safari
   Log    ${CURDIR}
   Run Keyword If    ${SAFARI_EXISTS}    Beanie test  safari
   ...         ELSE     Log  Safari is not installed
