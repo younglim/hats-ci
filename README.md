@@ -53,7 +53,7 @@ Steps recommended for experienced developers or those who want to contribute to 
 ```
 bash <(curl -s https://raw.githubusercontent.com/younglim/hats-ci/master/assets/mac-installer.sh)
 ```
-5. When the security prompt appears for the **Safari Extension**, Click on *Allow*.
+5. When the security prompt appears for the **Safari Extension**, Click on *Allow*. To Allow safaridriver to run successfully, enable: 1) Enable Develop menu on Safari > Preferences.. > Advanced 2) Go to the newly added Develop menu, Click "Allow Remote Automation"
 6. Restart Terminal for `hats_shell` to be started in Terminal automatically.
 
 OR 
