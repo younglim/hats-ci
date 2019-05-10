@@ -35,6 +35,10 @@ $client.DownloadFile($iniContent["BrowserDrivers"]["Firefox-64-firefox54"],"$pat
 $client.DownloadFile($iniContent["BrowserDrivers"]["Firefox-32-firefox62"],"$path_to_hats\geckodriver-32-firefox62.zip");
 $client.DownloadFile($iniContent["BrowserDrivers"]["Firefox-64-firefox62"],"$path_to_hats\geckodriver-64-firefox62.zip");
 
+echo "Download Edge driver"
+$client.DownloadFile($iniContent["BrowserDrivers"]["Edge-32"], "$path_to_hats\drivers\edge-32\msedgedriver.exe");
+$client.DownloadFile($iniContent["BrowserDrivers"]["Edge-64"], "$path_to_hats\drivers\edge-64\msedgedriver.exe");
+
 echo "Unzipping Chrome driver"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"chromedriver-32.zip"', '-o"drivers\chrome"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"chromedriver-32-chrome66.zip"', '-o"drivers\chrome-66"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
