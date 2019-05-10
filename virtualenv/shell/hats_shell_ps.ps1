@@ -198,18 +198,18 @@ if (Test-Path $edge_path)
 	if ((Get-ExeTargetMachine $edge_path).TargetMachine -eq "x64")
 	{
 		echo "INFO: Found 64-bit Microsoft Edge Version $edge_version"
-		$env:Path = "$env:Path;$path_to_hats\drivers\edge-64";
+		$env:Path = "$env:Path;$path_to_hats\drivers\edge64";
 	}
 	else
 	{
 		echo "INFO: Found 32-bit Microsoft Edge Version $edge_version"
-		$env:Path = "$env:Path;$path_to_hats\drivers\edge-32"
+		$env:Path = "$env:Path;$path_to_hats\drivers\edge32"
 	}
 }
 else
 {
 	echo: "WARN: Could not detect Microsoft Edge"
-	$env:Path = "$env:Path;$path_to_hats\drivers\edge-64"
+	$env:Path = "$env:Path;$path_to_hats\drivers\edge64"
 }
 
 $env:ie_version = $ie_version;
