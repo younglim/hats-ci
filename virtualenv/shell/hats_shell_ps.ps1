@@ -191,6 +191,10 @@ else
 
 $edge_path = "C:\Windows\SystemApps\Microsoft.MicrosoftEdge_8wekyb3d8bbwe\MicrosoftEdge.exe"
 
+if (Test-Path env:edge_path) {
+	$edge_path = $env:edge_path
+}
+
 if (Test-Path $edge_path)
 {
 	$edge_version = (Get-Item $edge_path).VersionInfo.FileVersion
