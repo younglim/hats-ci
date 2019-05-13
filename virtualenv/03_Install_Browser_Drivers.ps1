@@ -2,8 +2,8 @@
 $path_to_hats = "$env:PROGRAMFILES\hats"
 
 # Create edge paths to allow drivers to have a destination to save in
-$path_to_edge32 = "$path_to_hats\drivers\edge-32"
-$path_to_edge64 = "$path_to_hats\drivers\edge-64"
+$path_to_edge32 = "$path_to_hats\drivers\edge32"
+$path_to_edge64 = "$path_to_hats\drivers\edge64"
 
 echo "Create drivers folder in $path_to_hats"
 If(!(test-path $path_to_hats))
