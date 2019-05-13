@@ -21,12 +21,12 @@
         update_homebrew: yes
         install_options: force
 
-   - name: Install Java, Android SDK, NDK and Studio through cask
+   - name: Install Corretto, Android SDK, NDK and Studio through cask
      homebrew_cask: 
         name: "{{ item }}"
         state: upgraded
      with_items:
-       - caskroom/versions/java8
+       - corretto8
        - android-sdk
        - android-ndk
        - android-studio
