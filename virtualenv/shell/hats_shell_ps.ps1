@@ -195,31 +195,31 @@ if (Test-Path env:edge_path) {
 	$edge_path = $env:edge_path
 }
 
-if (Test-Path $edge_path)
-{
-	$edge_version = (Get-Item $edge_path).VersionInfo.FileVersion
+# if (Test-Path $edge_path)
+# {
+# 	$edge_version = (Get-Item $edge_path).VersionInfo.FileVersion
 
-	if ((Get-ExeTargetMachine $edge_path).TargetMachine -eq "x64")
-	{
-		echo "INFO: Found 64-bit Microsoft Edge Version $edge_version"
-		$env:Path = "$env:Path;$path_to_hats\drivers\edge64";
-	}
-	else
-	{
-		echo "INFO: Found 32-bit Microsoft Edge Version $edge_version"
-		$env:Path = "$env:Path;$path_to_hats\drivers\edge32"
-	}
-}
-else
-{
-	echo: "WARN: Could not detect Microsoft Edge"
-	$env:Path = "$env:Path;$path_to_hats\drivers\edge64"
-}
+# 	if ((Get-ExeTargetMachine $edge_path).TargetMachine -eq "x64")
+# 	{
+# 		echo "INFO: Found 64-bit Microsoft Edge Version $edge_version"
+# 		$env:Path = "$env:Path;$path_to_hats\drivers\edge64";
+# 	}
+# 	else
+# 	{
+# 		echo "INFO: Found 32-bit Microsoft Edge Version $edge_version"
+# 		$env:Path = "$env:Path;$path_to_hats\drivers\edge32"
+# 	}
+# }
+# else
+# {
+# 	echo: "WARN: Could not detect Microsoft Edge"
+# 	$env:Path = "$env:Path;$path_to_hats\drivers\edge64"
+# }
 
 $env:ie_version = $ie_version;
 $env:chrome_version = $chrome_version;
 $env:firefox_version = $firefox_version;
-$env:edge_version = $edge_version;
+# $env:edge_version = $edge_version;
 
 echo "INFO: Set path to utils for this session"
 $env:Path = "$env:Path;$path_to_hats\utils";

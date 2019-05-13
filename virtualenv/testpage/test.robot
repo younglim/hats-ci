@@ -9,7 +9,7 @@ ${IE_EXISTS}        True
 ${CHROME_EXISTS}    True
 ${FF_EXISTS}        True
 ${SAFARI_EXISTS}    False
-${EDGE_EXISTS}      True
+${EDGE_EXISTS}      False
 
 *** Test Cases ***
 Beanie test using Internet Explorer

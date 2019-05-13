@@ -2,8 +2,8 @@
 $path_to_hats = "$env:PROGRAMFILES\hats"
 
 # Create edge paths to allow drivers to have a destination to save in
-$path_to_edge32 = "$path_to_hats\drivers\edge32"
-$path_to_edge64 = "$path_to_hats\drivers\edge64"
+# $path_to_edge32 = "$path_to_hats\drivers\edge32"
+# $path_to_edge64 = "$path_to_hats\drivers\edge64"
 
 echo "Create drivers folder in $path_to_hats"
 If(!(test-path $path_to_hats))
@@ -14,8 +14,8 @@ If(!(test-path $path_to_hats))
 If(!(test-path "$path_to_hats\drivers"))
 {
 	New-Item -ItemType Directory -Force -Path "$path_to_hats\drivers"
-	New-Item -ItemType Directory -Force -Path "$path_to_edge32"
-	New-Item -ItemType Directory -Force -Path "$path_to_edge64"
+	# New-Item -ItemType Directory -Force -Path "$path_to_edge32"
+	# New-Item -ItemType Directory -Force -Path "$path_to_edge64"
 }
 
 . .\Get-IniContent.ps1
@@ -41,10 +41,9 @@ $client.DownloadFile($iniContent["BrowserDrivers"]["Firefox-64-firefox54"],"$pat
 $client.DownloadFile($iniContent["BrowserDrivers"]["Firefox-32-firefox62"],"$path_to_hats\geckodriver-32-firefox62.zip");
 $client.DownloadFile($iniContent["BrowserDrivers"]["Firefox-64-firefox62"],"$path_to_hats\geckodriver-64-firefox62.zip");
 
-echo "Download Edge driver"
-# edge drivers do not require unzipping and are saved directly to $path_to_edge32/$path_to_edge64
-$client.DownloadFile($iniContent["BrowserDrivers"]["Edge-32"], "$path_to_edge32\msedgedriver.exe");
-$client.DownloadFile($iniContent["BrowserDrivers"]["Edge-64"], "$path_to_edge64\msedgedriver.exe");
+# echo "Download Edge driver"
+# $client.DownloadFile($iniContent["BrowserDrivers"]["Edge-32"], "$path_to_edge32\msedgedriver.exe");
+# $client.DownloadFile($iniContent["BrowserDrivers"]["Edge-64"], "$path_to_edge64\msedgedriver.exe");
 
 echo "Unzipping Chrome driver"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"chromedriver-32.zip"', '-o"drivers\chrome"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"

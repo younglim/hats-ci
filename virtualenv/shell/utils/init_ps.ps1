@@ -93,6 +93,9 @@ $key.Dispose()
 #echo "Install Visual C++ Build Tools"
 #Start-Process "$path_to_hats\utils\visualcppbuildtools\VisualCppBuildTools_Full.exe" -ArgumentList "/Full /Silent" -NoNewWindow -Wait;
 
+echo "Download Microsoft Edge Driver from DISM"
+DISM.exe /Online /Add-Capability /CapabilityName:Microsoft.WebDriver~~~~0.0.1.0
+
 echo "Install Hardware Accelerated Execution Manager"
 Start-Process "$path_to_hats\androidSDK\haxm\silent_install.bat" -NoNewWindow -Wait -WorkingDirectory "$path_to_hats\androidSDK\haxm";
 
