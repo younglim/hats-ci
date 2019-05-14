@@ -15,7 +15,8 @@ Start-Process msiexec.exe -ArgumentList "/a `"$path_to_hats\7z.msi`" /qn TargetD
 echo "Preparing to download JDK64"
 
 $source = $iniContent["Java"]["JDK-64"]
-$destination = "$path_to_hats\jdk.exe"
+$destination = "$path_to_hats\jdk.zip"
+# $destination = "$path_to_hats\jdk.exe"
 # $client = new-object System.Net.WebClient 
 # $cookie = "oraclelicense=accept-securebackup-cookie"
 # $client.Headers.Add([System.Net.HttpRequestHeader]::Cookie, $cookie) 
@@ -23,8 +24,13 @@ $destination = "$path_to_hats\jdk.exe"
 Import-Module BitsTransfer
 Start-BitsTransfer -Source $source -Destination $destination
 
-echo "Installing JDK"
-
-$JDK_INSTALLDIR = 'INSTALLDIR="' + $path_to_hats + '\jdk"'
-Start-Process 'jdk.exe' -ArgumentList 'INSTALL_SILENT=Enable' , 'REBOOT=Disable', 'SPONSORS=Disable', $JDK_INSTALLDIR -Wait -PassThru
+echo "Unzipping JDK"
+expand-archive -path $destination -destinationpath ".\jdk"
+cd "jdk/*"
+Get-ChildItem -Path ".\*" -Recurse | Move-Item -Destination "$path_to_hats/jdk"
+# echo "Installing JDK"
+cd "../"
+Remove-Item -Path ".\*" -Filter "jdk*"
+# $JDK_INSTALLDIR = 'INSTALLDIR="' + $path_to_hats + '\jdk"'
+# Start-Process 'jdk.exe' -ArgumentList 'INSTALL_SILENT=Enable' , 'REBOOT=Disable', 'SPONSORS=Disable', $JDK_INSTALLDIR -Wait -PassThru
 
