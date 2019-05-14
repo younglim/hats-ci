@@ -25,8 +25,8 @@ Import-Module BitsTransfer
 Start-BitsTransfer -Source $source -Destination $destination
 
 echo "Unzipping JDK"
-expand-archive -path $destination -destinationpath ".\corretto"
-cd "corretto/*"
+expand-archive -path $destination -destinationpath "$path_to_hats\corretto"
+cd "$path_to_hats\corretto\*"
 $jdk_path = pwd
 cd $path_to_hats
 Rename-Item $jdk_path "$path_to_hats\corretto\jdk"
