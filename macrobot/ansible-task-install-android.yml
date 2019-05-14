@@ -21,12 +21,21 @@
         update_homebrew: yes
         install_options: force
 
-   - name: Install Corretto, Android SDK, NDK and Studio through cask
+   - name: Install Corretto 8 into /Library/Java/JavaVirtualMachines/
+     become: yes
+     unarchive:
+        src: https://d3pxv6yz143wms.cloudfront.net/8.212.04.2/amazon-corretto-8.212.04.2-macosx-x64.tar.gz
+        dest: /Library/Java/JavaVirtualMachines/
+        remote_src: yes
+    
+   - name: Set JAVA_HOME
+     shell: 'export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home >>~/.bash_profile'
+
+   - name: Install Android SDK, NDK and Studio through cask
      homebrew_cask: 
         name: "{{ item }}"
         state: upgraded
      with_items:
-       - corretto8
        - android-sdk
        - android-ndk
        - android-studio
