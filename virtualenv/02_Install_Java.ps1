@@ -25,12 +25,14 @@ Import-Module BitsTransfer
 Start-BitsTransfer -Source $source -Destination $destination
 
 echo "Unzipping JDK"
-expand-archive -path $destination -destinationpath ".\jdk"
-cd "jdk/*"
-Get-ChildItem -Path ".\*" -Recurse | Move-Item -Destination "$path_to_hats/jdk"
+expand-archive -path $destination -destinationpath ".\corretto"
+cd "corretto/*"
+$jdk_path = pwd
+Rename-Item $jdk_path "$path_to_hats\corretto\jdk"
 # echo "Installing JDK"
-cd "../"
-Remove-Item -Path ".\*" -Filter "jdk*"
+cd $path_to_hats
+Move-Item "$path_to_hats\corretto\jdk" "$path_to_hats\jdk"
+Remove-Item -Path "$path_to_hats\corretto"
 # $JDK_INSTALLDIR = 'INSTALLDIR="' + $path_to_hats + '\jdk"'
 # Start-Process 'jdk.exe' -ArgumentList 'INSTALL_SILENT=Enable' , 'REBOOT=Disable', 'SPONSORS=Disable', $JDK_INSTALLDIR -Wait -PassThru
 
