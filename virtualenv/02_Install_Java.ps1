@@ -28,9 +28,9 @@ echo "Unzipping JDK"
 expand-archive -path $destination -destinationpath ".\corretto"
 cd "corretto/*"
 $jdk_path = pwd
+cd $path_to_hats
 Rename-Item $jdk_path "$path_to_hats\corretto\jdk"
 # echo "Installing JDK"
-cd $path_to_hats
 Move-Item "$path_to_hats\corretto\jdk" "$path_to_hats\jdk"
 Remove-Item -Path "$path_to_hats\corretto"
 # $JDK_INSTALLDIR = 'INSTALLDIR="' + $path_to_hats + '\jdk"'
