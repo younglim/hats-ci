@@ -9,6 +9,7 @@ ${IE_EXISTS}        True
 ${CHROME_EXISTS}    True
 ${FF_EXISTS}        True
 ${SAFARI_EXISTS}    False
+${EDGE_EXISTS}      False
 
 *** Test Cases ***
 Beanie test using Internet Explorer
@@ -30,6 +31,11 @@ Beanie test using Safari
   Log    ${CURDIR}
   Run Keyword If    ${SAFARI_EXISTS}    Beanie test  safari
   ...         ELSE     Log  Safari is not installed
+
+Beanie test using Edge
+  Log    ${CURDIR}
+  Run Keyword If    ${EDGE_EXISTS}    Beanie test  edge
+  ...         ELSE     Log  Edge is not installed
 
 *** Keywords ***
 Beanie test
