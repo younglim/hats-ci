@@ -13,6 +13,9 @@
     - name: Create ~/.nvm directory
       file: path="~/.nvm" state="directory"
 
+    - name: Add ~/.bash_profile if not present
+      file: path=~/.bash_profile state=touch
+
     - name: Add to .bash_profile nvm.sh
       lineinfile: dest="~/.bash_profile" line='{{item}}' state=present
       with_items:
