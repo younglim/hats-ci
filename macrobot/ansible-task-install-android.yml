@@ -28,8 +28,18 @@
         dest: /Library/Java/JavaVirtualMachines/
         remote_src: yes
     
-   - name: Set JAVA_HOME
-     shell: 'export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home >>~/.bash_profile'
+   - name: Set JAVA_HOME and Bin Directory for JAVA_HOME
+     shell: export JAVA_HOME=$(/usr/libexec/java_home)
+     shell: export PATH=$PATH:$JAVA_HOME/bin
+
+   - name: Add ~/.bash_profile if not present
+     file: path=~/.bash_profile state=touch
+
+   - name: Add to .bash_profile JAVA_HOME and Bin Directory for JAVA_HOME
+     lineinfile: dest="~/.bash_profile" line='{{item}}' state=present
+     with_items:
+      - 'export PATH=$PATH:/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home'
+      - 'export PATH=$PATH:/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home/bin'
 
    - name: Install Android SDK, NDK and Studio through cask
      homebrew_cask: 
