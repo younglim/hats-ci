@@ -14,6 +14,8 @@ echo "" > ~/.bash_profile
 mkdir hats-for-mac
 cd hats-for-mac
 
+# Uncomment below and comment `svn` during dev
+#cp -R ../../macrobot . 
 svn checkout https://github.com/younglim/hats-ci/trunk/macrobot
 cd macrobot
 
