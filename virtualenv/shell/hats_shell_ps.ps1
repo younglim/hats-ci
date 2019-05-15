@@ -5,7 +5,7 @@ echo "INFO: Stored current working directory at $current_path"
 
 # INFO: Set path to hats C:\Users\hats\Desktop\hats-ci\virtualenv\shell\
 # $path_to_hats  = split-path -parent $MyInvocation.MyCommand.Definition
-$path_to_hats = "$env:PROGRAMFILES\hats"
+$path_to_hats = "$PSScriptRoot"
 $path_to_origPrefix = "$path_to_hats\hats\Lib\orig-prefix.txt";
 
 echo "path_to_origPrefix: $path_to_origPrefix "

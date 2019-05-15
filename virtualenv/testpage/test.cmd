@@ -12,6 +12,12 @@ set IE_WIN_X86="C:\Program Files\Internet Explorer\iexplore.exe"
 set IE_WIN="C:\Program Files (x86)\Internet Explorer\iexplore.exe"
 set FF_WIN_X86="C:\Program Files (x86)\Mozilla Firefox\firefox.exe"
 set FF_WIN="C:\Program Files\Mozilla Firefox\firefox.exe"
+set EDGE_WIN="C:\Windows\SystemApps\Microsoft.MicrosoftEdge_8wekyb3d8bbwe\MicrosoftEdge.exe"
+
+set edgepath=NUL
+IF EXIST %EDGE_WIN% (
+  set edgepath=%EDGE_WIN%
+)
 
 set chromepath=NUL
 IF EXIST %CHROME_WIN_X86% (
@@ -58,7 +64,14 @@ IF %ffpath%==NUL (
   set ff_exist=True
 )
 
-call python -m robot -x report.xml --variable CHROME_EXISTS:%chrome_exist% --variable IE_EXISTS:%ie_exist% --variable FF_EXISTS:%ff_exist% --name hats test.robot
+IF %edgepath%==NUL (
+  echo no edge
+  set edge_exist=False
+) ELSE (
+  set edge_exist=True
+)
+
+call python -m robot -x report.xml --variable CHROME_EXISTS:%chrome_exist% --variable IE_EXISTS:%ie_exist% --variable FF_EXISTS:%ff_exist% --variable EDGE_EXISTS:%edge_exist% --name hats test.robot
 
 if [%1]==[] goto :blank
 
