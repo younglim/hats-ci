@@ -3,7 +3,7 @@
 - hosts: all
 
   vars:
-    - node_js_version: 8.9.0
+    - node_js_version: 10.13.0
  
   tasks:  
   - import_tasks: ansible-task-disable-sudo-timeout.yml
