@@ -33,7 +33,7 @@ Source: "\\?\Volume{95914872-a32e-4856-8b63-da4d54c6a9b7}\Program Files\hats\*";
 
 [Run]
 Filename: "{app}\utils\init.cmd"; WorkingDir: "{app}";
-Filename: "{app}\hats_shell.cmd"; Parameters: "C:\Progra~1\hats\testpage\test.cmd -show"; WorkingDir: "C:\Progra~1\hats";
+Filename: "{app}\hats_shell.cmd"; Parameters: ".\testpage\test.cmd -show"; WorkingDir: "{app}";
 
 [UninstallRun]
 Filename: "uninstall.cmd"; WorkingDir: "{app}\utils";
