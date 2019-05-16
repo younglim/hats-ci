@@ -19,7 +19,7 @@ $client.DownloadFile($iniContent["Misc"]["VCForPython37"],"$path_to_hats\VCForPy
 
 echo "Installing Microsoft Visual C++ Compiler for Python 3.7"
 #Start-Process msiexec.exe -ArgumentList "/i `"$path_to_hats\VCForPython27.msi`" /qn" -NoNewWindow -Wait;
-Start-Process -FilePath "$path_to_hats\VCForPython37.exe" -ArgumentList "/S /v/qn" -NoNewWindow -Wait;
+Start-Process -FilePath "$path_to_hats\VCForPython37.exe" -ArgumentList "--passive" -NoNewWindow -Wait;
 
 $env:Path = "$path_to_hats\Python37;$path_to_hats\Python37\Scripts";
 echo $env:Path
