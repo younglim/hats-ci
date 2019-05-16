@@ -53,20 +53,10 @@ Steps recommended for experienced developers or those who want to contribute to 
 ```
 bash <(curl -s https://raw.githubusercontent.com/younglim/hats-ci/master/assets/mac-installer.sh)
 ```
-5. When the security prompt appears for the **Safari Extension**, Click on *Allow*. To Allow safaridriver to run successfully, enable: 1) Enable Develop menu on Safari > Preferences.. > Advanced 2) Go to the newly added Develop menu, Click "Allow Remote Automation"
+5. To Allow safaridriver to run successfully, enable: 1) Enable Develop menu on Safari > Preferences.. > Advanced 2) Go to the newly added Develop menu, Click "Allow Remote Automation"
 6. Restart Terminal for `hats_shell` to be started in Terminal automatically.
 
-OR 
-
-use our .dmg file but before that
-
-Install java8 in macOS
-```
-brew tap caskroom/versions
-brew cask install java8
-```
-
-Install Xcode, Chrome and Firefox
+** Note, Amazon Corretto 8 Java 1.8 is used.
 
 ## Automated Tests
 A quick way to create a test script is to use [Robotcorder](http://bit.ly/hats-robotcorder) and edit the script from Robotcorder.
