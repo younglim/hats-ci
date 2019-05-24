@@ -19,6 +19,7 @@ As a group of passionate quality engineers, we want to lower the barrier of entr
 ##### Operating Systems
 * Windows 7, 8.1, 10 (64-bit)
 * Mac OS X El-Capitan, macOS Sierra, High Sierra
+* Linux CentOS, Fedora, Ubuntu instructions are available at https://github.com/younglim/hats-linux .
 
 ##### Browsers
 * Microsoft Internet Explorer 11
@@ -44,23 +45,18 @@ Steps recommended for experienced developers or those who want to contribute to 
 6. For uninstallation, from Command Prompt or Powershell, run `hats_shell uninstall` .
 
 ## For Mac
-1. In Terminal, run:
+1. Install **Xcode and Xcode Developer tools** with your own Apple Credentials in the App Store. (Skip this step if Xcode was already installed)
+2. Open **Xcode** for the first time and Click **Agree**. *(Skip this step if Xcode was previously used)*
+3. Make sure **Google Chrome** and **Firefox** have been installed prior *(and at least opened once to overcome Apple's security popup)*
+4. In Terminal, run:
 
 ```
 bash <(curl -s https://raw.githubusercontent.com/younglim/hats-ci/master/assets/mac-installer.sh)
 ```
+5. To Allow safaridriver to run successfully, enable: 1) Enable Develop menu on Safari > Preferences.. > Advanced 2) Go to the newly added Develop menu, Click "Allow Remote Automation"
+6. Restart Terminal for `hats_shell` to be started in Terminal automatically.
 
-OR 
-
-use our .dmg file but before that
-
-Install java8 in macOS
-```
-brew tap caskroom/versions
-brew cask install java8
-```
-
-Install Xcode, Chrome and Firefox
+** Note, Amazon Corretto 8 Java 1.8 is used.
 
 ## Automated Tests
 A quick way to create a test script is to use [Robotcorder](http://bit.ly/hats-robotcorder) and edit the script from Robotcorder.

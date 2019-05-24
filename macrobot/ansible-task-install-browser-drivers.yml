@@ -40,11 +40,11 @@
         state: present 
 
    - name: Download Firefox Gecko Driver
-     get_url: url="https://github.com/mozilla/geckodriver/releases/download/v0.19.1/geckodriver-v0.19.1-macos.tar.gz" dest="{{ ansible_tmpdir.stdout }}"   force=yes
+     get_url: url="https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-macos.tar.gz" dest="{{ ansible_tmpdir.stdout }}"   force=yes
    
    - name: Unzip GeckoDriver
      unarchive: 
-        src: "{{ ansible_tmpdir.stdout }}/geckodriver-v0.19.1-macos.tar.gz"
+        src: "{{ ansible_tmpdir.stdout }}/geckodriver-v0.24.0-macos.tar.gz"
         dest: "{{ ansible_tmpdir.stdout }}" 
 
    - name: Copy GeckoDriver executable to /usr/local/share and set executable

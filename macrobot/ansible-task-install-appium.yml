@@ -1,7 +1,7 @@
 ---
 
    - name: Set hats_shell JAVA_HOME
-     lineinfile: dest="~/hats/hats_shell" line='export JAVA_HOME=/Library/Java/Home' state=present
+     lineinfile: dest="~/hats/hats_shell" line='export PATH=$PATH:/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home' state=present
 
    - name: Set hats_shell PATH to JAVA_HOME/bin
      lineinfile: dest="~/hats/hats_shell" line='export PATH=$JAVA_HOME/bin:$PATH' state=present

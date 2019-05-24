@@ -3,14 +3,13 @@
 - hosts: all
 
   vars:
-    - node_js_version: 8.9.0
+    - node_js_version: 10.15.3
  
   tasks:
   - import_tasks: ansible-task-switch-xcode-clitools.yml
   - import_tasks: ansible-task-disable-sudo-timeout.yml
   - import_tasks: ansible-task-install-robot-framework.yml
   - import_tasks: ansible-task-install-browser-drivers.yml
-  - import_tasks: ansible-task-install-safari-webdriver.yml
   - import_tasks: ansible-task-install-red.yml
   - import_tasks: ansible-task-install-nvm-node.yml
   - import_tasks: ansible-task-install-android.yml

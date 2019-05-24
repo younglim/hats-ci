@@ -3,12 +3,17 @@ $current_path = (Get-Item -Path ".\" -Verbose).FullName
 
 echo "INFO: Stored current working directory at $current_path"
 
-# INFO: Set path to hats
-$path_to_hats  = split-path -parent $MyInvocation.MyCommand.Definition
-
+# INFO: Set path to hats C:\Users\hats\Desktop\hats-ci\virtualenv\shell\
+# $path_to_hats  = split-path -parent $MyInvocation.MyCommand.Definition
+$path_to_hats = "$PSScriptRoot"
 $path_to_origPrefix = "$path_to_hats\hats\Lib\orig-prefix.txt";
+
+echo "path_to_origPrefix: $path_to_origPrefix "
+
 $origPrefixContent = [IO.File]::ReadAllText($path_to_origPrefix)
-$pythonDir = "$path_to_hats\Python27".ToLower();
+echo "origPrefixContent $origPrefixContent"
+$pythonDir = "$path_to_hats\Python37".ToLower();
+echo "pythonDir: $pythonDir "
 
 If (!$pythonDir.equals($origPrefixContent)) {
 	echo "Overwrite 'hats\Lib\orig-prefix.txt' with directory to Python"
@@ -18,8 +23,8 @@ If (!$pythonDir.equals($origPrefixContent)) {
 
 $env:Path = "$env:windir;$env:windir\system32;$env:windir\system32\WindowsPowerShell\v1.0"
 
-echo "INFO: Set path to Python27"
-$env:Path = "$env:Path;$path_to_hats\Python27;$path_to_hats\Python27\Scripts";
+echo "INFO: Set path to Python37"
+$env:Path = "$env:Path;$path_to_hats\Python37;$path_to_hats\Python37\Scripts";
 
 if ([System.IntPtr]::Size -eq 4)
 {
@@ -141,10 +146,15 @@ if (Test-Path $firefox_path)
 	{
 		echo "INFO: Found 64-bit Mozilla Firefox Version $firefox_version"
 		
-		if ($firefox_version -match "^[0-5][0-4].*") 
+		if ($firefox_version -match "^([5][0-4])|([0-4][0-9]).*") 
 		{
 			echo "INFO: Support for Mozilla Firefox <= v54 enabled"
 			$env:Path = "$env:Path;$path_to_hats\drivers\firefox64-firefox-54";
+		}
+		elseif ($firefox_version -match "^([5][5-9])|(6[0-2]).*")
+		{
+			echo "INFO: Support for Mozilla Firefox <= v62 enabled"
+			$env:Path = "$env:Path;$path_to_hats\drivers\firefox64-firefox-62";
 		}
 		else
 		{
@@ -156,10 +166,15 @@ if (Test-Path $firefox_path)
 	{
 		echo "INFO: Found 32-bit Mozilla Firefox Version $firefox_version"
 		
-		if ($firefox_version -match "[0-5][0-4].*") 
+		if ($firefox_version -match "^([5][0-4])|([0-4][0-9]).*") 
 		{
 			echo "INFO: Support for Mozilla Firefox <= v54 enabled"
 			$env:Path = "$env:Path;$path_to_hats\drivers\firefox32-firefox-54";
+		}
+		elseif ($firefox_version -match "^([5][5-9])|(6[0-2]).*")
+		{
+			echo "INFO: Support for Mozilla Firefox <= v62 enabled"
+			$env:Path = "$env:Path;$path_to_hats\drivers\firefox32-firefox-62";
 		}
 		else
 		{
@@ -174,9 +189,37 @@ else
 	$env:Path = "$env:Path;$path_to_hats\drivers\firefox64";
 }
 
+$edge_path = "C:\Windows\SystemApps\Microsoft.MicrosoftEdge_8wekyb3d8bbwe\MicrosoftEdge.exe"
+
+if (Test-Path env:edge_path) {
+	$edge_path = $env:edge_path
+}
+
+# if (Test-Path $edge_path)
+# {
+# 	$edge_version = (Get-Item $edge_path).VersionInfo.FileVersion
+
+# 	if ((Get-ExeTargetMachine $edge_path).TargetMachine -eq "x64")
+# 	{
+# 		echo "INFO: Found 64-bit Microsoft Edge Version $edge_version"
+# 		$env:Path = "$env:Path;$path_to_hats\drivers\edge64";
+# 	}
+# 	else
+# 	{
+# 		echo "INFO: Found 32-bit Microsoft Edge Version $edge_version"
+# 		$env:Path = "$env:Path;$path_to_hats\drivers\edge32"
+# 	}
+# }
+# else
+# {
+# 	echo: "WARN: Could not detect Microsoft Edge"
+# 	$env:Path = "$env:Path;$path_to_hats\drivers\edge64"
+# }
+
 $env:ie_version = $ie_version;
 $env:chrome_version = $chrome_version;
 $env:firefox_version = $firefox_version;
+# $env:edge_version = $edge_version;
 
 echo "INFO: Set path to utils for this session"
 $env:Path = "$env:Path;$path_to_hats\utils";

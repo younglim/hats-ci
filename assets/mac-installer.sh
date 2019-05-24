@@ -10,9 +10,12 @@ if [ -d "hats-for-mac" ]; then
 	rm -rf hats-for-mac
 fi
 
+echo "" > ~/.bash_profile
 mkdir hats-for-mac
 cd hats-for-mac
 
+# Uncomment below and comment `svn` during dev
+#cp -R ../../macrobot . 
 svn checkout https://github.com/younglim/hats-ci/trunk/macrobot
 cd macrobot
 

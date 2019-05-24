@@ -139,8 +139,8 @@ Start-Process "$path_to_hats\utils\visualcppbuildtools\VisualCppBuildTools_Full.
 echo "Installing Appium through npm"
 # npm --vcc-build-tools-parameters='[""/CustomInstallPath"", ""$path_to_hats\MSBUILD""]' install -g -production windows-build-tools 
 
-$env:Path = "$env:Path;$path_to_hats\Python27;$path_to_hats\Python27\Scripts";
-npm install -g appium@1.8.0beta5
+$env:Path = "$env:Path;$path_to_hats\Python37;$path_to_hats\Python37\Scripts";
+npm install -g appium@1.12.0
 npm install -g phantomjs
 
 npm config set msvs_version 2015

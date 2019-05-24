@@ -21,12 +21,22 @@
         update_homebrew: yes
         install_options: force
 
-   - name: Install Java, Android SDK, NDK and Studio through cask
+   - name: Install Corretto 8 into /Library/Java/JavaVirtualMachines/
+     become: yes
+     unarchive:
+        src: https://d3pxv6yz143wms.cloudfront.net/8.212.04.2/amazon-corretto-8.212.04.2-macosx-x64.tar.gz
+        dest: /Library/Java/JavaVirtualMachines/
+        remote_src: yes
+    
+   - name: Set JAVA_HOME and Bin Directory for JAVA_HOME
+     shell: export JAVA_HOME=$(/usr/libexec/java_home)
+     shell: export PATH=$PATH:$JAVA_HOME/bin
+
+   - name: Install Android SDK, NDK and Studio through cask
      homebrew_cask: 
         name: "{{ item }}"
         state: upgraded
      with_items:
-       - caskroom/versions/java8
        - android-sdk
        - android-ndk
        - android-studio
@@ -96,8 +106,11 @@
    - name: Accept sdkmanager license
      shell: . ~/hats/hats_shell && yes | sdkmanager --licenses
      
-   - name: Install System Image for creating Android AVD of v27
-     shell: . ~/hats/hats_shell && sdkmanager 'build-tools;27.0.3' 'system-images;android-27;google_apis;x86' 'platform-tools'
+   - name: Install System Image for creating Android AVD of v28
+     shell: . ~/hats/hats_shell && sdkmanager 'build-tools;28.0.3' 'system-images;android-28;google_apis;x86' 'platform-tools' 'platforms;android-28'
      
-   - name: Create AVD of version 27 
-     shell: . ~/hats/hats_shell && echo no | avdmanager create avd -n testAVD -k "system-images;android-27;google_apis;x86" -g "google_apis" --force
+   - name: Create AVD of version 28
+     shell: . ~/hats/hats_shell && echo no | avdmanager create avd -n testAVD --device "pixel_xl" -k "system-images;android-28;google_apis;x86" -g "google_apis" --force
+     
+   - name: Add keyboard setting  
+     shell: grep 'hw.keyboard=yes' /usr/local/share/android-sdk/.android/avd/testAVD.avd/config.ini || echo 'hw.keyboard=yes' >> /usr/local/share/android-sdk/.android/avd/testAVD.avd/config.ini
