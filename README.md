@@ -72,12 +72,21 @@ You can either use
 3. [Notepad++](https://notepad-plus-plus.org/)
 
 ### Running a test
+
+#### Windows
 1. Open a command prompt. Run `hats_shell`.
 2. Run the sample test script
 ```
 cd "C:\Program Files\hats"
 pybot testpage\test.robot
 ```
+
+#### Mac
+
+1. Open a terminal.
+2. Ensure `(hats)` virtuelenv has loaded.  
+3. Run pybot from bin folder.
+
 
 ### Testing with Android
 1. Make sure all $ANDROID environment variables are set.
