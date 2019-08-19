@@ -1,6 +1,6 @@
 apipkg==1.4
 appdirs==1.4.3
-Appium-Python-Client==0.24
+Appium-Python-Client==0.46
 argh==0.26.2
 asn1crypto==0.22.0
 backports-abc==0.5
