@@ -18,11 +18,12 @@ As a group of passionate quality engineers, we want to lower the barrier of entr
 
 ##### Operating Systems
 * Windows 7, 8.1, 10 (64-bit)
-* Mac OS X El-Capitan, macOS Sierra, High Sierra
+* Mac OS X El-Capitan, macOS Sierra, High Sierra, Mojave
 * Linux CentOS, Fedora, Ubuntu instructions are available at https://github.com/younglim/hats-linux .
 
 ##### Browsers
 * Microsoft Internet Explorer 11
+* Microsoft Edge 44
 * Google Chrome 54 (or newer)
 * Mozilla Firefox 54 (or newer)
 * Apple Safari 10 and later
@@ -58,35 +59,8 @@ bash <(curl -s https://raw.githubusercontent.com/younglim/hats-ci/master/assets/
 
 ** Note, Amazon Corretto 8 Java 1.8 is used.
 
-## Automated Tests
-A quick way to create a test script is to use [Robotcorder](http://bit.ly/hats-robotcorder) and edit the script from Robotcorder.
-
-### Get started with Robotcorder
-1. Open a command prompt. Run `hats_shell`. 
-2. Run `robotcorder` for instructions setting up the Chrome extension.
-
-### Writing/Editing a test
-You can either use
-1. [Eclipse IDE](https://eclipse.org/) with [RED plugin](https://github.com/nokia/RED). Type `red` in hats_shell to begin.
-2. [Pycharm IDE](https://www.jetbrains.com/pycharm/) with [IntelliBot plugin](https://plugins.jetbrains.com/plugin/7386-intellibot)
-3. [Notepad++](https://notepad-plus-plus.org/)
-
-### Running a test
-
-#### Windows
-1. Open a command prompt. Run `hats_shell`.
-2. Run the sample test script
-```
-cd "C:\Program Files\hats"
-pybot testpage\test.robot
-```
-
-#### Mac
-
-1. Open a terminal.
-2. Ensure `(hats)` virtuelenv has loaded.  
-3. Run pybot from bin folder.
-
+## Documentation
+You can find detail documentation [here.](https://younglim.github.io/hats-ci/#/)
 
 ### Testing with Android
 1. Make sure all $ANDROID environment variables are set.

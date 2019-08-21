@@ -13,9 +13,9 @@ As a group of passionate quality engineers, we want to lower the barrier of entr
 | :---------------------------------------------------------: |:--------:|:------: |
 | <img src="https://imgur.com/863k356.png" width="30">        |    54    |    ✓    | 
 | <img src="https://imgur.com/TXdtHM6.png" width="30">        |    54    |    ✓    | 
-| <img src="https://imgur.com/SoY4fY8.png" width="30">        |    44    |    ✓    | 
+| <img src="https://imgur.com/SoY4fY8.png" width="30">        |    11    |    ✓    | 
 | <img src="https://imgur.com/ZNOsXLB.png" width="30">        |    10    |    ✓    | 
-| <img src="https://imgur.com/CZvGPpG.png" width="30">        |    11    |    ✓    | 
+| <img src="https://imgur.com/CZvGPpG.png" width="30">        |    44    |    ✓    | 
 
 **Main Features**
 
