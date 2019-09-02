@@ -85,25 +85,25 @@
      register: firefox_default_profile
 
    - name: Create Firefox Config if it does not exist
-     file: path="~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout.split(';')[0] }}/prefs.js" state="touch"
-
+     file: path="~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout_lines[0] }}/prefs.js" state="touch"
+      
    - name: Insert update disabled (Firefox Config)
      lineinfile: 
-        dest: "~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout.split(';')[0] }}/prefs.js"
+        dest: "~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout_lines[0] }}/prefs.js"
         insertbefore: '^user_pref*'
         line: 'user_pref("app.update.enabled", false);' 
         state: present
     
    - name: Insert no update (Firefox Config)
      lineinfile: 
-        dest: "~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout.split(';')[0] }}/prefs.js"
+        dest: "~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout_lines[0] }}/prefs.js"
         insertbefore: '^user_pref*'
         line: 'user_pref("app.update.auto", false);'
         state: present
 
    - name: Insert no elevate update (Firefox Config)
      lineinfile: 
-        dest: "~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout.split(';')[0] }}/prefs.js"
+        dest: "~/Library/Application Support/Firefox/Profiles/{{ firefox_default_profile.stdout_lines[0] }}/prefs.js"
         insertbefore: '^user_pref*'
         line: 'user_pref("app.update.elevate.attempts", 0);'
         state: present
