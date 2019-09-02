@@ -1,6 +1,6 @@
 ![logo](_media/icon.png)
 
-# hats <small>1.2.1</small>
+# hats <small>1.2.2</small>
 
 > Hive Agile Testing Solutions
 
