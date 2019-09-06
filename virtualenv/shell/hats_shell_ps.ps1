@@ -120,7 +120,7 @@ if (Test-Path $chrome_path)
 			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-76";
 		}
 		else {
-			$env:Path = "$env:Path;$path_to_hats\drivers\chrome";
+			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-76";
 		}
 	}
 	
