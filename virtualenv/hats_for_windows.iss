@@ -7,8 +7,8 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{AB17F62F-BE30-45C1-8E66-E232BF6939AB}
 AppName=hats for Windows
-AppVersion=1.1.3
-VersionInfoVersion=1.1.3
+AppVersion=1.2.2
+VersionInfoVersion=1.2.2
 AppVerName=hats for Windows
 AppPublisher=GovTech
 AppPublisherURL=
@@ -26,7 +26,7 @@ DiskSpanning=no
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-Source: "\\?\Volume{95914872-a32e-4856-8b63-da4d54c6a9b7}\Program Files\hats\*"; DestDir: "\\?\{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;
+Source: "\\?\Volume{e641b67c-0000-0000-0000-402400000000}\Program Files\hats\*"; DestDir: "\\?\{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;
 ; Use 'mountvol' to find UNC path to volume
 ;Source: "C:\Program Files\hats\*"; DestDir: "{app}"; Excludes: "androidSDK\.android\avd"; Flags: ignoreversion recursesubdirs createallsubdirs;
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files

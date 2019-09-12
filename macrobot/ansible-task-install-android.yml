@@ -14,12 +14,12 @@
    - name: Create Temp Directory
      file: path="{{ ansible_tmpdir.stdout }}" state="directory"
         
-   - name: Upgrade caskroom/versions
-     homebrew_cask:
-        name: caskroom/versions
-        state: upgraded
-        update_homebrew: yes
-        install_options: force
+  #  - name: Upgrade caskroom/versions
+  #    homebrew_cask:
+  #       name: caskroom/versions
+  #       state: upgraded
+  #       update_homebrew: yes
+  #       install_options: force
 
    - name: Install Corretto 8 into /Library/Java/JavaVirtualMachines/
      become: yes

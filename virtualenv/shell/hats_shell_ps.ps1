@@ -114,8 +114,13 @@ if (Test-Path $chrome_path)
 			echo "INFO: Support for Chrome v64-66 enabled"
 			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-66";
 		}
+		elseif ($chrome_version -match "^(7[4-6]).*") 
+		{
+			echo "INFO: Support for Chrome v-74-76 enabled"
+			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-76";
+		}
 		else {
-			$env:Path = "$env:Path;$path_to_hats\drivers\chrome";
+			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-76";
 		}
 	}
 	

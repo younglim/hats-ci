@@ -2,4 +2,9 @@
 
    - name: Switch to /Applications/Xcode.app/Contents/Developer  
      become: true
-     shell: xcode-select -s /Applications/Xcode.app/Contents/Developer     
+     shell: xcode-select -s /Applications/Xcode.app/Contents/Developer 
+     
+   - name: Creates or Check for ~/.bash_profile existence
+     file:
+       path: ~/.bash.profile
+       state: touch
