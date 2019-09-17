@@ -39,6 +39,9 @@ else
 	$env:Path = "$env:Path;$env:JAVA_HOME\bin";
 }
 
+$client = new-object System.Net.WebClient;
+$path_to_hats = "$env:PROGRAMFILES\hats"
+
 echo "INFO: Set path to browser drivers for this session"
 
 . $path_to_hats\utils\Get-ExeTargetMachine.ps1
@@ -91,7 +94,6 @@ if (Test-Path env:chrome_path) {
 if (Test-Path $chrome_path) 
 {
 	$chrome_version = (Get-Item $chrome_path).VersionInfo.FileVersion
-
 	if ($chrome_version -eq $null)
 	{
 		echo "WARN: Could not detect Google Chrome"
@@ -99,19 +101,62 @@ if (Test-Path $chrome_path)
 	else
 	{
 		echo "INFO: Found Google Chrome Version $chrome_version"
-		if ($chrome_version -eq "78") 
+
+        $chrome_version_short = $chrome_version.substring(0,2)
+        $chromedriver_source_path = "$path_to_hats\chromedriver-32-chrome{0}.zip" -f $chrome_version_short
+        $chromedriver_destination_path = "$path_to_hats\drivers\chrome-{0}" -f $chrome_version_short
+
+        if ($chrome_version -match "^5[6-8].*") 
 		{
-			echo "INFO: Support for Chrome v78 enabled"
-			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-78";
+			echo "INFO: Support for Chrome v58 enabled"
+			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-58";
 		}
-		elseif ($chrome_version -eq "77") 
+		elseif ($chrome_version -match "^(59|6[0-3]).*") 
+		{
+			echo "INFO: Support for Chrome v59-63 enabled"
+			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-63";
+		}
+		elseif ($chrome_version -match "^(6[4-6]).*") 
+		{
+			echo "INFO: Support for Chrome v64-66 enabled"
+			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-66";
+		}
+		elseif ($chrome_version -match "^(7[4-6]).*") 
+		{
+			echo "INFO: Support for Chrome v-74-76 enabled"
+			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-76";
+		}
+		elseif ($chrome_version_short -eq "77") 
 		{
 			echo "INFO: Support for Chrome v77 enabled"
 			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-77";
 		}
-		else {
-			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-76";
+		elseif ($chrome_version_short -eq "78") 
+		{
+			echo "INFO: Support for Chrome v78 enabled"
+			$env:Path = "$env:Path;$path_to_hats\drivers\chrome-78";
 		}
+        else
+        {
+            if (Test-Path -Path $chromedriver_destination_path)
+            {
+                echo "INFO: Support for Chrome v{0} enabled" -f $chrome_version_short
+                $env:Path = "$env:Path;$path_to_hats\drivers\chrome-{0}" -f $chrome_version_short;
+            }
+            else
+            {
+                echo "INFO: Support for Chrome v{0} not found" -f $chrome_version_short
+                $chromedriver_version_url = "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_{0}" -f $chrome_version.substring(0, $chrome_version.length - 2)
+                $chromedriver_version = Invoke-WebRequest $chromedriver_version_url
+                $chromedriver_filename = "chromedriver-32-chrome{0}.zip" -f $chrome_version_short
+                echo "INFO: Downloading latest Chromedriver from https://chromedriver.storage.googleapis.com/{0}/chromedriver_win32.zip" -f $chromedriver_version.Content
+                $client.DownloadFile("https://chromedriver.storage.googleapis.com/{0}/chromedriver_win32.zip" -f $chromedriver_version.Content, $chromedriver_source_path);
+                Expand-Archive -LiteralPath $chromedriver_source_path -DestinationPath $chromedriver_destination_path
+                Remove-Item $chromedriver_source_path
+                echo "INFO: Support for Chrome v{0} enabled" -f $chrome_version_short
+                $env:Path = "$env:Path;$path_to_hats\drivers\chrome-{0}" -f $chrome_version_short;
+            }
+        }
 	}
 	
 }
