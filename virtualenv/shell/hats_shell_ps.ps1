@@ -76,7 +76,7 @@ else
 	$env:Path = "$env:Path;$path_to_hats\drivers\ie64";
 }
 
-$env:Path = "$env:Path;$path_to_hats\drivers\ie";
+#$env:Path = "$env:Path;$path_to_hats\drivers\ie";
 
 $path_to_programfiles_x86 = "C:\Program Files (x86)"
 
@@ -231,8 +231,35 @@ else
 
 $edge_path = "C:\Windows\SystemApps\Microsoft.MicrosoftEdge_8wekyb3d8bbwe\MicrosoftEdge.exe"
 
-if (Test-Path env:edge_path) {
-	$edge_path = $env:edge_path
+if (Test-Path $edge_path) {
+    $edge_version = (Get-AppxPackage Microsoft.MicrosoftEdge).Version
+
+    if ($edge_version -eq "44.18362.1.0")
+    {
+        echo "INFO: Found 64-bit Microsoft Edge Version $edge_version."
+    }
+    else
+    {
+        if ($edge_version -eq "42.17134.1.0")
+        {
+            $env:Path = "$env:Path;$path_to_hats\drivers\edge-64-42";
+            echo "INFO: Found 64-bit Microsoft Edge Version $edge_version."
+        }
+        elseif ($edge_version -eq "41.16299.15")
+        {
+            $env:Path = "$env:Path;$path_to_hats\drivers\edge-64-41";
+            echo "INFO: Found 64-bit Microsoft Edge Version $edge_version."
+        }
+        elseif ($edge_version -eq "40.15063")
+        {
+            $env:Path = "$env:Path;$path_to_hats\drivers\edge-64-40";
+            echo "INFO: Found 64-bit Microsoft Edge Version $edge_version."
+        }
+        else
+        {
+            echo "INFO: Found 64-bit Microsoft Edge Version $edge_version. Only version 40.15063 or greater are supported."
+        }
+    }
 }
 
 # if (Test-Path $edge_path)
