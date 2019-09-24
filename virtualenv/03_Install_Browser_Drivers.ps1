@@ -14,8 +14,9 @@ If(!(test-path $path_to_hats))
 If(!(test-path "$path_to_hats\drivers"))
 {
 	New-Item -ItemType Directory -Force -Path "$path_to_hats\drivers"
-	# New-Item -ItemType Directory -Force -Path "$path_to_edge32"
-	# New-Item -ItemType Directory -Force -Path "$path_to_edge64"
+	New-Item -ItemType Directory -Force -Path "$path_to_hats\drivers\edge-64-42"
+	New-Item -ItemType Directory -Force -Path "$path_to_hats\drivers\edge-64-41"
+	New-Item -ItemType Directory -Force -Path "$path_to_hats\drivers\edge-64-40"
 }
 
 . .\Get-IniContent.ps1
@@ -44,9 +45,10 @@ $client.DownloadFile($iniContent["BrowserDrivers"]["Firefox-64-firefox54"],"$pat
 $client.DownloadFile($iniContent["BrowserDrivers"]["Firefox-32-firefox62"],"$path_to_hats\geckodriver-32-firefox62.zip");
 $client.DownloadFile($iniContent["BrowserDrivers"]["Firefox-64-firefox62"],"$path_to_hats\geckodriver-64-firefox62.zip");
 
-# echo "Download Edge driver"
-# $client.DownloadFile($iniContent["BrowserDrivers"]["Edge-32"], "$path_to_edge32\msedgedriver.exe");
-# $client.DownloadFile($iniContent["BrowserDrivers"]["Edge-64"], "$path_to_edge64\msedgedriver.exe");
+echo "Download Edge driver"
+$client.DownloadFile($iniContent["BrowserDrivers"]["Edge-64-42"], "$path_to_hats\drivers\edge-64-42\MicrosoftWebDriver.exe");
+$client.DownloadFile($iniContent["BrowserDrivers"]["Edge-64-41"], "$path_to_hats\drivers\edge-64-41\MicrosoftWebDriver.exe");
+$client.DownloadFile($iniContent["BrowserDrivers"]["Edge-64-40"], "$path_to_hats\drivers\edge-64-40\MicrosoftWebDriver.exe");
 
 echo "Unzipping Chrome driver"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"chromedriver-32.zip"', '-o"drivers\chrome"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
