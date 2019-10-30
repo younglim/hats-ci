@@ -68,6 +68,11 @@
      with_fileglob:
        - "{{ ansible_tmpdir.stdout }}/chromedriver*"
 
+   - name: Enable Safaridriver in macOS Catalina
+     become: yes
+     command: safaridriver --enable
+     ignore_errors: yes
+
    - name: Remove gecko downloads
      file:
        path: "{{item}}"
