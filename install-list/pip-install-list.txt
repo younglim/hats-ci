@@ -76,9 +76,9 @@ query-string==0.0.28
 redis==2.10.5
 requests==2.18.1
 requests-oauthlib==0.8.0
-robotframework==3.0.4
+robotframework==3.1.2
 robotframework-angularjs==0.0.6
-robotframework-appiumlibrary==1.4.6
+robotframework-appiumlibrary==1.5.0
 robotframework-databaselibrary==0.8.1
 robotframework-extendedrequestslibrary==0.5.5
 robotframework-extendedselenium2library==0.9.1
