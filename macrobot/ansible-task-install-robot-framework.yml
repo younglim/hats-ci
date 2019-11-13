@@ -28,7 +28,7 @@
      pip:
        name: virtualenv
        executable: pip3
-     sudo: yes
+     become: true
 
    - name: Check if virtualenv ~/hats folder exists (1/2)
      file:
