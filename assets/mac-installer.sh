@@ -21,7 +21,7 @@ xcode-select -p &> /dev/null
 if [ $? -ne 0 ];
 then
 	echo "Switching Xcode to $(find /Applications/Xcode*.app -maxdepth 0 -type d)"
-	xcode-select -s $(find /Applications/Xcode*.app -maxdepth 0 -type d) 
+	sudo xcode-select -s $(find /Applications/Xcode*.app -maxdepth 0 -type d) 
 fi
 
 svn checkout https://github.com/younglim/hats-ci/trunk/macrobot
