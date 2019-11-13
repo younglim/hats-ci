@@ -15,6 +15,15 @@ cd hats-for-mac
 
 # Uncomment below and comment `svn` during dev
 #cp -R ../../macrobot . 
+
+# Check if xcode is configured
+xcode-select -p &> /dev/null
+if [ $? -ne 0 ];
+then
+	echo "Switching Xcode to $(find /Applications/Xcode*.app -maxdepth 0 -type d)"
+	xcode-select -s $(find /Applications/Xcode*.app -maxdepth 0 -type d) 
+fi
+
 svn checkout https://github.com/younglim/hats-ci/trunk/macrobot
 cd macrobot
 
