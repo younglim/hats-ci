@@ -27,6 +27,9 @@ $iniContent = Get-IniContent "config.ini"
 echo "Download Chrome driver"
 $client = new-object System.Net.WebClient;
 $client.DownloadFile($iniContent["BrowserDrivers"]["Chrome-32"],"$path_to_hats\chromedriver-32.zip");
+$client.DownloadFile($iniContent["BrowserDrivers"]["Chrome-32-chrome81"],"$path_to_hats\chromedriver-32-chrome81.zip");
+$client.DownloadFile($iniContent["BrowserDrivers"]["Chrome-32-chrome80"],"$path_to_hats\chromedriver-32-chrome80.zip");
+$client.DownloadFile($iniContent["BrowserDrivers"]["Chrome-32-chrome79"],"$path_to_hats\chromedriver-32-chrome79.zip");
 $client.DownloadFile($iniContent["BrowserDrivers"]["Chrome-32-chrome78"],"$path_to_hats\chromedriver-32-chrome78.zip");
 $client.DownloadFile($iniContent["BrowserDrivers"]["Chrome-32-chrome77"],"$path_to_hats\chromedriver-32-chrome77.zip");
 $client.DownloadFile($iniContent["BrowserDrivers"]["Chrome-32-chrome76"],"$path_to_hats\chromedriver-32-chrome76.zip");
@@ -52,6 +55,9 @@ $client.DownloadFile($iniContent["BrowserDrivers"]["Edge-64-40"], "$path_to_hats
 
 echo "Unzipping Chrome driver"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"chromedriver-32.zip"', '-o"drivers\chrome"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"chromedriver-32-chrome81.zip"', '-o"drivers\chrome-81"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"chromedriver-32-chrome80.zip"', '-o"drivers\chrome-80"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
+Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"chromedriver-32-chrome79.zip"', '-o"drivers\chrome-79"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"chromedriver-32-chrome78.zip"', '-o"drivers\chrome-78"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"chromedriver-32-chrome77.zip"', '-o"drivers\chrome-77"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
 Start-Process -FilePath "$path_to_hats\7-Zip\Files\7-Zip\7z.exe" -ArgumentList 'e', '"chromedriver-32-chrome76.zip"', '-o"drivers\chrome-76"', '-aoa' -NoNewWindow -Wait -WorkingDirectory "$path_to_hats"
